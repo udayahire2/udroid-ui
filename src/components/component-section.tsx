@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { CardSpotlight } from "./ui/card-spotlight";
 import { GridPattern } from "./ui/grid-pattern";
 import { cn } from "@/lib/utils";
+import { MoveRight } from "lucide-react";
 
 const components = [
     {
@@ -66,7 +67,7 @@ export function ComponentSection() {
                     "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-50",
                 )}
             />
-            <div className="container relative mx-auto px-4 md:px-6">
+            <div className="max-w-7xl relative mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div className="mb-16 text-center space-y-4">
                     <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
@@ -86,21 +87,27 @@ export function ComponentSection() {
                             className="group block h-full"
                         >
                             <CardSpotlight
-                                className="h-full p-6 bg-card border-border hover:border-foreground/20 transition-all duration-300"
+                                className="h-full p-6 bg-card border-border/50 
+                                transition-all duration-200 ease-out
+                                hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg dark:hover:shadow-2xl dark:hover:border-white/10
+                                dark:bg-card dark:hover:bg-muted/10"
                             >
                                 {/* Meta */}
-                                {component.count && (
-                                    <span className="relative z-10 mb-3 inline-block text-xs font-medium text-emerald-500">
-                                        {component.count} components
-                                    </span>
-                                )}
+                                <div className="flex justify-between items-start mb-4">
+                                    {component.count && (
+                                        <span className="relative z-10 inline-block text-xs font-medium text-emerald-500/90 transition-colors duration-200 group-hover:text-emerald-500">
+                                            {component.count} components
+                                        </span>
+                                    )}
+                                    <MoveRight className="w-4 h-4 text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary" />
+                                </div>
 
                                 {/* Content */}
                                 <div className="relative z-10 space-y-2">
-                                    <h3 className="text-xl font-semibold tracking-tight transition-colors group-hover:text-primary">
+                                    <h3 className="text-xl font-semibold tracking-tight transition-colors duration-200 group-hover:text-primary">
                                         {component.title}
                                     </h3>
-                                    <p className="text-sm leading-relaxed text-muted-foreground group-hover:text-foreground">
+                                    <p className="text-sm leading-relaxed text-muted-foreground/80 transition-all duration-200 group-hover:text-muted-foreground group-hover:opacity-100">
                                         {component.description}
                                     </p>
                                 </div>
@@ -109,6 +116,6 @@ export function ComponentSection() {
                     ))}
                 </div>
             </div>
-        </section>
+        </section >
     );
 }

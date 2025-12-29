@@ -35,7 +35,7 @@ const faqItems = [
 export function FAQSection() {
     return (
         <section className="bg-background py-24 text-foreground transition-colors duration-300">
-            <div className="container mx-auto px-4 md:px-6">
+            <div className="max-w-7xl mx-auto px-4 md:px-6">
                 <div className="grid gap-12 md:grid-cols-2">
                     {/* Left Column: Heading */}
                     <div className="space-y-4">

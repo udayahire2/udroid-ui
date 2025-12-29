@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 export function TypographyH1() {
   return (
     <section className="w-full py-16 md:py-24">
-      <div className="flex flex-col mx-auto max-w-5xl text-center px-4">
+      <div className="flex flex-col mx-auto max-w-7xl text-center px-4">
         {/* Top row - Single Pill */}
         <div className="flex justify-center mb-6">
           <div className="inline-flex items-center rounded-full border border-border/40 bg-muted/30 px-3 py-1 text-sm text-muted-foreground transition-colors hover:bg-muted/50">
@@ -34,15 +34,16 @@ export function TypographyH1() {
         </h3>
 
         {/* Main heading */}
-        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-muted-foreground">
-          for <span className="text-foreground">Busy</span> &{" "}
-          <span className="text-foreground">Smart</span> devs.
+        {/* Main heading */}
+        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-foreground">
+          The Opinionated UI System <br className="hidden md:block" />
+          for <span className="text-muted-foreground">Frontend Engineers.</span>
         </h1>
 
         {/* Description */}
         <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base md:text-lg leading-relaxed mb-8">
-          Save hours of design time with clean, ready-to-use shadcn blocks that
-          just work — modern, responsive, and built for speed.
+          Ship accessible, animated interfaces with strong defaults.
+          Built on Radix UI, designed for speed, and free of prop-soup.
         </p>
 
         {/* CTA */}
