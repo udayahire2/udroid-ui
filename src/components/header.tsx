@@ -8,7 +8,6 @@ import { MobileNav } from "@/components/mobile-nav";
 import { Search, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import { Link } from "react-router-dom";
-
 import { Github } from "lucide-react";
 import { CommandMenu } from "@/components/command-menu";
 import { useState } from "react";

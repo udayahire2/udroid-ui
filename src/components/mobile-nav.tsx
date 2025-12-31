@@ -1,10 +1,60 @@
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { MenuIcon, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 import React from "react";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import { navLinks } from "@/components/header";
+import { AnimatePresence, motion } from "framer-motion";
+
+function MenuTwoLineIcon({ className, ...props }: React.ComponentProps<"svg">) {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			className={className}
+			{...props}
+		>
+			<line x1="4" x2="20" y1="9" y2="9" />
+			<line x1="4" x2="20" y1="15" y2="15" />
+		</svg>
+	);
+}
+
+const containerVariants = {
+	hidden: { opacity: 0, y: -20 },
+	show: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.2,
+			ease: "easeOut",
+			staggerChildren: 0.05,
+		},
+	},
+	exit: {
+		opacity: 0,
+		y: -10,
+		transition: {
+			duration: 0.15,
+			ease: "easeIn",
+		},
+	},
+};
+
+const itemVariants = {
+	hidden: { opacity: 0, y: 10 },
+	show: { opacity: 1, y: 0 },
+	exit: { opacity: 0, y: 0 },
+};
 
 export function MobileNav() {
 	const [open, setOpen] = React.useState(false);
@@ -32,54 +82,63 @@ export function MobileNav() {
 				className="md:hidden"
 				onClick={() => setOpen(!open)}
 				size="icon"
-				variant="outline"
+				variant="ghost"
 			>
 				{open ? (
-					<XIcon className="size-4.5" />
+					<XIcon className="size-5" />
 				) : (
-					<MenuIcon className="size-4.5" />
+					<MenuTwoLineIcon className="size-5" />
 				)}
 			</Button>
-			{open &&
-				createPortal(
-					<div
-						className={cn(
-							"bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/50",
-							"fixed top-16 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-t md:hidden"
-						)}
-						id="mobile-menu"
-					>
-						<div
+			{createPortal(
+				<AnimatePresence>
+					{open && (
+						<motion.div
+							variants={containerVariants}
+							initial="hidden"
+							animate="show"
+							exit="exit"
 							className={cn(
-								"data-[slot=open]:zoom-in-97 ease-out data-[slot=open]:animate-in",
-								"size-full p-4"
+								"fixed top-16 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-t md:hidden",
+								"bg-background/95 backdrop-blur-md supports-backdrop-filter:bg-background/60"
 							)}
-							data-slot={open ? "open" : "closed"}
+							id="mobile-menu"
 						>
-							<div className="grid gap-y-2">
-								{navLinks.map((link) => (
-									<a
-										className={buttonVariants({
-											variant: "ghost",
-											className: "justify-start",
-										})}
-										href={link.href}
-										key={link.label}
-									>
-										{link.label}
-									</a>
-								))}
+							<div className="flex size-full flex-col p-6">
+								<div className="grid gap-y-4">
+									{navLinks.map((link) => (
+										<motion.div
+											variants={itemVariants}
+											key={link.label}
+										>
+											<Link
+												className={buttonVariants({
+													variant: "ghost",
+													className: "justify-start text-base font-medium w-full",
+												})}
+												to={link.href}
+												onClick={() => setOpen(false)}
+											>
+												{link.label}
+											</Link>
+										</motion.div>
+									))}
+								</div>
+								<motion.div
+									variants={itemVariants}
+									className="mt-auto flex flex-col gap-3 pb-8"
+								>
+									<Button className="w-full" variant="outline">
+										Sign In
+									</Button>
+									<Button className="w-full">Get Started</Button>
+								</motion.div>
 							</div>
-							<div className="mt-12 flex flex-col gap-2">
-								<Button className="w-full" variant="outline">
-									Sign In
-								</Button>
-								<Button className="w-full">Get Started</Button>
-							</div>
-						</div>
-					</div>,
-					document.body
-				)}
+						</motion.div>
+					)}
+				</AnimatePresence>,
+				document.body
+			)}
 		</>
 	);
 }
