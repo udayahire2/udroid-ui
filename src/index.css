@@ -2,52 +2,17 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
-/* GitHub Dark Syntax Highlighting */
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: .5em;
-  color: #c9d1d9;
-  background: #0d1117
+/* Code block theme switching */
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
 }
 
-.hljs-comment,
-.hljs-quote {
-  color: #8b949e
-}
-
-.hljs-keyword,
-.hljs-selector-tag {
-  color: #ff7b72
-}
-
-.hljs-literal,
-.hljs-section,
-.hljs-selector-id {
-  color: #79c0ff
-}
-
-.hljs-number {
-  color: #79c0ff
-}
-
-.hljs-attribute,
-.hljs-link,
-.hljs-regexp,
-.hljs-string,
-.hljs-symbol,
-.hljs-template-variable {
-  color: #a5d6ff
-}
-
-.hljs-addition {
-  color: #baffc9;
-  background-color: #033a16
-}
-
-.hljs-deletion {
-  color: #ffd7d5;
-  background-color: #67060c
+.dark code[data-theme*=" "],
+.dark code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
 }
 
 @font-face {
@@ -185,7 +150,7 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.02 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);

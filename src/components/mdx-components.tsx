@@ -68,21 +68,21 @@ export const useMDXComponents = {
     ),
     a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
         <a
-            className={cn("font-medium underline underline-offset-4 decoration-white/20 hover:decoration-white transition-colors", className)}
+            className={cn("font-medium underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors", className)}
             {...props}
         />
     ),
     p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
         <p
-            className={cn("text-[14px] leading-[22px] text-white/60 mb-6", className)}
+            className={cn("text-[14px] leading-[22px] text-muted-foreground mb-6", className)}
             {...props}
         />
     ),
     ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-        <ul className={cn("my-6 ml-6 list-disc [&>li]:mt-2 text-[14px] leading-[22px] text-white/60", className)} {...props} />
+        <ul className={cn("my-6 ml-6 list-disc [&>li]:mt-2 text-[14px] leading-[22px] text-muted-foreground", className)} {...props} />
     ),
     ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-        <ol className={cn("my-6 ml-6 list-decimal [&>li]:mt-2 text-[14px] leading-[22px] text-white/60", className)} {...props} />
+        <ol className={cn("my-6 ml-6 list-decimal [&>li]:mt-2 text-[14px] leading-[22px] text-muted-foreground", className)} {...props} />
     ),
     li: ({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
         <li className={cn("", className)} {...props} />
@@ -104,22 +104,22 @@ export const useMDXComponents = {
         // eslint-disable-next-line @next/next/no-img-element
         <img className={cn("rounded-md border bg-muted", className)} alt={alt} {...props} />
     ),
-    hr: ({ ...props }) => <hr className="my-10 border-white/10" {...props} />,
+    hr: ({ ...props }) => <hr className="my-10 border-border" {...props} />,
     table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-        <div className="my-6 w-full overflow-y-auto rounded-lg border border-white/5">
+        <div className="my-6 w-full overflow-y-auto rounded-lg border border-border">
             <table className={cn("w-full text-sm", className)} {...props} />
         </div>
     ),
     tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
         <tr
-            className={cn("m-0 border-t border-white/5 p-0 even:bg-white/[0.02] hover:bg-white/[0.04] transition-colors", className)}
+            className={cn("m-0 border-t border-border p-0 even:bg-muted/50 hover:bg-muted transition-colors", className)}
             {...props}
         />
     ),
     th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
         <th
             className={cn(
-                "border-white/5 px-4 py-3 text-left font-medium text-[13px] text-white/80 [&[align=center]]:text-center [&[align=right]]:text-right bg-white/[0.02]",
+                "border-border px-4 py-3 text-left font-medium text-[13px] text-foreground [&[align=center]]:text-center [&[align=right]]:text-right bg-muted/50",
                 className
             )}
             {...props}
@@ -128,9 +128,9 @@ export const useMDXComponents = {
     td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
         <td
             className={cn(
-                "border-white/5 px-4 py-3 text-left text-[13px] text-white/70 [&[align=center]]:text-center [&[align=right]]:text-right",
+                "border-border px-4 py-3 text-left text-[13px] text-muted-foreground [&[align=center]]:text-center [&[align=right]]:text-right",
                 // Chip styling for inline code inside tables
-                "[&_code]:px-2 [&_code]:py-0.5 [&_code]:rounded-md [&_code]:bg-white/10 [&_code]:text-[12px] [&_code]:font-normal [&_code]:text-white/90",
+                "[&_code]:px-2 [&_code]:py-0.5 [&_code]:rounded-md [&_code]:bg-secondary [&_code]:text-[12px] [&_code]:font-normal [&_code]:text-foreground",
                 className
             )}
             {...props}
@@ -153,24 +153,24 @@ export const useMDXComponents = {
         }, [props.children]);
 
         return (
-            <div className="group relative mb-6 rounded-[10px] border border-white/[0.08] bg-[#0c0c0c]">
+            <div className="group relative mb-6 rounded-[10px] border border-border bg-card">
                 {/* Header Bar */}
-                <div className="flex h-[36px] items-center justify-between border-b border-white/[0.08] bg-white/[0.01] px-3">
+                <div className="flex h-[36px] items-center justify-between border-b border-border bg-muted/30 px-3">
                     <div className="flex items-center gap-2">
                         {/* Language Badge */}
-                        <span className="font-mono text-[11px] font-medium text-white/40">
+                        <span className="font-mono text-[11px] font-medium text-muted-foreground">
                             {language}
                         </span>
                     </div>
                     {/* Copy Button in Header */}
-                    <CopyButton value={codeString} className="text-white/40 hover:text-white" />
+                    <CopyButton value={codeString} className="text-muted-foreground hover:text-foreground" />
                 </div>
 
                 {/* Content Area */}
                 <pre
                     ref={preRef}
                     className={cn(
-                        "overflow-x-auto p-4 font-mono text-[13px] leading-5 custom-scrollbar text-white/90",
+                        "overflow-x-auto p-4 font-mono text-[13px] leading-5 custom-scrollbar text-foreground",
                         // Force override inner code styles
                         "[&_code]:!bg-transparent [&_code]:!p-0 [&_code]:block [&_code]:min-w-full",
                         className
@@ -183,7 +183,7 @@ export const useMDXComponents = {
     code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
         <code
             className={cn(
-                "relative rounded bg-white/10 px-[0.3rem] py-[0.2rem] font-mono text-sm text-white/80",
+                "relative rounded bg-secondary px-[0.3rem] py-[0.2rem] font-mono text-sm text-foreground",
                 className
             )}
             {...props}

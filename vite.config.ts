@@ -16,7 +16,7 @@ export default defineConfig({
       ...mdx({
         providerImportSource: "@mdx-js/react",
         remarkPlugins: [remarkGfm, remarkFrontmatter, remarkMdxFrontmatter],
-        rehypePlugins: [[rehypePrettyCode, { theme: 'github-dark', keepBackground: false }]]
+        rehypePlugins: [[rehypePrettyCode, { theme: { light: 'github-light', dark: 'github-dark' }, keepBackground: false }]]
       })
     },
     tailwindcss(),

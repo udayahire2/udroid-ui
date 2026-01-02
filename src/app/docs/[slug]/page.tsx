@@ -48,9 +48,7 @@ export default function DocsSlugPage() {
     return (
         <div className="mdx w-full max-w-[1100px] mx-auto pb-20">
             <MDXProvider components={useMDXComponents}>
-                <div className="text-white">
-                    <ValidationComponent />
-                </div>
+                <ValidationComponent />
             </MDXProvider>
         </div>
     );
