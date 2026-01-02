@@ -6,7 +6,7 @@ import React from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { navLinks } from "@/components/header";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 
 function MenuTwoLineIcon({ className, ...props }: React.ComponentProps<"svg">) {
 	return (
@@ -29,7 +29,7 @@ function MenuTwoLineIcon({ className, ...props }: React.ComponentProps<"svg">) {
 	);
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
 	hidden: { opacity: 0, y: -20 },
 	show: {
 		opacity: 1,
@@ -50,7 +50,7 @@ const containerVariants = {
 	},
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
 	hidden: { opacity: 0, y: 10 },
 	show: { opacity: 1, y: 0 },
 	exit: { opacity: 0, y: 0 },
