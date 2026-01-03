@@ -1,60 +1,71 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
 import { ArrowUpRight } from "lucide-react";
-
+import profile from "../assets/profile.png";
+import profile2 from "../assets/profile2.png";
 export function TypographyH1() {
   return (
-    <section className="w-full py-16 md:py-24">
-      <div className="flex flex-col mx-auto max-w-7xl text-center px-4">
-        {/* Top row - Single Pill */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center rounded-full border border-border/40 bg-muted/30 px-3 py-1 text-sm text-muted-foreground transition-colors hover:bg-muted/50">
-            <span className="font-medium px-2">Added New Blocks</span>
-            <div className="h-4 w-[1px] bg-border/60 mx-1" />
-            <a
-              href="#"
-              className="flex items-center gap-1 px-2 font-medium hover:text-foreground transition-colors"
-            >
-              View Changelog <ArrowUpRight className="h-3 w-3" />
-            </a>
-          </div>
-        </div>
+    <section className="w-full py-10 md:py-22 flex flex-col items-center justify-center text-center px-1 -mt-10">
+      {/* Top Badge */}
+      <div className="mb-8 inline-flex items-center rounded-full border border-border/40 bg-background/50 backdrop-blur-sm p-1 pr-4">
+        <span className="px-3 text-xs font-medium text-muted-foreground">
+          Added Figma Sync
+        </span>
+        <div className="h-4 w-[1px] bg-border/60 mx-1" />
+        <a
+          href="#"
+          className="flex items-center gap-1 text-xs font-medium text-foreground hover:text-primary transition-colors"
+        >
+          View Changelog <ArrowUpRight className="h-3 w-3" />
+        </a>
+      </div>
 
-        {/* Sub heading */}
-        <h3 className="flex flex-wrap items-center justify-center gap-2 text-xl font-medium text-muted-foreground sm:text-2xl md:text-3xl mb-3">
-          Beautiful
-          <Avatar className="h-8 w-8 border-2 border-background">
-            <AvatarImage src="https://github.com/shadcn.png" />
+      {/* Sub Heading with Avatars */}
+      <div className="flex items-center justify-center gap-2 mb-6 text-xl sm:text-2xl md:text-3xl text-muted-foreground">
+        <span className="font-normal tracking-tight text-muted-foreground">
+          Premium
+        </span>
+        <div className="flex -space-x-3">
+          <Avatar className="h-10 w-10 border-2 border-background">
+            <AvatarImage src={profile} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <span className="text-foreground font-bold">
-            shadcn/ui
-          </span>
-          Blocks
-        </h3>
-
-        {/* Main heading */}
-        {/* Main heading */}
-        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-foreground">
-          The Opinionated UI System <br className="hidden md:block" />
-          for <span className="text-muted-foreground">Frontend Engineers.</span>
-        </h1>
-
-        {/* Description */}
-        <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base md:text-lg leading-relaxed mb-8">
-          Ship accessible, animated interfaces with strong defaults.
-          Built on Radix UI, designed for speed, and free of prop-soup.
-        </p>
-
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Button variant="outline" size="default" className="h-10 px-6 rounded-full border-border/50 bg-background/50 backdrop-blur-sm">
-            Explore
-          </Button>
-          <Button size="default" className="h-10 px-6 rounded-full bg-foreground text-background hover:opacity-90">
-            Get full Access
-          </Button>
+            <Avatar className="h-10 w-10 border-2 border-background">
+            <AvatarImage src={profile2} className="object-cover" />
+            <AvatarFallback>AB</AvatarFallback>
+            </Avatar>
         </div>
+        <span className="font-medium tracking-tight text-foreground">
+          Component Library
+        </span>
+      </div>
+
+      {/* Main Heading */}
+      <h1 className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-5xl mb-6 text-foreground leading-[1.1]">
+        Build Beautiful Interfaces. <span className="text-sky-300">Fast.</span> <br className="hidden md:block" />
+        Without Compromising on Design.
+      </h1>
+
+      <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
+        Carefully designed components for Premium, accessible, production-ready
+        interfaces.
+      </p>
+
+      {/* CTA Buttons */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button
+          size="lg"
+          className="h-12 px-8 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 font-medium text-base"
+        >
+          Get Started
+        </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          className="h-12 px-8 rounded-md border-input bg-background hover:bg-accent hover:text-accent-foreground font-medium text-base"
+        >
+          View Component
+        </Button>
       </div>
     </section>
   );

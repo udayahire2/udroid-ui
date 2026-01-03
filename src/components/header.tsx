@@ -15,8 +15,8 @@ import { useState } from "react";
 export const navLinks = [
   { label: "Docs", href: "/docs" },
   { label: "Components", href: "/components" },
-  { label: "HeroUI", href: "/hero-ui" },
-  { label: "Figma UI", href: "/figma-ui" },
+  { label: "Roadmap", href: "/roadmap" },
+  { label: "Figma", href: "/figma" },
 ];
 
 export function Header() {
@@ -33,8 +33,8 @@ export function Header() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         {/* LEFT */}
         <div className="flex items-center gap-8">
-          <Link to="/" className="cursor-pointer text-lg font-bold tracking-tight font-aquatico">
-            UDROID
+          <Link to="/" className="cursor-pointer text-lg font-medium tracking-tight font-sans-serif">
+            LOGO
           </Link>
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (

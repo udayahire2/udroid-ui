@@ -10,7 +10,7 @@ import { Footer } from "@/components/footer";
 import DocsLayout from "@/app/docs/layout";
 import DocsPageIndex from "@/app/docs/page";
 import DocsSlugPage from "@/app/docs/[slug]/page";
-import { FigmaUI } from "@/components/figma-ui";
+import { FigmaUI } from "./components/figma-ui";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
               <Route path="*" element={<DocsSlugPage />} />
             </Route>
             <Route path="/components" element={<ComponentSection />} />
-            <Route path="/figma-ui" element={<FigmaUI />} />
+            <Route path="/figma" element={<FigmaUI />} />
           </Routes>
         </main>
         <Footer />
