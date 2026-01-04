@@ -1,7 +1,11 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { CardSpotlight } from "./ui/card-spotlight";
 import { GridPattern } from "./ui/grid-pattern";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
     Layout,
     AppWindow,
@@ -73,8 +77,48 @@ const components = [
 ];
 
 export function ComponentSection() {
+    const containerRef = useRef<HTMLElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const header = headerRef.current;
+        if (header) {
+            gsap.from(header.children, {
+                scrollTrigger: {
+                    trigger: header,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power3.out",
+            });
+        }
+
+        const cards = gsap.utils.toArray<HTMLElement>(".component-card");
+        if (cards.length > 0) {
+            gsap.from(cards, {
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top 70%",
+                    toggleActions: "play none none reverse",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power3.out",
+            });
+        }
+
+    }, { scope: containerRef });
+
     return (
-        <section className="relative w-full bg-background py-20 lg:py-32 overflow-hidden">
+        <section ref={containerRef} className="relative w-full bg-background py-20 lg:py-32 overflow-hidden">
             <GridPattern
                 width={40}
                 height={40}
@@ -86,11 +130,15 @@ export function ComponentSection() {
             />
             <div className="max-w-7xl relative mx-auto px-4 md:px-6">
                 {/* Header */}
-                <div className="mb-20 text-center space-y-4">
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
+                <div ref={headerRef} className="mb-20 text-center space-y-4">
+                    <h2
+                        className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70"
+                    >
                         Explore Components
                     </h2>
-                    <p className="mx-auto max-w-2xl text-muted-foreground md:text-lg">
+                    <p
+                        className="mx-auto max-w-2xl text-muted-foreground md:text-lg"
+                    >
                         A curated set of reusable, accessible UI building blocks for modern apps.
                     </p>
                 </div>
@@ -101,43 +149,45 @@ export function ComponentSection() {
                         <Link
                             key={index}
                             to={component.href}
-                            className="group block h-full"
+                            className="group block h-full component-card" // Removed opacity-0 for GSAP
                         >
-                            <CardSpotlight
-                                className="h-full p-8 bg-card/50 backdrop-blur-sm border-border/40 
+                            <div className="h-full">
+                                <CardSpotlight
+                                    className="h-full p-8 bg-card/50 backdrop-blur-sm border-border/40 
                                 transition-all duration-300 ease-out
                                 hover:-translate-y-2 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5
                                 dark:hover:border-white/10 relative overflow-hidden group"
-                                radius={250}
-                                color="#262626"
-                            >
-                                {/* Gradient Blob for extra premium feel on hover */}
-                                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    radius={250}
+                                    color="#262626"
+                                >
+                                    {/* Gradient Blob for extra premium feel on hover */}
+                                    <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                <div className="relative z-10 flex flex-col h-full">
-                                    {/* Icon & Meta */}
-                                    <div className="flex justify-between items-start mb-6">
-                                        <div className="p-3 rounded-2xl bg-primary/5 text-primary ring-1 ring-primary/10 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-300">
-                                            <component.icon className="w-6 h-6" />
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        {/* Icon & Meta */}
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="p-3 rounded-2xl bg-primary/5 text-primary ring-1 ring-primary/10 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-300">
+                                                <component.icon className="w-6 h-6" />
+                                            </div>
+                                            {component.count && (
+                                                <span className="px-2.5 py-1 rounded-full text-[10px] font-medium bg-muted/50 text-muted-foreground border border-border/50 group-hover:border-primary/20 group-hover:text-primary transition-colors">
+                                                    {component.count}
+                                                </span>
+                                            )}
                                         </div>
-                                        {component.count && (
-                                            <span className="px-2.5 py-1 rounded-full text-[10px] font-medium bg-muted/50 text-muted-foreground border border-border/50 group-hover:border-primary/20 group-hover:text-primary transition-colors">
-                                                {component.count}
-                                            </span>
-                                        )}
-                                    </div>
 
-                                    {/* Content */}
-                                    <div className="space-y-3 flex-grow">
-                                        <h3 className="text-lg font-semibold tracking-tight group-hover:text-primary transition-colors duration-300">
-                                            {component.title}
-                                        </h3>
-                                        <p className="text-sm leading-relaxed text-muted-foreground/80 group-hover:text-muted-foreground transition-colors duration-300">
-                                            {component.description}
-                                        </p>
+                                        {/* Content */}
+                                        <div className="space-y-3 flex-grow">
+                                            <h3 className="text-lg font-semibold tracking-tight group-hover:text-primary transition-colors duration-300">
+                                                {component.title}
+                                            </h3>
+                                            <p className="text-sm leading-relaxed text-muted-foreground/80 group-hover:text-muted-foreground transition-colors duration-300">
+                                                {component.description}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </CardSpotlight>
+                                </CardSpotlight>
+                            </div>
                         </Link>
                     ))}
                 </div>

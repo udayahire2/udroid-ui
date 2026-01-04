@@ -69,7 +69,7 @@ export function CommandMenu({ open, setOpen }: CommandMenuProps) {
             </div>
           </div>
 
-          <Command.List className="max-h-[300px] overflow-y-auto overflow-x-hidden p-2 scrollbar-thin scrollbar-thumb-[#2A2A2A] scrollbar-track-transparent hover:scrollbar-thumb-[#3A3A3A]">
+          <Command.List className="max-h-[300px] overflow-y-auto overflow-x-hidden p-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <Command.Empty className="py-6 text-center text-sm text-muted-foreground">No results found.</Command.Empty>
 
             <Command.Group heading="Links">
