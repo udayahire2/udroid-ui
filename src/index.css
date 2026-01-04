@@ -24,6 +24,10 @@ code[data-theme*=" "] span {
   font-display: swap;
 }
 
+@font-face{
+  font-family: 'Montserrat';
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @layer utilities {
@@ -93,14 +97,14 @@ code[data-theme*=" "] span {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #ffffff;
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: #ffffff;
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: #ffffff;
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: #000000;
+  --primary-foreground: #fff;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);

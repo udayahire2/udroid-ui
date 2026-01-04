@@ -1,6 +1,6 @@
 import { Header } from "./components/header";
 import "./App.css";
-import { TypographyH1 } from "./components/hero";
+import { Hero } from "./components/hero";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FeatureSection } from "./components/feature-section";
 import { ComponentSection } from "./components/component-section";
@@ -39,7 +39,7 @@ export default App;
 function HomePage() {
   return (
     <>
-      <TypographyH1 />
+      <Hero />
       <FeatureSection />
       <ComponentSection />
       <FAQSection />
