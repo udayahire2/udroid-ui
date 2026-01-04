@@ -2,75 +2,92 @@ import { Link } from "react-router-dom";
 import { CardSpotlight } from "./ui/card-spotlight";
 import { GridPattern } from "./ui/grid-pattern";
 import { cn } from "@/lib/utils";
-import { MoveRight } from "lucide-react";
+import {
+    Layout,
+    AppWindow,
+    PanelBottom,
+    FormInput,
+    CreditCard,
+    WalletCards,
+    MousePointer2,
+    Keyboard
+} from "lucide-react";
 
 const components = [
     {
         title: "Navbar",
         description: "Responsive navigation headers with various styles.",
         href: "/docs/navbar",
-        count: "+0",
+        icon: Layout,
+        count: "5+",
     },
     {
         title: "Hero Section",
         description: "Eye-catching hero areas to showcase your product.",
         href: "/docs/hero",
-        count: "+0",
+        icon: AppWindow,
+        count: "3+",
     },
     {
         title: "Footer",
         description: "Clean and functional footers for your site.",
         href: "/docs/footer",
-        count: "+0",
+        icon: PanelBottom,
+        count: "4+",
     },
     {
         title: "Forms",
         description: "Input fields, checkboxes, and validation layouts.",
         href: "/docs/forms",
-        count: "+0",
+        icon: FormInput,
+        count: "8+",
     },
     {
         title: "Pricing",
         description: "Pricing tables and subscription cards.",
         href: "/docs/pricing",
-        count: "+0",
+        icon: CreditCard,
+        count: "3+",
     },
     {
         title: "Cards",
         description: "Versatile content containers for any data.",
         href: "/docs/cards",
-        count: "+0",
+        icon: WalletCards,
+        count: "6+",
     },
     {
         title: "Buttons",
         description: "Interactive buttons with different variants.",
         href: "/docs/buttons",
-        count: "+0",
+        icon: MousePointer2,
+        count: "10+",
     },
     {
         title: "Inputs",
         description: "Text inputs, textareas, and select menus.",
         href: "/docs/inputs",
-        count: "+0",
+        icon: Keyboard,
+        count: "8+",
     },
 ];
 
 export function ComponentSection() {
     return (
-        <section className="relative w-full bg-background py-16 md:py-24 overflow-hidden">
+        <section className="relative w-full bg-background py-20 lg:py-32 overflow-hidden">
             <GridPattern
                 width={40}
                 height={40}
                 x={-1}
                 y={-1}
                 className={cn(
-                    "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-50",
+                    "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-[0.3]",
                 )}
             />
             <div className="max-w-7xl relative mx-auto px-4 md:px-6">
                 {/* Header */}
-                <div className="mb-16 text-center space-y-4">
-                    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
+                <div className="mb-20 text-center space-y-4">
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
                         Explore Components
                     </h2>
                     <p className="mx-auto max-w-2xl text-muted-foreground md:text-lg">
@@ -87,29 +104,38 @@ export function ComponentSection() {
                             className="group block h-full"
                         >
                             <CardSpotlight
-                                className="h-full p-6 bg-card border-border/50 
-                                transition-all duration-200 ease-out
-                                hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg dark:hover:shadow-2xl dark:hover:border-white/10
-                                dark:bg-card dark:hover:bg-muted/10"
+                                className="h-full p-8 bg-card/50 backdrop-blur-sm border-border/40 
+                                transition-all duration-300 ease-out
+                                hover:-translate-y-2 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5
+                                dark:hover:border-white/10 relative overflow-hidden group"
+                                radius={250}
+                                color="#262626"
                             >
-                                {/* Meta */}
-                                <div className="flex justify-between items-start mb-4">
-                                    {component.count && (
-                                        <span className="relative z-10 inline-block text-xs font-medium text-emerald-500/90 transition-colors duration-200 group-hover:text-emerald-500">
-                                            {component.count} components
-                                        </span>
-                                    )}
-                                    <MoveRight className="w-4 h-4 text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary" />
-                                </div>
+                                {/* Gradient Blob for extra premium feel on hover */}
+                                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                {/* Content */}
-                                <div className="relative z-10 space-y-2">
-                                    <h3 className="text-xl font-semibold tracking-tight transition-colors duration-200 group-hover:text-primary">
-                                        {component.title}
-                                    </h3>
-                                    <p className="text-sm leading-relaxed text-muted-foreground/80 transition-all duration-200 group-hover:text-muted-foreground group-hover:opacity-100">
-                                        {component.description}
-                                    </p>
+                                <div className="relative z-10 flex flex-col h-full">
+                                    {/* Icon & Meta */}
+                                    <div className="flex justify-between items-start mb-6">
+                                        <div className="p-3 rounded-2xl bg-primary/5 text-primary ring-1 ring-primary/10 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-300">
+                                            <component.icon className="w-6 h-6" />
+                                        </div>
+                                        {component.count && (
+                                            <span className="px-2.5 py-1 rounded-full text-[10px] font-medium bg-muted/50 text-muted-foreground border border-border/50 group-hover:border-primary/20 group-hover:text-primary transition-colors">
+                                                {component.count}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="space-y-3 flex-grow">
+                                        <h3 className="text-lg font-semibold tracking-tight group-hover:text-primary transition-colors duration-300">
+                                            {component.title}
+                                        </h3>
+                                        <p className="text-sm leading-relaxed text-muted-foreground/80 group-hover:text-muted-foreground transition-colors duration-300">
+                                            {component.description}
+                                        </p>
+                                    </div>
                                 </div>
                             </CardSpotlight>
                         </Link>

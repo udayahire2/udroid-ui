@@ -5,7 +5,7 @@ import profile from "../assets/profile.png";
 import profile2 from "../assets/profile2.png";
 export function Hero() {
   return (
-    <section className="w-full py-10 md:py-22 flex gap-3 flex-col items-center justify-center text-center px-1 -mt-5">
+    <section className="w-full py-10 md:py-22 flex gap-3 flex-col items-center justify-center text-center px-1   ">
       {/* Top Badge */}
       <div className="inline-flex items-center rounded-full border border-border/40 bg-background/50 backdrop-blur-sm p-1 pr-4">
         <span className="px-3 text-xs font-medium text-muted-foreground">
@@ -30,10 +30,10 @@ export function Hero() {
             <AvatarImage src={profile} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-            <Avatar className="h-10 w-10 border-2 border-background">
+          <Avatar className="h-10 w-10 border-2 border-background">
             <AvatarImage src={profile2} className="object-cover" />
             <AvatarFallback>AB</AvatarFallback>
-            </Avatar>
+          </Avatar>
         </div>
         <span className="font-medium tracking-tight text-foreground">
           Component Library
