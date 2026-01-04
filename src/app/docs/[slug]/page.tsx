@@ -6,8 +6,8 @@ import { useMDXComponents } from "@/components/mdx-components";
 export default function DocsSlugPage() {
     const params = useParams();
     const slug = params["*"];
-    // Use a more specific glob pattern to include subdirectories
-    const modules = import.meta.glob('/src/docs/**/*.mdx');
+    // Use a more specific glob pattern to include subdirectories, excluding introduction as it is handled by the index page
+    const modules = import.meta.glob(['/src/docs/**/*.mdx', '!/src/docs/introduction.mdx']);
 
     // Create a mapping from slug to module path
     // e.g. "installation" -> "/src/docs/installation.mdx"

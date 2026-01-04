@@ -24,7 +24,7 @@ code[data-theme*=" "] span {
   font-display: swap;
 }
 
-@font-face{
+@font-face {
   font-family: 'Montserrat';
 }
 
@@ -55,7 +55,7 @@ code[data-theme*=" "] span {
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
-  --font-aquatico: "Aquatico", sans-serif;
+
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
