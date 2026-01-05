@@ -6,7 +6,9 @@ import { FeatureSection } from "./components/feature-section";
 import { VisualComponentPreview } from "./components/visual-component-preview";
 
 import { FAQSection } from "./components/faq-section";
-import { Routes, Route } from "react-router-dom";
+import { RoadmapSection } from "./components/roadmap-section";
+import { DeveloperFirstSection } from "./components/developer-first-section";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Footer } from "@/components/footer";
 import DocsLayout from "@/app/docs/layout";
 import DocsPageIndex from "@/app/docs/page";
@@ -18,6 +20,8 @@ import gsap from "gsap";
 
 function App() {
   const lenisRef = useRef<any>(null);
+  const location = useLocation();
+  const isDocsPage = location.pathname.startsWith("/docs");
 
   useEffect(() => {
     function update(time: number) {
@@ -44,9 +48,10 @@ function App() {
                 <Route path="*" element={<DocsSlugPage />} />
               </Route>
               <Route path="/figma" element={<FigmaUI />} />
+              <Route path="/roadmap" element={<RoadmapSection />} />
             </Routes>
           </main>
-          <Footer />
+          {!isDocsPage && <Footer />}
         </div>
       </ThemeProvider>
     </ReactLenis>
@@ -60,7 +65,9 @@ function HomePage() {
     <>
       <Hero />
       <FeatureSection />
+      <DeveloperFirstSection />
       <VisualComponentPreview />
+      <RoadmapSection />
       <FAQSection />
     </>
   );

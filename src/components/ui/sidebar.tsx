@@ -35,34 +35,43 @@ export function Sidebar() {
     ];
 
     return (
-        <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-[260px] shrink-0 border-r border-sidebar-border bg-sidebar backdrop-blur md:sticky md:block">
-            <div className="h-full overflow-y-auto py-6 pr-4 pl-6 lg:py-8">
+        <aside className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block">
+            <nav className="h-full overflow-y-auto py-8 pr-6 pl-8 custom-scrollbar">
                 {items.map((item, index) => (
                     <div key={index} className="pb-8">
-                        <h4 className="mb-2 px-2 text-[13px] font-semibold text-sidebar-foreground">
+                        <h4 className="mb-3 text-sm font-semibold tracking-tight text-foreground/90">
                             {item.title}
                         </h4>
                         {item.items?.length && (
-                            <div className="grid grid-flow-row auto-rows-max text-sm gap-1">
-                                {item.items.map((subItem, index) => (
-                                    <Link
-                                        key={index}
-                                        to={subItem.href}
-                                        className={cn(
-                                            "group flex w-full items-center rounded-lg border border-transparent px-3 h-[36px] text-[14px] font-normal text-muted-foreground transition-colors hover:text-sidebar-foreground",
-                                            pathname === subItem.href
-                                                ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
-                                                : ""
-                                        )}
-                                    >
-                                        {subItem.title}
-                                    </Link>
-                                ))}
-                            </div>
+                            <ul className="grid grid-flow-row auto-rows-max gap-1.5 text-sm">
+                                {item.items.map((subItem, index) => {
+                                    const isActive = pathname === subItem.href;
+                                    return (
+                                        <li key={index}>
+                                            <Link
+                                                to={subItem.href}
+                                                className={cn(
+                                                    "group flex w-full items-center rounded-md border border-transparent px-3 py-1.5 text-muted-foreground transition-all duration-200 hover:text-foreground",
+                                                    isActive
+                                                        ? "bg-primary/5 text-primary font-medium border-primary/10 shadow-sm"
+                                                        : "hover:bg-muted/50"
+                                                )}
+                                            >
+                                                <span className={cn(
+                                                    "relative truncate",
+                                                    isActive && "translate-x-1 transition-transform duration-200"
+                                                )}>
+                                                    {subItem.title}
+                                                </span>
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
                         )}
                     </div>
                 ))}
-            </div>
+            </nav>
         </aside>
     );
 }

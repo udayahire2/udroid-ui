@@ -2,35 +2,43 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const faqItems = [
-    {
-        question: "Can I use UDROID for client projects?",
-        answer: "Yes, you can use UDROID for client projects. Our commercial license covers unlimited client projects."
-    },
-    {
-        question: "Can I share my account with others?",
-        answer: "No, accounts are per-user. However, we offer team plans for collaborative environments."
-    },
-    {
-        question: "Do you support team collaboration?",
-        answer: "Yes, our team plans include collaborative features such as shared projects and role-based access control."
-    },
-    {
-        question: "When will you add more blocks?",
-        answer: "We release new blocks and components every week. You can also vote on our roadmap for what you want to see next."
-    },
-    {
-        question: "What can I expect from UDROID in the future?",
-        answer: "We are working on AI-generated layouts, advanced interactivity controls, and integrations with popular CMS platforms."
-    },
-    {
-        question: "Will I get free updates after purchase?",
-        answer: "Yes! The 'Pro' access is a one-time payment that includes lifetime updates to our component library."
-    },
-    {
-        question: "Can I get a refund?",
-        answer: "We offer a 14-day money-back guarantee if you are not satisfied with UDROID, no questions asked."
-    }
+  {
+    question: "Can I use UDROID for my projects?",
+    answer:
+      "Haan. UDROID ke saare components abhi free hain aur tum unhe personal aur client projects dono mein bina kisi restriction ke use kar sakte ho."
+  },
+  {
+    question: "Is UDROID free?",
+    answer:
+      "Haan, abhi UDROID 100% free hai. Mera focus hai ek open aur accessible component library banana jo bina kisi friction ke use ho sake."
+  },
+  {
+    question: "Who is building UDROID?",
+    answer:
+      "UDROID ek solo-built project hai. Main akela hi iske design, development aur maintenance par kaam kar raha hoon."
+  },
+  {
+    question: "Do you support accessibility?",
+    answer:
+      "Haan. Components ko accessibility ko dhyaan mein rakh kar design kiya ja raha hai, jaise proper focus states, keyboard navigation aur readable contrast."
+  },
+  {
+    question: "Will you add more components in the future?",
+    answer:
+      "Haan. Main step by step naye components add kar raha hoon. Kyunki project solo hai, isliye updates quality-focused aur gradual rahenge."
+  },
+  {
+    question: "Will UDROID stay free in the future?",
+    answer:
+      "Core components hamesha free rahenge. Future mein kuch advanced ya optional features add ho sakte hain, lekin basic usage free hi rahega."
+  },
+  {
+    question: "Can I give feedback or request a component?",
+    answer:
+      "Bilkul. Feedback aur component suggestions ka direct impact roadmap par padta hai. Tum directly reach out kar sakte ho."
+  }
 ];
+
 
 export function FAQSection() {
     return (
