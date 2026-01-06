@@ -29,14 +29,14 @@ const roadmapData: RoadmapItem[] = [
         title: "Core Components",
         description: "Building the foundational UI elements (Buttons, Inputs, Cards).",
         date: "Jan 2026",
-        status: "completed",
+        status: "in-progress",
     },
     {
         id: "3",
         title: "Advanced Animations",
         description: "Integrating GSAP for complex interactions and micro-animations.",
         date: "Feb 2026",
-        status: "in-progress",
+        status: "upcoming",
     },
     {
         id: "4",

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { CodeBlock } from "./shikiEditor/code-block";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
@@ -94,28 +95,38 @@ export function Hero() {
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
         </div>
-        <span className="font-medium tracking-tight text-foreground">
-          Component Library
-        </span>
+        <div
+          className="group relative hidden sm:flex items-center gap-2 rounded-full border border-border/40 bg-zinc-900/50 hover:bg-zinc-900/80 px-4 py-1.5 text-sm font-medium transition-all hover:border-border/60 hover:shadow-[0_0_20px_-12px_rgba(255,255,255,0.3)]"
+        >
+          <span className="text-muted-foreground font-mono select-none">$</span>
+          <CodeBlock
+            code="npm install udroid-ui"
+            language="bash"
+            showLineNumbers={false}
+            className="!bg-transparent invisible text-[0px] [&_pre]:visible [&_pre]:!bg-transparent [&_pre]:!p-0 [&_pre]:!m-0 [&_pre]:!font-mono [&_pre]:!text-sm [&_code]:!bg-transparent font-mono"
+          />
+          <div className="absolute inset-0 rounded-full ring-1 ring-white/10 pointer-events-none" />
+        </div>
       </div>
 
       {/* Main Heading */}
-      <h1
-        ref={headingRef}
-        className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-5xl  text-foreground leading-[1.1]"
-      >
-        Build Beautiful Interfaces. <span className="text-sky-300">Fast.</span>{" "}
-        <br className="hidden md:block" />
-        Without Compromising on Design.
-      </h1>
+     <h1
+  ref={headingRef}
+  className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-5xl text-foreground leading-[1.1]"
+>
+  A modern React UI component library.
+  <br className="hidden md:block" />
+  Build interfaces faster.
+</h1>
 
-      <p
-        ref={descRef}
-        className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed"
-      >
-        Carefully designed components for Premium, accessible, production-ready
-        interfaces.
-      </p>
+<p
+  ref={descRef}
+  className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed"
+>
+  Carefully crafted, accessible components designed for real production
+  applications.
+</p>
+
 
       {/* CTA Buttons */}
       <div
@@ -126,7 +137,7 @@ export function Hero() {
           className="bg-white content-stretch flex items-center justify-center px-[18px] py-[12px] relative rounded-[12px] shrink-0 cursor-pointer"
         >
           <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#1a1a1a] text-[16px] text-center text-nowrap">
-            <p className="leading-[normal]">Get Started</p>
+            <p className="leading-[normal]">Read Docs</p>
           </div>
         </div>
 

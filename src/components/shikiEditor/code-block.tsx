@@ -5,6 +5,7 @@ interface CodeBlockProps {
   language: string;
   theme?: string;
   showLineNumbers?: boolean;
+  className?: string;
 }
 
 export const CodeBlock = ({
@@ -12,14 +13,17 @@ export const CodeBlock = ({
   language,
   theme = "github-dark",
   showLineNumbers = false,
+  className = "",
 }: CodeBlockProps) => {
   return (
-    <ShikiHighlighter
-      language={language}
-      theme={theme}
-      showLineNumbers={showLineNumbers}
-    >
-      {code.trim()}
-    </ShikiHighlighter>
+    <div className={className}>
+      <ShikiHighlighter
+        language={language}
+        theme={theme}
+        showLineNumbers={showLineNumbers}
+      >
+        {code.trim()}
+      </ShikiHighlighter>
+    </div>
   );
 };
