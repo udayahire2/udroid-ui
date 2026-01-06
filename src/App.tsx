@@ -1,4 +1,5 @@
 import { Header } from "./components/header";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import "./App.css";
 import { Hero } from "./components/hero";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -33,12 +34,13 @@ function App() {
     return () => {
       gsap.ticker.remove(update)
     }
-  })
+  }, [])
 
   return (
     <ReactLenis root ref={lenisRef} autoRaf={false}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <div className="min-h-screen bg-background text-foreground flex flex-col">
+          <ScrollToTop />
           <Header />
           <main className="flex-1">
             <Routes>

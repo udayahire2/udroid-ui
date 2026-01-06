@@ -14,7 +14,6 @@ import { useState } from "react";
 
 export const navLinks = [
   { label: "Docs", href: "/docs" },
-  { label: "Components", href: "/components" },
   { label: "Roadmap", href: "/roadmap" },
   { label: "Figma", href: "/figma" },
 ];
