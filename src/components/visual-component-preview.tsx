@@ -35,7 +35,7 @@ export function VisualComponentPreview() {
                 duration: 3,
                 ease: "none",
                 repeat: -1,
-                // yoyo: true, // Optional: for back and forth
+                yoyo: true, // Optional: for back and forth
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top bottom",
@@ -172,6 +172,7 @@ export function VisualComponentPreview() {
                                     type="password"
                                     value="password123"
                                     readOnly
+
                                     className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white"
                                 />
                             </div>
