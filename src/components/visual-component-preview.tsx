@@ -94,127 +94,167 @@ export function VisualComponentPreview() {
 
             <div className="max-w-7xl mx-auto relative z-10 space-y-12">
                 <div className="text-center space-y-4">
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-600 dark:from-white dark:to-white/60">
                         Visual Excellence.
                     </h2>
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    <p className="text-zinc-500 dark:text-muted-foreground text-lg max-w-2xl mx-auto">
                         Meticulously crafted components designed for modern applications.
                     </p>
                 </div>
 
                 {/* Bento Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-[280px]">
 
                     {/* 1. Buttons Playground */}
-                    <BentoCard className="md:col-span-1" title="Interactive Buttons" icon={<MousePointer2 className="w-5 h-5 text-sky-400" />}>
-                        <CursorInteractiveContainer>
+                    <BentoCard className="md:col-span-1" title="Interactive Buttons" icon={<MousePointer2 className="w-4 h-4 text-sky-500 dark:text-sky-400" />}>
+                        <CursorInteractiveContainer
+                            cursor={
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M9.391 2.32C8.42 1.56 7 2.253 7 3.486V28.41c0 1.538 1.966 2.18 2.874.938l6.225-8.523a2 2 0 0 1 1.615-.82h9.69c1.512 0 2.17-1.912.978-2.844z" /></svg>
+                            }
+                            cursorClassName="text-sky-500 dark:text-sky-400 drop-shadow-[0_0_15px_rgba(14,165,233,0.4)] dark:drop-shadow-[0_0_15px_rgba(56,189,248,0.6)]"
+                        >
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-6 py-2.5 bg-white text-black rounded-lg font-medium text-sm shadow-lg shadow-white/10 cursor-none"
+                                className="px-8 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-full font-medium text-sm shadow-xl shadow-zinc-900/10 dark:shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-2xl transition-shadow cursor-none"
                             >
                                 Primary Action
                             </motion.button>
                             <motion.button
-                                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                                whileHover={{ scale: 1.05, backgroundColor: "rgba(120,120,120,0.1)" }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-6 py-2.5 bg-transparent border border-white/20 text-white rounded-lg font-medium text-sm cursor-none"
+                                className="px-8 py-3 bg-transparent border border-zinc-200 dark:border-white/20 text-zinc-900 dark:text-white rounded-full font-medium text-sm hover:border-zinc-300 dark:hover:border-white/40 transition-colors cursor-none"
                             >
                                 Secondary
                             </motion.button>
                         </CursorInteractiveContainer>
                     </BentoCard>
-                    {/* 2. Modal / Dialog Preview */}
-                    <BentoCard className="md:col-span-2" title="Focus Modal" icon={<Maximize2 className="w-5 h-5 text-purple-400" />}>
-                        <div className="relative w-full h-full flex items-center justify-center p-8 bg-black/20 rounded-xl border border-white/5 overflow-hidden">
-                            {/* Fake Background Blur */}
-                            <div className="absolute inset-0 backdrop-blur-[2px]" />
 
-                            {/* Modal Window */}
-                            <motion.div
-                                initial={{ y: 20, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                                className="relative w-full max-w-md bg-[#0F0F11] border border-white/10 rounded-xl shadow-2xl p-6 space-y-4"
-                            >
-                                <div className="flex justify-between items-center border-b border-white/5 pb-4">
-                                    <h4 className="font-semibold text-white">Delete Project?</h4>
-                                    <X className="w-4 h-4 text-zinc-500 cursor-pointer hover:text-white transition-colors" />
-                                </div>
-                                <p className="text-sm text-zinc-400">
-                                    This action cannot be undone. This will permanently delete your project and remove data from our servers.
-                                </p>
-                                <div className="flex justify-end gap-3 pt-2">
-                                    <button className="px-3 py-1.5 text-xs font-medium text-zinc-300 hover:text-white transition-colors">Cancel</button>
-                                    <button className="px-3 py-1.5 text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20 rounded hover:bg-red-500/20 transition-colors">Delete</button>
-                                </div>
-                            </motion.div>
-                        </div>
+                    {/* 2. Modal / Dialog Preview */}
+                    <BentoCard className="md:col-span-2" title="Focus Modal" icon={<Maximize2 className="w-4 h-4 text-purple-500 dark:text-purple-400" />}>
+                        <CursorInteractiveContainer
+                            cursor={<MousePointer2 className="w-6 h-6 fill-current" />}
+                            cursorClassName="text-purple-500 dark:text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.4)] dark:drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]"
+                        >
+                            <div className="relative w-full h-full flex items-center justify-center p-8 overflow-hidden rounded-3xl">
+                                {/* Modal Window */}
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="relative w-full max-w-sm bg-white dark:bg-[#0E0E10] border border-zinc-200 dark:border-white/10 rounded-2xl shadow-2xl shadow-zinc-900/10 dark:shadow-black/50 p-6 space-y-4 cursor-none"
+                                >
+                                    <div className="flex justify-between items-center pb-2">
+                                        <h4 className="font-semibold text-zinc-900 dark:text-white tracking-tight">Delete Project?</h4>
+                                        <div className="p-1 rounded-full hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors cursor-none">
+                                            <X className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+                                        </div>
+                                    </div>
+                                    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                                        This action cannot be undone. This will permanently delete your project and remove data.
+                                    </p>
+                                    <div className="flex justify-end gap-3 pt-2">
+                                        <button className="px-4 py-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-none">Cancel</button>
+                                        <button
+                                            onClick={() => alert("Project deleted successfully!")}
+                                            className="px-4 py-2 text-xs font-medium bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/20 rounded-lg hover:bg-red-100 dark:hover:bg-red-500/20 transition-colors cursor-none"
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </CursorInteractiveContainer>
                     </BentoCard>
 
                     {/* 3. Inputs & Forms */}
-                    <BentoCard className="md:col-span-1" title="Smart Inputs" icon={<Type className="w-5 h-5 text-emerald-400" />}>
-                        <div className="flex flex-col gap-4 justify-center h-full px-4">
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-medium text-muted-foreground ml-1">Email Address</label>
-                                <div className="relative group">
+                    <BentoCard className="md:col-span-1" title="Smart Inputs" icon={<Type className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />}>
+                        <CursorInteractiveContainer
+                            cursor={<Type className="w-6 h-6" />}
+                            cursorClassName="text-emerald-500 dark:text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.4)] dark:drop-shadow-[0_0_15px_rgba(52,211,153,0.6)]"
+                        >
+                            <div className="flex flex-col gap-5 justify-center h-full px-8 cursor-none w-full max-w-xs mx-auto">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 ml-1">Email</label>
+                                    <div className="relative group">
+                                        <input
+                                            type="text"
+                                            placeholder="hello@udroid.com"
+                                            className="w-full bg-zinc-50 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 focus:border-emerald-500/50 transition-all group-hover:bg-white dark:group-hover:bg-white/[0.05] group-hover:border-zinc-300 dark:group-hover:border-white/20 cursor-none"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-2 opacity-40 pointer-events-none">
+                                    <label className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 ml-1">Password</label>
                                     <input
-                                        type="text"
-                                        placeholder="name@example.com"
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 focus:border-emerald-500/50 transition-all group-hover:border-white/20"
+                                        type="password"
+                                        value="password123"
+                                        readOnly
+                                        className="w-full bg-zinc-50 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white cursor-none"
                                     />
-                                    <div className="absolute inset-0 rounded-lg bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                                 </div>
                             </div>
-                            <div className="space-y-1.5 opacity-50 pointer-events-none">
-                                <label className="text-xs font-medium text-muted-foreground ml-1">Password</label>
-                                <input
-                                    type="password"
-                                    value="password123"
-                                    readOnly
-
-                                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white"
-                                />
-                            </div>
-                        </div>
+                        </CursorInteractiveContainer>
                     </BentoCard>
 
                     {/* 4. Toasts / Notifications */}
-                    <BentoCard className="md:col-span-1" title="Stacked Toasts" icon={<Bell className="w-5 h-5 text-amber-400" />}>
-                        <div className="relative w-full h-full flex flex-col items-center justify-center perspective-[1000px]">
-                            <motion.div
-                                animate={{ y: [0, -10, 0] }}
-                                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
-                                className="absolute bottom-8 w-64 bg-[#18181B] border border-white/10 rounded-lg p-3 shadow-xl z-10 flex gap-3 items-start"
-                            >
-                                <div className="mt-0.5 w-2 h-2 rounded-full bg-green-500 shrink-0" />
-                                <div className="space-y-0.5">
-                                    <p className="text-xs font-medium text-white">Project Created</p>
-                                    <p className="text-[10px] text-zinc-500">Just now</p>
-                                </div>
-                            </motion.div>
+                    <BentoCard className="md:col-span-1" title="Stacked Toasts" icon={<Bell className="w-4 h-4 text-amber-500 dark:text-amber-400" />}>
+                        <CursorInteractiveContainer
+                            cursor={<Bell className="w-6 h-6 fill-current" />}
+                            cursorClassName="text-amber-500 dark:text-amber-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.4)] dark:drop-shadow-[0_0_15px_rgba(251,191,36,0.6)]"
+                        >
+                            <div className="relative w-full h-full flex flex-col items-center justify-center perspective-[1000px] cursor-none">
+                                <motion.div
+                                    animate={{ y: [0, -8, 0] }}
+                                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0 }}
+                                    className="absolute bottom-10 w-64 bg-white dark:bg-[#121214] border border-zinc-200 dark:border-white/10 rounded-xl p-4 shadow-xl shadow-zinc-900/5 dark:shadow-2xl z-20 flex gap-4 items-center"
+                                >
+                                    <div className="w-3 h-3 rounded-full bg-emerald-500 shrink-0 shadow-[0_0_10px_rgba(16,185,129,0.4)]" />
+                                    <div className="space-y-0.5">
+                                        <p className="text-xs font-semibold text-zinc-900 dark:text-white">Project Deployed</p>
+                                        <p className="text-[10px] text-zinc-500">Ready for production</p>
+                                    </div>
+                                </motion.div>
 
-                            {/* Stacked Effect */}
-                            <motion.div
-                                animate={{ y: [0, -10, 0], scale: [0.95, 0.95, 0.95] }}
-                                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1.1 }}
-                                className="absolute bottom-4 w-60 bg-[#18181B]/80 border border-white/5 rounded-lg h-12 z-0"
-                            />
-                            <motion.div
-                                animate={{ y: [0, -10, 0], scale: [0.9, 0.9, 0.9] }}
-                                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1.2 }}
-                                className="absolute bottom-0 w-56 bg-[#18181B]/60 border border-white/5 rounded-lg h-12 -z-10"
-                            />
-                        </div>
+                                {/* Stacked Effect */}
+                                <motion.div
+                                    animate={{ y: [0, -8, 0], scale: [0.95, 0.95, 0.95] }}
+                                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.1 }}
+                                    className="absolute bottom-6 w-60 bg-white/60 dark:bg-[#121214]/60 border border-zinc-200/50 dark:border-white/5 rounded-xl h-14 z-10 backdrop-blur-sm"
+                                />
+                                <motion.div
+                                    animate={{ y: [0, -8, 0], scale: [0.9, 0.9, 0.9] }}
+                                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.2 }}
+                                    className="absolute bottom-2 w-56 bg-white/30 dark:bg-[#121214]/30 border border-zinc-200/30 dark:border-white/5 rounded-xl h-14 z-0 backdrop-blur-sm"
+                                />
+                            </div>
+                        </CursorInteractiveContainer>
                     </BentoCard>
 
                     {/* 5. Tooltips */}
-                    <BentoCard className="md:col-span-1" title="Micro-Interaction" icon={<MessageSquare className="w-5 h-5 text-pink-400" />}>
-                        <div className="flex gap-4 items-center justify-center h-full">
-                            <TooltipPreview icon={<Check className="w-4 h-4" />} text="Approved" color="text-green-400 bg-green-400/10" />
-                            <TooltipPreview icon={<X className="w-4 h-4" />} text="Rejected" color="text-red-400 bg-red-400/10" />
-                            <TooltipPreview icon={<AlertCircle className="w-4 h-4" />} text="Warning" color="text-amber-400 bg-amber-400/10" />
-                        </div>
+                    <BentoCard className="md:col-span-1" title="Micro-Interactions" icon={<MessageSquare className="w-4 h-4 text-pink-500 dark:text-pink-400" />}>
+                        <CursorInteractiveContainer
+                            cursor={<MessageSquare className="w-6 h-6 fill-current" />}
+                            cursorClassName="text-pink-500 dark:text-pink-400 drop-shadow-[0_0_15px_rgba(236,72,153,0.4)] dark:drop-shadow-[0_0_15px_rgba(244,114,182,0.6)]"
+                        >
+                            <div className="flex gap-6 items-center justify-center h-full cursor-none">
+                                <TooltipPreview
+                                    icon={<Check className="w-5 h-5" />}
+                                    text="Approved"
+                                    color="text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-400/10 border-emerald-200 dark:border-emerald-400/20"
+                                />
+                                <TooltipPreview
+                                    icon={<X className="w-5 h-5" />}
+                                    text="Rejected"
+                                    color="text-rose-600 dark:text-rose-400 bg-rose-100 dark:bg-rose-400/10 border-rose-200 dark:border-rose-400/20"
+                                />
+                                <TooltipPreview
+                                    icon={<AlertCircle className="w-5 h-5" />}
+                                    text="Warning"
+                                    color="text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-400/10 border-amber-200 dark:border-amber-400/20"
+                                />
+                            </div>
+                        </CursorInteractiveContainer>
                     </BentoCard>
 
                 </div>
@@ -226,22 +266,24 @@ export function VisualComponentPreview() {
 function BentoCard({ children, className, title, icon }: { children: React.ReactNode, className?: string, title: string, icon: React.ReactNode }) {
     return (
         <div className={cn(
-            "bento-item group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm p-4 hover:bg-white/[0.04] transition-colors duration-500",
+            "relative overflow-hidden rounded-3xl border border-zinc-200 dark:border-white/5 bg-white dark:bg-[#0A0A0B] shadow-sm dark:shadow-none hover:border-zinc-300 dark:hover:border-white/10 transition-colors duration-500 group",
             className
         )}>
+            {/* Ambient Glow - Dark Mode Only */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 dark:group-hover:opacity-100 transition-opacity duration-700 pointer-events-none hidden dark:block" />
+
             {/* Header */}
-            <div className="flex items-center gap-2 mb-4 opacity-50 group-hover:opacity-100 transition-opacity">
-                {icon}
-                <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{title}</span>
+            <div className="absolute top-5 left-6 flex items-center gap-3 z-20 pointer-events-none">
+                <div className="p-1.5 rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/5">
+                    {icon}
+                </div>
+                <span className="text-xs font-semibold tracking-wide text-zinc-500 dark:text-zinc-400 uppercase">{title}</span>
             </div>
 
-            {/* Content Area */}
-            <div className="relative h-[calc(100%-2rem)] w-full rounded-xl border border-white/5 bg-black/20 overflow-hidden">
+            {/* Content Area - Seamless */}
+            <div className="relative w-full h-full pt-16 group-hover:scale-[1.02] transition-transform duration-700 ease-out">
                 {children}
             </div>
-
-            {/* Hover Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         </div>
     )
 }
@@ -276,15 +318,21 @@ function TooltipPreview({ icon, text, color }: { icon: React.ReactNode, text: st
     )
 }
 
-function CursorInteractiveContainer({ children }: { children: React.ReactNode }) {
+interface CursorInteractiveContainerProps {
+    children: React.ReactNode;
+    cursor?: React.ReactNode;
+    cursorClassName?: string;
+}
+
+function CursorInteractiveContainer({ children, cursor, cursorClassName }: CursorInteractiveContainerProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const cursorRef = useRef<HTMLDivElement>(null);
     const xTo = useRef<gsap.QuickToFunc | null>(null);
     const yTo = useRef<gsap.QuickToFunc | null>(null);
 
     useGSAP(() => {
-        xTo.current = gsap.quickTo(cursorRef.current, "x", { duration: 0.3, ease: "power3" });
-        yTo.current = gsap.quickTo(cursorRef.current, "y", { duration: 0.3, ease: "power3" });
+        xTo.current = gsap.quickTo(cursorRef.current, "x", { duration: 0.5, ease: "power2.out" });
+        yTo.current = gsap.quickTo(cursorRef.current, "y", { duration: 0.5, ease: "power2.out" });
     }, { scope: containerRef });
 
     const handleMouseMove = (e: React.MouseEvent) => {
@@ -308,17 +356,22 @@ function CursorInteractiveContainer({ children }: { children: React.ReactNode })
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="relative flex flex-col gap-4 items-center justify-center h-full w-full cursor-none overflow-hidden"
+            className="relative flex flex-col gap-4 items-center justify-center h-full w-full cursor-none [&_*]:cursor-none overflow-hidden"
         >
-            <div className="relative z-10 flex flex-col gap-4 items-center">
+            <div className="relative z-10 flex flex-col gap-4 items-center w-full h-full justify-center">
                 {children}
             </div>
 
             <div
                 ref={cursorRef}
-                className="absolute top-0 left-0 w-7 h-7 pointer-events-none -translate-x-1/4 -translate-y-1/4 opacity-0 z-50 text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]"
+                className={cn(
+                    "absolute top-0 left-0 w-7 h-7 pointer-events-none -translate-x-1/4 -translate-y-1/4 opacity-0 z-50",
+                    cursorClassName
+                )}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M9.391 2.32C8.42 1.56 7 2.253 7 3.486V28.41c0 1.538 1.966 2.18 2.874.938l6.225-8.523a2 2 0 0 1 1.615-.82h9.69c1.512 0 2.17-1.912.978-2.844z" /></svg>
+                {cursor || (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M9.391 2.32C8.42 1.56 7 2.253 7 3.486V28.41c0 1.538 1.966 2.18 2.874.938l6.225-8.523a2 2 0 0 1 1.615-.82h9.69c1.512 0 2.17-1.912.978-2.844z" /></svg>
+                )}
             </div>
         </div>
     );

@@ -110,22 +110,22 @@ export function Hero() {
       </div>
 
       {/* Main Heading */}
-     <h1
-  ref={headingRef}
-  className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-5xl text-foreground leading-[1.1]"
->
-  A modern React UI component library.
-  <br className="hidden md:block" />
-  Build interfaces faster.
-</h1>
+      <h1
+        ref={headingRef}
+        className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-5xl text-foreground leading-[1.1]"
+      >
+        A modern React UI component library.
+        <br className="hidden md:block" />
+        Build interfaces faster.
+      </h1>
 
-<p
-  ref={descRef}
-  className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed"
->
-  Carefully crafted, accessible components designed for real production
-  applications.
-</p>
+      <p
+        ref={descRef}
+        className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed"
+      >
+        Carefully crafted, accessible components designed for real production
+        applications.
+      </p>
 
 
       {/* CTA Buttons */}
