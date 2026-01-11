@@ -57,6 +57,14 @@ export function Sidebar() {
                 {
                     title: "Tooltip",
                     href: "/docs/components/tooltip",
+                },
+                {
+                    title: "Radio Group",
+                    href: "/docs/components/radio",
+                },
+                {
+                    title: "Label",
+                    href: "/docs/components/label",
                 }
             ]
         }

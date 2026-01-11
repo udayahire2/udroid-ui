@@ -2,7 +2,7 @@
 
 import "../index.css";
 import { useScroll } from "@/hooks/use-scroll";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/button/button";
 import { cn } from "@/lib/utils";
 import { MobileNav } from "@/components/mobile-nav";
 import { Search, Sun, Moon } from "lucide-react";
@@ -46,11 +46,11 @@ export function Header() {
             <NavigationMenuList>
               {navLinks.map((link) => (
                 <NavigationMenuItem key={link.label}>
-                  <Link to={link.href}>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink key={link.label} asChild className={navigationMenuTriggerStyle()}>
+                    <Link to={link.href}>
                       {link.label}
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
@@ -73,13 +73,13 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <Link to="https://github.com/udayahire2" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="h-9 w-9">
+              <Button variant="ghost" size="icon-md" className="h-9 w-9">
                 <Github className="h-[1.2rem] w-[1.2rem]" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
             <Link to="https://x.com/UdayAhire447195" target="_blank" rel="noreferrer">
-              <Button variant="ghost" size="icon" className="h-9 w-9">
+              <Button variant="ghost" size="icon-md" className="h-9 w-9">
                 <XIcon className="h-[1.2rem] w-[1.2rem] fill-current" />
                 <span className="sr-only">X (Twitter)</span>
               </Button>
@@ -93,7 +93,7 @@ export function Header() {
         <div className="flex items-center gap-2 md:hidden">
           <Button
             variant="ghost"
-            size="icon"
+            size="icon-md"
             onClick={() => setOpen(true)}
             className="h-9 w-9"
           >
@@ -123,7 +123,7 @@ export function ModeToggle() {
   return (
     <Button
       variant="ghost"
-      size="icon"
+      size="icon-md"
       aria-label="Toggle theme"
       onClick={toggleTheme}
       className="relative h-9 w-9"

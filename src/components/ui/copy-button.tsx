@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/button/button"
 
 interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     value: string
@@ -27,7 +27,7 @@ export function CopyButton({
 
     return (
         <Button
-            size="icon"
+            size="icon-md"
             variant="ghost"
             className={cn(
                 "relative z-10 h-7 w-7 rounded-md text-zinc-50 hover:bg-white/10 [&_svg]:h-3.5 [&_svg]:w-3.5",

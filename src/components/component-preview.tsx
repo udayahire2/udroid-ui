@@ -2,7 +2,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Index } from "@/registry"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useMDXComponents } from "@/components/mdx-components"
+import { CodeBlock } from "@/components/ui/code-block"
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
     name: string
@@ -29,9 +29,6 @@ export function ComponentPreview({
     }
 
     const Preview = config.component
-    // Use the pre component from MDX components to get the premium styling
-    // But we need to construct the props correctly
-    const CodeBlock = useMDXComponents.pre
 
     return (
         <div
@@ -55,7 +52,7 @@ export function ComponentPreview({
                         </TabsTrigger>
                     </TabsList>
                 </div>
-                <TabsContent value="preview" className="relative mt-2 rounded-xl border border-border/50 bg-background/50 dark:bg-[#121212]">
+                <TabsContent value="preview" className="relative mt-2 rounded-xl border border-border/50 bg-background/50 dark:bg-background">
                     <div
                         className={cn(
                             "preview flex min-h-[350px] w-full justify-center p-8",
@@ -73,10 +70,8 @@ export function ComponentPreview({
                 </TabsContent>
                 <TabsContent value="code">
                     <div className="flex flex-col space-y-4">
-                        <div className="w-full rounded-md [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto">
-                            <CodeBlock className="language-tsx">
-                                <code className="language-tsx">{config.code}</code>
-                            </CodeBlock>
+                        <div className="w-full rounded-md">
+                            <CodeBlock code={config.code} />
                         </div>
                     </div>
                 </TabsContent>

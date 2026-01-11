@@ -1,17 +1,12 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { CopyButton } from "@/components/ui/copy-button"
+// import { CopyButton } from "@/components/ui/copy-button"
 import { ComponentPreview } from "@/components/component-preview"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import ShikiHighlighter from "react-shiki";
-import { useTheme } from "@/components/theme-provider";
+// import ShikiHighlighter from "react-shiki";
+import { CodeBlock } from "@/components/ui/code-block"
 
-// Helper to extract language from className
-const extractLanguage = (className: string | undefined) => {
-    if (!className) return "Text";
-    const match = className.match(/language-(\w+)/);
-    return match ? match[1].toUpperCase() : "Text";
-};
+
 
 export const useMDXComponents = {
     h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -138,40 +133,7 @@ export const useMDXComponents = {
             {...props}
         />
     ),
-    pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
-        const [codeString, setCodeString] = React.useState("");
-        const [language, setLanguage] = React.useState("text");
-        const { resolvedTheme } = useTheme();
-
-        React.useEffect(() => {
-            const children = props.children as any;
-            if (children?.props?.children) {
-                setCodeString(children.props.children.toString().trim());
-            }
-            if (children?.props?.className) {
-                setLanguage(extractLanguage(children.props.className).toLowerCase());
-            }
-        }, [props.children]);
-
-        return (
-            <div className="relative mb-6">
-                <div className="absolute right-2 top-2 z-10">
-                    <CopyButton value={codeString} className="text-muted-foreground hover:text-foreground" />
-                </div>
-                <div className="overflow-x-auto rounded-lg max-h-[650px] overflow-y-auto custom-scrollbar">
-                    {/* @ts-ignore */}
-                    <ShikiHighlighter
-                        theme={resolvedTheme === "light" ? "min-light" : "dark-plus"}
-                        language={language}
-                        showLineNumbers={false}
-                        showLanguage={false}
-                    >
-                        {codeString}
-                    </ShikiHighlighter>
-                </div>
-            </div>
-        );
-    },
+    pre: CodeBlock,
     code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
         <code
             className={cn(

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { CodeBlock } from "./shikiEditor/code-block";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar } from "@/components/avatar/avatar";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

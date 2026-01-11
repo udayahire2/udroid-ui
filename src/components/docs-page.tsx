@@ -2,7 +2,7 @@
 
 import { CodeBlock } from "@/components/shikiEditor/code-block";
 import { ArrowUpRight, Copy, Check } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/button/button";
 import { GridPattern } from "./ui/grid-pattern";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -35,13 +35,13 @@ function CodeSnippet({ code, language, fileName, className }: { code: string; la
             {fileName ? (
                 <div className="flex justify-between items-center border-b px-4 py-2 bg-muted/40">
                     <span className="text-xs font-medium text-muted-foreground">{fileName}</span>
-                    <Button variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground hover:text-foreground" onClick={handleCopy}>
+                    <Button variant="ghost" size="icon-md" className="h-6 w-6 text-muted-foreground hover:text-foreground" onClick={handleCopy}>
                         {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
                     </Button>
                 </div>
             ) : (
                 <div className="absolute right-2 top-2 z-10">
-                    <Button variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground hover:text-foreground bg-muted/10 hover:bg-muted/20 backdrop-blur-sm" onClick={handleCopy}>
+                    <Button variant="ghost" size="icon-md" className="h-6 w-6 text-muted-foreground hover:text-foreground bg-muted/10 hover:bg-muted/20 backdrop-blur-sm" onClick={handleCopy}>
                         {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
                     </Button>
                 </div>

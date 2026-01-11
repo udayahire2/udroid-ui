@@ -1,5 +1,6 @@
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/button/button";
+import { buttonVariants } from "@/components/button/button.styles";
 import { cn } from "@/lib/utils";
 import { XIcon } from "lucide-react";
 import React from "react";
@@ -81,7 +82,7 @@ export function MobileNav() {
 				aria-label="Toggle menu"
 				className="md:hidden"
 				onClick={() => setOpen(!open)}
-				size="icon"
+				size="icon-md"
 				variant="ghost"
 			>
 				{open ? (
