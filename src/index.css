@@ -132,7 +132,7 @@ code[data-theme*=" "] span {
 
 .dark {
   /* Base - Near Black for OLED-like richness */
-  --background: oklch(0.08 0.01 260);
+  --background: #000;
   --foreground: oklch(0.98 0 0);
 
   /* Surfaces */

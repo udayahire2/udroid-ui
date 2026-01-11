@@ -11,6 +11,13 @@ import { Link } from "react-router-dom";
 import { Github } from "lucide-react";
 import { CommandMenu } from "@/components/command-menu";
 import { useState } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 export const navLinks = [
   { label: "Docs", href: "/docs" },
@@ -35,17 +42,19 @@ export function Header() {
           <Link to="/" className="cursor-pointer text-lg font-medium tracking-tight font-sans-serif">
             LOGO
           </Link>
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navLinks.map((link) => (
+                <NavigationMenuItem key={link.label}>
+                  <Link to={link.href}>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      {link.label}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
 
         {/* RIGHT */}

@@ -55,10 +55,7 @@ export function ComponentPreview({
                         </TabsTrigger>
                     </TabsList>
                 </div>
-                <TabsContent value="preview" className="relative rounded-xl border border-white/[0.08] bg-white/[0.02]">
-                    <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-3">
-                        <span className="text-[12px] text-white/45">Preview · Default variants</span>
-                    </div>
+                <TabsContent value="preview" className="relative mt-2 rounded-xl border border-border/50 bg-background/50 dark:bg-[#121212]">
                     <div
                         className={cn(
                             "preview flex min-h-[350px] w-full justify-center p-8",

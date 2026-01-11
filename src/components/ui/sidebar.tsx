@@ -29,6 +29,34 @@ export function Sidebar() {
                 {
                     title: "Button",
                     href: "/docs/components/button",
+                },
+                {
+                    title: "Avatar",
+                    href: "/docs/components/avatar",
+                },
+                {
+                    title: "Card",
+                    href: "/docs/components/card",
+                },
+                {
+                    title: "Input",
+                    href: "/docs/components/input",
+                },
+                {
+                    title: "Separator",
+                    href: "/docs/components/separator",
+                },
+                {
+                    title: "Switch",
+                    href: "/docs/components/switch",
+                },
+                {
+                    title: "Textarea",
+                    href: "/docs/components/textarea",
+                },
+                {
+                    title: "Tooltip",
+                    href: "/docs/components/tooltip",
                 }
             ]
         }
@@ -53,14 +81,11 @@ export function Sidebar() {
                                                 className={cn(
                                                     "group flex w-full items-center rounded-md border border-transparent px-3 py-1.5 text-muted-foreground transition-all duration-200 hover:text-foreground",
                                                     isActive
-                                                        ? "bg-primary/5 text-primary font-medium border-primary/10 shadow-sm"
-                                                        : "hover:bg-muted/50"
+                                                        ? "font-medium text-foreground"
+                                                        : ""
                                                 )}
                                             >
-                                                <span className={cn(
-                                                    "relative truncate",
-                                                    isActive && "translate-x-1 transition-transform duration-200"
-                                                )}>
+                                                <span className="relative truncate">
                                                     {subItem.title}
                                                 </span>
                                             </Link>

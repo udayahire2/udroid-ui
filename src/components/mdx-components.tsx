@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils"
 import { CopyButton } from "@/components/ui/copy-button"
 import { ComponentPreview } from "@/components/component-preview"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import ShikiHighlighter from "react-shiki";
+import { useTheme } from "@/components/theme-provider";
 
 // Helper to extract language from className
 const extractLanguage = (className: string | undefined) => {
@@ -137,46 +139,36 @@ export const useMDXComponents = {
         />
     ),
     pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
-        const preRef = React.useRef<HTMLPreElement>(null);
         const [codeString, setCodeString] = React.useState("");
-        const [language, setLanguage] = React.useState("TEXT");
+        const [language, setLanguage] = React.useState("text");
+        const { resolvedTheme } = useTheme();
 
         React.useEffect(() => {
-            if (preRef.current) {
-                setCodeString(preRef.current.innerText);
-                // @ts-ignore
-                const innerCode = props.children?.props;
-                if (innerCode?.className) {
-                    setLanguage(extractLanguage(innerCode.className));
-                }
+            const children = props.children as any;
+            if (children?.props?.children) {
+                setCodeString(children.props.children.toString().trim());
+            }
+            if (children?.props?.className) {
+                setLanguage(extractLanguage(children.props.className).toLowerCase());
             }
         }, [props.children]);
 
         return (
-            <div className="group relative mb-6 rounded-[10px] border border-border bg-card">
-                {/* Header Bar */}
-                <div className="flex h-[36px] items-center justify-between border-b border-border bg-muted/30 px-3">
-                    <div className="flex items-center gap-2">
-                        {/* Language Badge */}
-                        <span className="font-mono text-[11px] font-medium text-muted-foreground">
-                            {language}
-                        </span>
-                    </div>
-                    {/* Copy Button in Header */}
+            <div className="relative mb-6">
+                <div className="absolute right-2 top-2 z-10">
                     <CopyButton value={codeString} className="text-muted-foreground hover:text-foreground" />
                 </div>
-
-                {/* Content Area */}
-                <pre
-                    ref={preRef}
-                    className={cn(
-                        "overflow-x-auto p-4 font-mono text-[13px] leading-5 custom-scrollbar text-foreground",
-                        // Force override inner code styles
-                        "[&_code]:!bg-transparent [&_code]:!p-0 [&_code]:block [&_code]:min-w-full",
-                        className
-                    )}
-                    {...props}
-                />
+                <div className="overflow-x-auto rounded-lg max-h-[650px] overflow-y-auto custom-scrollbar">
+                    {/* @ts-ignore */}
+                    <ShikiHighlighter
+                        theme={resolvedTheme === "light" ? "min-light" : "dark-plus"}
+                        language={language}
+                        showLineNumbers={false}
+                        showLanguage={false}
+                    >
+                        {codeString}
+                    </ShikiHighlighter>
+                </div>
             </div>
         );
     },

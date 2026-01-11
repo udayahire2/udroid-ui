@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { CodeBlock } from "./shikiEditor/code-block";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -86,14 +86,8 @@ export function Hero() {
           Premium
         </span>
         <div className="flex -space-x-3">
-          <Avatar className="h-10 w-10 border-2 border-background">
-            <AvatarImage src={profile} />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <Avatar className="h-10 w-10 border-2 border-background">
-            <AvatarImage src={profile2} className="object-cover" />
-            <AvatarFallback>AB</AvatarFallback>
-          </Avatar>
+          <Avatar className="h-10 w-10 border-2 border-background" src={profile} fallback="CN" />
+          <Avatar className="h-10 w-10 border-2 border-background" src={profile2} fallback="AB" />
         </div>
         <div
           className="group relative hidden sm:flex items-center gap-2 rounded-full border border-border/40 bg-zinc-900/50 hover:bg-zinc-900/80 px-4 py-1.5 text-sm font-medium transition-all hover:border-border/60 hover:shadow-[0_0_20px_-12px_rgba(255,255,255,0.3)]"
