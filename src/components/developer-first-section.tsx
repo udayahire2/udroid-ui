@@ -25,23 +25,22 @@ export function DeveloperFirstSection() {
                     <div className="space-y-8">
                         <div className="space-y-4">
                             <span className="inline-block text-sm font-medium text-primary tracking-wider uppercase">
-                                Developer-first UI Library
+                                Developer Centric
                             </span>
                             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-                                Build UI faster with ready-to-use components
+                                Accelerate Development. Ship Faster.
                             </h2>
                             <p className="text-muted-foreground text-lg leading-relaxed max-w-xl">
-                                UDROID is a lightweight React UI library built for real products.
-                                No bloat, no unnecessary abstraction — just clean, accessible components
-                                you can copy, customize, and ship.
+                                A comprehensive suite of accessible, composable components. Spend less time styling and more time building.
+                                Every component is a masterpiece of implementation. Fully typed, strictly accessible, and designed to scale.
                             </p>
                         </div>
 
                         <ul className="space-y-3">
                             {[
-                                "Copy-paste friendly components",
-                                "Accessible by default",
-                                "Works with Tailwind and modern React"
+                                "Type-Safe & Production Ready",
+                                "Strictly Accessible",
+                                "Tailwind CSS & React 19"
                             ].map((item, i) => (
                                 <li key={i} className="flex items-center gap-3 text-foreground/80">
                                     <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10 text-primary">
@@ -51,7 +50,7 @@ export function DeveloperFirstSection() {
                                 </li>
                             ))}
                         </ul>
-                        
+
                         <div className="pt-2">
                             <Link
                                 to="/docs/components/button"
@@ -65,19 +64,19 @@ export function DeveloperFirstSection() {
                     {/* Right Side: Code Editor */}
                     <div className="relative group">
                         {/* Glow effect */}
-                        
 
-                        
-                            {/* Code Area - Header Removed */}
 
-                            <CodeBlock
-                                code={exampleCode}
-                                language="tsx"
-                                theme="github-dark"
-                                showLineNumbers={true}
-                            />
-                        </div>
-                    
+
+                        {/* Code Area - Header Removed */}
+
+                        <CodeBlock
+                            code={exampleCode}
+                            language="tsx"
+                            theme="github-dark"
+                            showLineNumbers={true}
+                        />
+                    </div>
+
 
                 </div>
             </div>

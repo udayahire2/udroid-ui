@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { CodeBlock } from "./shikiEditor/code-block";
+
 import { Avatar } from "@/components/avatar/avatar";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
@@ -93,12 +93,9 @@ export function Hero() {
           className="group relative hidden sm:flex items-center gap-2 rounded-full border border-border/40 bg-zinc-900/50 hover:bg-zinc-900/80 px-4 py-1.5 text-sm font-medium transition-all hover:border-border/60 hover:shadow-[0_0_20px_-12px_rgba(255,255,255,0.3)]"
         >
           <span className="text-muted-foreground font-mono select-none">$</span>
-          <CodeBlock
-            code="npm install udroid-ui"
-            language="bash"
-            showLineNumbers={false}
-            className="!bg-transparent invisible text-[0px] [&_pre]:visible [&_pre]:!bg-transparent [&_pre]:!p-0 [&_pre]:!m-0 [&_pre]:!font-mono [&_pre]:!text-sm [&_code]:!bg-transparent font-mono"
-          />
+          <div className="font-mono text-xs sm:text-sm">
+            <span className="text-purple-400">npm</span> <span className="text-blue-400">install</span> <span className="text-blue-400">udroid-ui</span>
+          </div>
           <div className="absolute inset-0 rounded-full ring-1 ring-white/10 pointer-events-none" />
         </div>
       </div>
@@ -108,17 +105,14 @@ export function Hero() {
         ref={headingRef}
         className="max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-5xl text-foreground leading-[1.1]"
       >
-        A modern React UI component library.
-        <br className="hidden md:block" />
-        Build interfaces faster.
+        Build Premium Interfaces. Faster.
       </h1>
 
       <p
         ref={descRef}
         className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed"
       >
-        Carefully crafted, accessible components designed for real production
-        applications.
+        Beautiful, copy-paste components for your projects. Accessible, customizable, and ready for production.
       </p>
 
 

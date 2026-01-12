@@ -14,6 +14,9 @@ import {
     X,
     AlertCircle
 } from "lucide-react";
+import { Button } from "@/components/button/button";
+import { Input } from "@/components/input/input";
+import { Label } from "@/components/label/label";
 
 export function VisualComponentPreview() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -95,10 +98,10 @@ export function VisualComponentPreview() {
             <div className="max-w-7xl mx-auto relative z-10 space-y-12">
                 <div className="text-center space-y-4">
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-600 dark:from-white dark:to-white/60">
-                        Visual Excellence.
+                        Aesthetics in Every Pixel.
                     </h2>
                     <p className="text-zinc-500 dark:text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Meticulously crafted components designed for modern applications.
+                        Transcend the ordinary. Components that don't just function, but delight. Interactions that feel natural. Animations that feel smooth.
                     </p>
                 </div>
 
@@ -113,20 +116,14 @@ export function VisualComponentPreview() {
                             }
                             cursorClassName="text-sky-500 dark:text-sky-400 drop-shadow-[0_0_15px_rgba(14,165,233,0.4)] dark:drop-shadow-[0_0_15px_rgba(56,189,248,0.6)]"
                         >
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-8 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-full font-medium text-sm shadow-xl shadow-zinc-900/10 dark:shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-2xl transition-shadow cursor-none"
-                            >
-                                Primary Action
-                            </motion.button>
-                            <motion.button
-                                whileHover={{ scale: 1.05, backgroundColor: "rgba(120,120,120,0.1)" }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-8 py-3 bg-transparent border border-zinc-200 dark:border-white/20 text-zinc-900 dark:text-white rounded-full font-medium text-sm hover:border-zinc-300 dark:hover:border-white/40 transition-colors cursor-none"
-                            >
-                                Secondary
-                            </motion.button>
+                            <div className="flex flex-col gap-4">
+                                <Button size="default" className="rounded-full shadow-xl shadow-zinc-900/10 dark:shadow-white/5 cursor-none pointer-events-none">
+                                    Primary Action
+                                </Button>
+                                <Button variant="outline" className="rounded-full bg-transparent border-zinc-200 dark:border-white/10 hover:bg-zinc-100 dark:hover:bg-white/5 cursor-none pointer-events-none">
+                                    Secondary
+                                </Button>
+                            </div>
                         </CursorInteractiveContainer>
                     </BentoCard>
 
@@ -174,23 +171,20 @@ export function VisualComponentPreview() {
                             cursorClassName="text-emerald-500 dark:text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.4)] dark:drop-shadow-[0_0_15px_rgba(52,211,153,0.6)]"
                         >
                             <div className="flex flex-col gap-5 justify-center h-full px-8 cursor-none w-full max-w-xs mx-auto">
-                                <div className="space-y-2">
-                                    <label className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 ml-1">Email</label>
-                                    <div className="relative group">
-                                        <input
-                                            type="text"
-                                            placeholder="hello@udroid.com"
-                                            className="w-full bg-zinc-50 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 focus:border-emerald-500/50 transition-all group-hover:bg-white dark:group-hover:bg-white/[0.05] group-hover:border-zinc-300 dark:group-hover:border-white/20 cursor-none"
-                                        />
-                                    </div>
+                                <div className="space-y-2 pointer-events-none">
+                                    <Label className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 ml-1">Email</Label>
+                                    <Input
+                                        placeholder="hello@udroid.com"
+                                        className="cursor-none"
+                                    />
                                 </div>
-                                <div className="space-y-2 opacity-40 pointer-events-none">
-                                    <label className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 ml-1">Password</label>
-                                    <input
+                                <div className="space-y-2 pointer-events-none opacity-60">
+                                    <Label className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 ml-1">Password</Label>
+                                    <Input
                                         type="password"
                                         value="password123"
                                         readOnly
-                                        className="w-full bg-zinc-50 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white cursor-none"
+                                        className="cursor-none"
                                     />
                                 </div>
                             </div>

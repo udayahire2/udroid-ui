@@ -4,6 +4,7 @@ import "./App.css";
 import { Hero } from "./components/hero";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FeatureSection } from "./components/feature-section";
+import { TrustedBySection } from "./components/trusted-by-section";
 import { VisualComponentPreview } from "./components/visual-component-preview";
 
 import { FAQSection } from "./components/faq-section";
@@ -66,6 +67,7 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <TrustedBySection />
       <FeatureSection />
       <DeveloperFirstSection />
       <VisualComponentPreview />
