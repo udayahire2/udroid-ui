@@ -50,6 +50,15 @@ code[data-theme*=" "] span {
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: hsl(var(--foreground));
   }
+
+  .bg-dots {
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .dark .bg-dots {
+    background-image: radial-gradient(#303030 1px, transparent 1px);
+  }
 }
 
 @theme inline {

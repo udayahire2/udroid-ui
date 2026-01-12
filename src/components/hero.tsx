@@ -15,35 +15,8 @@ export function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    // Interactive Hover Effects for Buttons - Kept as requested (no scroll based)
 
-    tl.from(badgeRef.current, {
-      y: -20,
-      opacity: 0,
-      duration: 0.8,
-    })
-      .from(subHeadingRef.current, {
-        scale: 0.9,
-        opacity: 0,
-        duration: 0.8,
-      }, "-=0.4")
-      .from(headingRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-      }, "-=0.6")
-      .from(descRef.current, {
-        y: 20,
-        opacity: 0,
-        duration: 1,
-      }, "-=0.8")
-      .from(ctaRef.current, {
-        y: 20,
-        opacity: 0,
-        duration: 1,
-      }, "-=0.8");
-
-    // Interactive Hover Effects for Buttons
     const buttons = ctaRef.current?.children;
     if (buttons) {
       Array.from(buttons).forEach((btn) => {

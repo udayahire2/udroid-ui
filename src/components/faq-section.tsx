@@ -2,41 +2,41 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const faqItems = [
-  {
-    question: "Can I use UDROID for my projects?",
-    answer:
-      "Haan. UDROID ke saare components abhi free hain aur tum unhe personal aur client projects dono mein bina kisi restriction ke use kar sakte ho."
-  },
-  {
-    question: "Is UDROID free?",
-    answer:
-      "Haan, abhi UDROID 100% free hai. Mera focus hai ek open aur accessible component library banana jo bina kisi friction ke use ho sake."
-  },
-  {
-    question: "Who is building UDROID?",
-    answer:
-      "UDROID ek solo-built project hai. Main akela hi iske design, development aur maintenance par kaam kar raha hoon."
-  },
-  {
-    question: "Do you support accessibility?",
-    answer:
-      "Haan. Components ko accessibility ko dhyaan mein rakh kar design kiya ja raha hai, jaise proper focus states, keyboard navigation aur readable contrast."
-  },
-  {
-    question: "Will you add more components in the future?",
-    answer:
-      "Haan. Main step by step naye components add kar raha hoon. Kyunki project solo hai, isliye updates quality-focused aur gradual rahenge."
-  },
-  {
-    question: "Will UDROID stay free in the future?",
-    answer:
-      "Core components hamesha free rahenge. Future mein kuch advanced ya optional features add ho sakte hain, lekin basic usage free hi rahega."
-  },
-  {
-    question: "Can I give feedback or request a component?",
-    answer:
-      "Bilkul. Feedback aur component suggestions ka direct impact roadmap par padta hai. Tum directly reach out kar sakte ho."
-  }
+    {
+        question: "Can I use UDROID for my projects?",
+        answer:
+            "Haan. UDROID ke saare components abhi free hain aur tum unhe personal aur client projects dono mein bina kisi restriction ke use kar sakte ho."
+    },
+    {
+        question: "Is UDROID free?",
+        answer:
+            "Haan, abhi UDROID 100% free hai. Mera focus hai ek open aur accessible component library banana jo bina kisi friction ke use ho sake."
+    },
+    {
+        question: "Who is building UDROID?",
+        answer:
+            "UDROID ek solo-built project hai. Main akela hi iske design, development aur maintenance par kaam kar raha hoon."
+    },
+    {
+        question: "Do you support accessibility?",
+        answer:
+            "Haan. Components ko accessibility ko dhyaan mein rakh kar design kiya ja raha hai, jaise proper focus states, keyboard navigation aur readable contrast."
+    },
+    {
+        question: "Will you add more components in the future?",
+        answer:
+            "Haan. Main step by step naye components add kar raha hoon. Kyunki project solo hai, isliye updates quality-focused aur gradual rahenge."
+    },
+    {
+        question: "Will UDROID stay free in the future?",
+        answer:
+            "Core components hamesha free rahenge. Future mein kuch advanced ya optional features add ho sakte hain, lekin basic usage free hi rahega."
+    },
+    {
+        question: "Can I give feedback or request a component?",
+        answer:
+            "Bilkul. Feedback aur component suggestions ka direct impact roadmap par padta hai. Tum directly reach out kar sakte ho."
+    }
 ];
 
 

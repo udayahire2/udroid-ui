@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 type FeatureType = {
   title: string;
@@ -17,36 +17,7 @@ export function FeatureSection() {
   const headerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Header Animation
-    gsap.from(headerRef.current, {
-      scrollTrigger: {
-        trigger: headerRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-    });
-
-    // Staggered Grid Animation
-    const cards = gsap.utils.toArray<HTMLElement>(".feature-card");
-    gsap.from(cards, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 70%",
-        toggleActions: "play none none reverse",
-      },
-      y: 60,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "back.out(1.7)", // Bouncy effect
-    });
-
+    // Scroll animations removed for minimal feel.
   }, { scope: containerRef });
 
   return (

@@ -36,7 +36,7 @@ const roadmapData: RoadmapItem[] = [
     id: "3",
     title: "Working on Library Package",
     description:
-      "Setup the Library package for Docs Section" ,
+      "Setup the Library package for Docs Section",
     date: "Jan 2026",
     status: "in-progress",
   },
@@ -212,7 +212,7 @@ export function RoadmapSection() {
                         "bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/80 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5",
                         // Specific styles for In-Progress items
                         item.status === "in-progress" &&
-                          "border-primary/50 bg-primary/5 shadow-[0_0_30px_-10px_rgba(var(--primary),0.15)] ring-1 ring-primary/20"
+                        "border-primary/50 bg-primary/5 shadow-[0_0_30px_-10px_rgba(var(--primary),0.15)] ring-1 ring-primary/20"
                       )}
                     >
                       {item.status === "in-progress" && (

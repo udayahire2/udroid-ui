@@ -9,7 +9,6 @@ import { VisualComponentPreview } from "./components/visual-component-preview";
 
 import { FAQSection } from "./components/faq-section";
 import { RoadmapSection } from "./components/roadmap-section";
-import { DeveloperFirstSection } from "./components/developer-first-section";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Footer } from "@/components/footer";
 import DocsLayout from "@/app/docs/layout";
@@ -69,7 +68,6 @@ function HomePage() {
       <Hero />
       <TrustedBySection />
       <FeatureSection />
-      <DeveloperFirstSection />
       <VisualComponentPreview />
       <RoadmapSection />
       <FAQSection />
