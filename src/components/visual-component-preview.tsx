@@ -11,32 +11,29 @@ import {
     TooltipTrigger,
 } from "@/components/tooltip/tooltip";
 import { Avatar, AvatarFallback, AvatarImage, AvatarGroup } from "@/components/avatar/avatar";
-import avatar1 from '../assets/profile.png'
-import avatar2 from '../assets/profile2.png'
-import Avatar1 from '../assets/avatar1.png'
-import Avatar2 from '../assets/avatar2.png'
+import avatar1 from '../assets/avatar1.png'
+import avatar2 from '../assets/avatar2.png'
 import Avatar3 from '../assets/avatar3.png'
 import Avatar4 from '../assets/avatar4.png'
+
 export function VisualComponentPreview() {
     return (
-        <div className="relative w-full py-24 px-4 overflow-hidden">
-
-
-            <div className="max-w-7xl mx-auto relative z-10 space-y-16">
-                <div className="text-center space-y-4">
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-600 dark:from-white dark:to-white/60">
+        <div className="relative w-full py-24 sm:py-32 px-4 overflow-hidden bg-background">
+            <div className="max-w-7xl mx-auto relative z-10 space-y-24">
+                <div className="text-center space-y-6 max-w-3xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
                         Production Ready.
                     </h2>
-                    <p className="text-zinc-500 dark:text-muted-foreground text-lg max-w-2xl mx-auto">
-                        A suite of polished components, ready to drop into your next project.
+                    <p className="text-muted-foreground text-lg md:text-xl leading-relaxed">
+                        A suite of polished, accessible components. Use them as building blocks for your next big idea.
                     </p>
                 </div>
 
                 {/* Library Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
 
                     {/* Button */}
-                    <LibraryCard title="Button" className="library-item md:col-span-2">
+                    <LibraryCard title="Buttons" className="md:col-span-2">
                         <div className="flex flex-wrap gap-4 items-center justify-center">
                             <Button>Default</Button>
                             <Button variant="secondary">Secondary</Button>
@@ -47,41 +44,41 @@ export function VisualComponentPreview() {
                     </LibraryCard>
 
                     {/* Inputs */}
-                    <LibraryCard title="Input" className="library-item">
-                        <div className="w-full max-w-xs space-y-4">
+                    <LibraryCard title="Input">
+                        <div className="w-full max-w-[280px] space-y-5">
                             <div className="space-y-2">
-                                <Label>Email</Label>
+                                <Label className="text-xs uppercase tracking-wide text-muted-foreground">Email</Label>
                                 <Input type="email" placeholder="example@udroid.com" />
                             </div>
                             <div className="space-y-2">
-                                <Label>Password</Label>
+                                <Label className="text-xs uppercase tracking-wide text-muted-foreground">Password</Label>
                                 <Input type="password" value="Password123" readOnly />
                             </div>
                         </div>
                     </LibraryCard>
 
                     {/* Switch */}
-                    <LibraryCard title="Switch" className="library-item">
-                        <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-2">
+                    <LibraryCard title="Switch">
+                        <div className="flex flex-col gap-6">
+                            <div className="flex items-center justify-between w-[200px]">
+                                <Label htmlFor="airplane-mode" className="text-muted-foreground font-medium">Airplane Mode</Label>
                                 <Switch id="airplane-mode" />
-                                <Label htmlFor="airplane-mode">Airplane Mode</Label>
                             </div>
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center justify-between w-[200px]">
+                                <Label htmlFor="wifi" className="text-muted-foreground font-medium">Wi-Fi</Label>
                                 <Switch id="wifi" defaultChecked />
-                                <Label htmlFor="wifi">Wi-Fi</Label>
                             </div>
                         </div>
                     </LibraryCard>
 
                     {/* Tooltips */}
-                    <LibraryCard title="Tooltip" className="library-item">
+                    <LibraryCard title="Tooltip">
                         <TooltipProvider>
                             <div className="flex gap-4">
                                 <Tooltip>
                                     <TooltipTrigger asChild>
                                         <Button variant="outline" size="icon-md">
-                                            <span className="text-lg"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="currentColor" d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2"/></svg></span>
+                                            <span className="text-lg">+</span>
                                         </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
@@ -90,7 +87,7 @@ export function VisualComponentPreview() {
                                 </Tooltip>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Button variant="secondary">Hover kar</Button>
+                                        <Button variant="secondary">Hover me</Button>
                                     </TooltipTrigger>
                                     <TooltipContent side="bottom">
                                         <p>Bottom tooltip</p>
@@ -101,29 +98,29 @@ export function VisualComponentPreview() {
                     </LibraryCard>
 
                     {/* Avatar */}
-                    <LibraryCard title="Avatar" className="library-item">
-                        <div className="flex flex-col gap-6 items-center">
+                    <LibraryCard title="Avatar">
+                        <div className="flex flex-col gap-8 items-center">
                             <div className="flex gap-4 items-center">
                                 <Avatar>
-                                    <AvatarImage src={avatar1} alt="kaise hai" />
-                                    <AvatarFallback>CN</AvatarFallback>
+                                    <AvatarImage src={avatar1} alt="Avatar 1" />
+                                    <AvatarFallback>U1</AvatarFallback>
                                 </Avatar>
                                 <Avatar>
-                                    <AvatarImage src={avatar2} alt="@udayahire2" />
-                                    <AvatarFallback>UH</AvatarFallback>
+                                    <AvatarImage src={avatar2} alt="Avatar 2" />
+                                    <AvatarFallback>U2</AvatarFallback>
                                 </Avatar>
                             </div>
                             <AvatarGroup>
                                 <Avatar>
-                                    <AvatarImage src={Avatar3} alt="kalu jitesh" />
-                                    <AvatarFallback>CN</AvatarFallback>
+                                    <AvatarImage src={Avatar3} alt="Avatar 3" />
+                                    <AvatarFallback>U3</AvatarFallback>
                                 </Avatar>
                                 <Avatar>
-                                    <AvatarImage src={Avatar2} alt="@udayahire2" />
-                                    <AvatarFallback>UH</AvatarFallback>
+                                    <AvatarImage src={avatar2} alt="Avatar 2" />
+                                    <AvatarFallback>U2</AvatarFallback>
                                 </Avatar>
                                 <Avatar>
-                                    <AvatarImage src={Avatar4} alt="@udayahire2" />
+                                    <AvatarImage src={Avatar4} alt="Avatar 4" />
                                     <AvatarFallback>+3</AvatarFallback>
                                 </Avatar>
                             </AvatarGroup>
@@ -138,13 +135,18 @@ export function VisualComponentPreview() {
 function LibraryCard({ children, title, className }: { children: React.ReactNode, title: string, className?: string }) {
     return (
         <div className={cn(
-            "relative flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950/50 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300",
+            "group relative flex flex-col gap-4",
             className
         )}>
-            <div className="border-b border-zinc-100 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-white/[0.02] px-4 py-3">
-                <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{title}</span>
+            {/* Subtle Header */}
+            <div className="flex items-center gap-2 mb-2">
+                <span className="h-px flex-1 bg-border/40 group-hover:bg-border/60 transition-colors" />
+                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{title}</span>
+                <span className="h-px flex-1 bg-border/40 group-hover:bg-border/60 transition-colors" />
             </div>
-            <div className="flex flex-col items-center justify-center p-6 md:p-10 min-h-[200px] bg-dots">
+
+            {/* Content Area - Clean, no heavy borders */}
+            <div className="flex flex-col items-center justify-center p-8 md:p-12 rounded-2xl bg-muted/20 border border-border/20 group-hover:border-border/40 transition-all duration-300 min-h-[220px]">
                 {children}
             </div>
         </div>

@@ -63,7 +63,7 @@ export function TrustedBySection() {
                         WebkitMaskImage: `radial-gradient(300px circle at var(--mouse-x, 0) var(--mouse-y, 0), black 20%, transparent 100%)`,
                     }}
                 >
-                    <MarqueeContent items={MARQUEE_ITEMS} targetRef={marqueeRef} className="text-foreground" />
+                    <MarqueeContent items={MARQUEE_ITEMS} className="text-foreground" />
                 </div>
             </div>
         </section>
@@ -71,7 +71,7 @@ export function TrustedBySection() {
 }
 
 // Separate component to handle the shared marquee structure and synced animation
-function MarqueeContent({ items, className, ref, targetRef }: { items: typeof TECHNOLOGIES, className?: string, ref?: React.RefObject<HTMLDivElement | null>, targetRef?: React.RefObject<HTMLDivElement | null> }) {
+function MarqueeContent({ items, className, ref }: { items: typeof TECHNOLOGIES, className?: string, ref?: React.RefObject<HTMLDivElement | null> }) {
     const localRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {

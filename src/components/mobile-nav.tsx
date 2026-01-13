@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Button } from "@/components/button/button";
 import { cn } from "@/lib/utils";
-import { XIcon, Github, Menu } from "lucide-react";
+import { XIcon, Github } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
