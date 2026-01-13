@@ -48,7 +48,7 @@ export default function ButtonPreview() {
                         {isDark ? <Sun className="size-5" /> : <Moon className="size-5" />}
                     </button>
                 </div>
-                <h1 className="text-4xl font-bold tracking-tight">Udroid Button System</h1>
+                <h1 className="text-4xl font-bold tracking-tight">UDX UI Button System</h1>
                 <p className="text-muted-foreground max-w-lg mx-auto">
                     From "Digital Keycaps" to System Icons. Precision physics, semantic lighting, and strict sizing.
                 </p>

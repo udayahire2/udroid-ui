@@ -40,7 +40,7 @@ export function Header() {
         {/* LEFT */}
         <div className="flex items-center gap-8">
           <Link to="/" className="cursor-pointer text-lg font-medium tracking-tight font-sans-serif">
-            LOGO
+            UDX UI
           </Link>
           <NavigationMenu>
             <NavigationMenuList>
