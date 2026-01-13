@@ -1,64 +1,67 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Plus } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const faqItems = [
     {
-        question: "Can I use UDROID for my projects?",
+        question: "Can I use UDX UI in production?",
         answer:
-            "Haan. UDROID ke saare components abhi free hain aur tum unhe personal aur client projects dono mein bina kisi restriction ke use kar sakte ho."
+            "Yes. UDX UI is open-source and designed for real production use. You can use it freely in personal projects, client work, and commercial applications."
     },
     {
-        question: "Is UDX free?",
+        question: "Is UDX UI React-only?",
         answer:
-            "Haan, abhi UDX 100% free hai. Mera focus hai ek open aur accessible component library banana jo bina kisi friction ke use ho sake."
+            "Yes. UDX UI is built specifically for React, with a strong focus on modern patterns, composability, and performance. Other frameworks may be explored later, but React is the priority."
     },
     {
-        question: "Who is building UDX?",
+        question: "Who is behind UDX UI?",
         answer:
-            "UDX ek solo-built project hai. Main akela hi iske design, development aur maintenance par kaam kar raha hoon."
+            "UDX UI is built and maintained by Uday Ahire as an independent product, with a strong focus on production-quality engineering and long-term usability."
     },
     {
-        question: "Do you support accessibility?",
+        question: "How does UDX UI handle accessibility?",
         answer:
-            "Haan. Components ko accessibility ko dhyaan mein rakh kar design kiya ja raha hai, jaise proper focus states, keyboard navigation aur readable contrast."
+            "Accessibility is a first-class concern. Components follow established WAI-ARIA patterns, support keyboard navigation, and are designed to work reliably with screen readers."
     },
     {
-        question: "Will you add more components in the future?",
+        question: "Will more components be added?",
         answer:
-            "Haan. Main step by step naye components add kar raha hoon. Kyunki project solo hai, isliye updates quality-focused aur gradual rahenge."
+            "Yes. UDX UI is actively evolving. Components are released gradually, only after they meet quality, accessibility, and API stability standards."
     },
-    {
-        question: "Will UDX stay free in the future?",
-        answer:
-            "Core components hamesha free rahenge. Future mein kuch advanced ya optional features add ho sakte hain, lekin basic usage free hi rahega."
-    },
-    {
-        question: "Can I give feedback or request a component?",
-        answer:
-            "Bilkul. Feedback aur component suggestions ka direct impact roadmap par padta hai. Tum directly reach out kar sakte ho."
-    }
 ];
-
 
 export function FAQSection() {
     return (
-        <section className="bg-background py-24 text-foreground transition-colors duration-300">
-            <div className="max-w-7xl mx-auto px-4 md:px-6">
-                <div className="grid gap-12 md:grid-cols-2">
-                    {/* Left Column: Heading */}
-                    <div className="space-y-4">
-                        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
-                            Frequently<br />Asked Questions
-                        </h2>
-                        <p className="text-lg text-muted-foreground mr-1">
-                            Can't find what you're looking for? reach out anytime via email at <a href="mailto:mail@udroid.com" className="text-foreground underline decoration-muted-foreground underline-offset-4 hover:decoration-foreground">mail@udroid.com</a> or DM me directly on <span className="font-bold text-foreground">X (Twitter)</span>
-                        </p>
+        <section className="relative w-full py-24 sm:py-32 px-4 bg-background overflow-hidden">
+            <div className="max-w-7xl mx-auto">
+                <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+                    {/* Left Column: Header & Info */}
+                    <div className="space-y-8 lg:sticky lg:top-24">
+                        <div className="space-y-4">
+                            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-foreground">
+                                Frequently<br className="hidden sm:block" /> Asked Questions
+                            </h2>
+                            <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
+                                Everything you need to know about the product and billing. Can’t find the answer you’re looking for?
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <a href="https://www.linkedin.com/in/uday-ahire-0855b22b4/" target="_blank" rel="noreferrer" className="text-foreground font-medium hover:underline underline-offset-4 decoration-border w-fit transition-all">
+                                udayahire2
+                            </a>
+                            <p className="text-muted-foreground text-sm">
+                                or DM directly on <a href="https://x.com/UdayAhire447195" target="_blank" rel="noreferrer" className="text-foreground hover:underline font-medium">X (Twitter)</a>
+                            </p>
+                        </div>
                     </div>
 
-                    {/* Right Column: Accordion */}
-                    <div className="divide-y divide-border border-t border-border">
+                    {/* Right Column: Accordion List */}
+                    <div className="w-full">
                         {faqItems.map((item, index) => (
-                            <FAQItem key={index} question={item.question} answer={item.answer} />
+                            <FAQItem key={index} question={item.question} answer={item.answer} index={index} />
                         ))}
                     </div>
                 </div>
@@ -67,25 +70,47 @@ export function FAQSection() {
     );
 }
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
+function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="py-4">
+        <div className={cn(
+            "border-b border-border/40 transition-colors duration-300",
+            isOpen ? "border-foreground/20" : "hover:border-foreground/20"
+        )}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex w-full items-center justify-between text-left font-medium transition-colors hover:text-muted-foreground"
+                className="flex w-full items-start justify-between py-6 text-left focus:outline-none group"
             >
-                <span>{question}</span>
-                <ChevronDown
-                    className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-                />
+                <span className={cn(
+                    "text-lg sm:text-xl font-medium tracking-tight pr-8 transition-colors duration-200",
+                    isOpen ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
+                )}>
+                    {question}
+                </span>
+                <span className={cn(
+                    "flex-shrink-0 ml-4 mt-1 transition-transform duration-300 text-foreground",
+                    isOpen ? "rotate-45" : "rotate-0"
+                )}>
+                    {/* Simple Plus Icon that rotates to X */}
+                    <Plus className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.5]" />
+                </span>
             </button>
-            <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-40 opacity-100 mt-2" : "max-h-0 opacity-0"}`}
-            >
-                <p className="text-muted-foreground">{answer}</p>
-            </div>
+
+            <AnimatePresence initial={false}>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    >
+                        <div className="pb-8 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                            {answer}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
