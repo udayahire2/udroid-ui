@@ -11,7 +11,12 @@ import {
     TooltipTrigger,
 } from "@/components/tooltip/tooltip";
 import { Avatar, AvatarFallback, AvatarImage, AvatarGroup } from "@/components/avatar/avatar";
-
+import avatar1 from '../assets/profile.png'
+import avatar2 from '../assets/profile2.png'
+import Avatar1 from '../assets/avatar1.png'
+import Avatar2 from '../assets/avatar2.png'
+import Avatar3 from '../assets/avatar3.png'
+import Avatar4 from '../assets/avatar4.png'
 export function VisualComponentPreview() {
     return (
         <div className="relative w-full py-24 px-4 overflow-hidden">
@@ -76,7 +81,7 @@ export function VisualComponentPreview() {
                                 <Tooltip>
                                     <TooltipTrigger asChild>
                                         <Button variant="outline" size="icon-md">
-                                            <span className="text-lg">T</span>
+                                            <span className="text-lg"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="currentColor" d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2"/></svg></span>
                                         </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
@@ -85,7 +90,7 @@ export function VisualComponentPreview() {
                                 </Tooltip>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Button variant="secondary">Hover me</Button>
+                                        <Button variant="secondary">Hover kar</Button>
                                     </TooltipTrigger>
                                     <TooltipContent side="bottom">
                                         <p>Bottom tooltip</p>
@@ -100,24 +105,25 @@ export function VisualComponentPreview() {
                         <div className="flex flex-col gap-6 items-center">
                             <div className="flex gap-4 items-center">
                                 <Avatar>
-                                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                    <AvatarImage src={avatar1} alt="kaise hai" />
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
                                 <Avatar>
-                                    <AvatarImage src="https://github.com/udayahire2.png" alt="@udayahire2" />
+                                    <AvatarImage src={avatar2} alt="@udayahire2" />
                                     <AvatarFallback>UH</AvatarFallback>
                                 </Avatar>
                             </div>
                             <AvatarGroup>
                                 <Avatar>
-                                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                    <AvatarImage src={Avatar3} alt="kalu jitesh" />
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
                                 <Avatar>
-                                    <AvatarImage src="https://github.com/udayahire2.png" alt="@udayahire2" />
+                                    <AvatarImage src={Avatar2} alt="@udayahire2" />
                                     <AvatarFallback>UH</AvatarFallback>
                                 </Avatar>
                                 <Avatar>
+                                    <AvatarImage src={Avatar4} alt="@udayahire2" />
                                     <AvatarFallback>+3</AvatarFallback>
                                 </Avatar>
                             </AvatarGroup>

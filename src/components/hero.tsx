@@ -32,7 +32,7 @@ export function Hero() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="w-full py-10 md:py-22 flex gap-3 flex-col items-center justify-center text-center px-1 overflow-hidden">
+    <section ref={containerRef} className="w-full py-10 md:py-22 flex gap-3 flex-col items-center justify-center text-center px-1 mt-8 overflow-hidden">
       {/* Top Badge */}
       <div
         ref={badgeRef}
@@ -67,7 +67,7 @@ export function Hero() {
         >
           <span className="text-muted-foreground font-mono select-none">$</span>
           <div className="font-mono text-xs sm:text-sm">
-            <span className="text-purple-400">npm</span> <span className="text-blue-400">install</span> <span className="text-blue-400">udroid-ui</span>
+            <span className="text-purple-400">npm</span> <span className="text-blue-400">install</span> <span className="text-blue-400">udx-ui</span>
           </div>
           <div className="absolute inset-0 rounded-full ring-1 ring-white/10 pointer-events-none" />
         </div>

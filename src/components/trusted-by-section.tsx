@@ -1,65 +1,110 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { cn } from "@/lib/utils";
 
 const TECHNOLOGIES = [
-    "Next.js 15",
-    "React 19",
-    "TypeScript",
-    "TailwindCSS",
-    "Framer Motion",
-    "GSAP",
-    "Radix UI",
-    "Next.js 15",
-    "React 19",
-    "TypeScript", // Loop
+    { name: "Next.js 15", weight: "font-bold" },
+    { name: "React 19", weight: "font-semibold" },
+    { name: "TypeScript", weight: "font-medium" },
+    { name: "TailwindCSS", weight: "font-bold" },
+    { name: "Framer Motion", weight: "font-medium" },
+    { name: "GSAP", weight: "font-black" },
+    { name: "Radix UI", weight: "font-semibold" },
+    { name: "Vite", weight: "font-bold" },
 ];
+
+
 
 export function TrustedBySection() {
     const containerRef = useRef<HTMLDivElement>(null);
     const marqueeRef = useRef<HTMLDivElement>(null);
 
-    useGSAP(() => {
-        if (!marqueeRef.current) return;
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        containerRef.current.style.setProperty("--mouse-x", `${x}px`);
+        containerRef.current.style.setProperty("--mouse-y", `${y}px`);
+    };
 
-        const totalWidth = marqueeRef.current.scrollWidth;
-
-        gsap.to(marqueeRef.current, {
-            x: -totalWidth / 2,
-            duration: 30, // Slower, more elegant
-            ease: "linear",
-            repeat: -1,
-        });
-    }, { scope: containerRef });
+    // Triple the array to ensure smooth looping without gaps
+    const MARQUEE_ITEMS = [...TECHNOLOGIES, ...TECHNOLOGIES, ...TECHNOLOGIES];
 
     return (
-        <section ref={containerRef} className="w-full py-16 border-y border-border/40 bg-zinc-950/50 overflow-hidden relative">
+        <section
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            className="w-full py-24 sm:py-32 overflow-hidden relative bg-background border-y border-border/20 backdrop-blur-sm group/section"
+        >
 
-            {/* Premium Gradient Overlay */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/10 via-zinc-950/0 to-zinc-950/0 pointer-events-none" />
-
-            <div className="container px-4 mx-auto mb-10 text-center relative z-10">
-                <p className="text-sm font-semibold text-muted-foreground/80 uppercase tracking-[0.2em]">
-                    Powered by the Modern Web
-                </p>
+            <div className="container px-4 mx-auto mb-12 text-center relative z-10">
+                <span className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-muted/20 px-4 py-1.5 text-xs font-medium text-muted-foreground tracking-wider uppercase backdrop-blur-md">
+                    Built With The Best
+                </span>
             </div>
 
-            <div className="relative flex overflow-hidden mask-gradient-x w-full max-w-5xl mx-auto">
-                {/* Enhanced Fading Masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+            <div className="relative w-full max-w-[90rem] mx-auto h-20">
+                {/* Clean Fading Masks */}
+                <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-64 bg-gradient-to-r from-background via-background/80 to-transparent z-20 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-64 bg-gradient-to-l from-background via-background/80 to-transparent z-20 pointer-events-none" />
 
-                <div ref={marqueeRef} className="flex gap-12 sm:gap-20 items-center whitespace-nowrap pl-4">
-                    {TECHNOLOGIES.map((tech, i) => (
-                        <span
-                            key={i}
-                            className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-zinc-200 to-zinc-500 hover:to-white transition-colors cursor-default select-none font-sans tracking-tight"
-                        >
-                            {tech}
-                        </span>
-                    ))}
+                {/* Layer 1: Dim Base Text (Always Visible, Low Opacity) */}
+                <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none">
+                    <MarqueeContent ref={marqueeRef} items={MARQUEE_ITEMS} className="text-muted-foreground/20 blur-[0.5px]" />
+                </div>
+
+                {/* Layer 2: Bright Highlight Text (Revealed by Mask) */}
+                <div
+                    className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none"
+                    style={{
+                        maskImage: `radial-gradient(300px circle at var(--mouse-x, 0) var(--mouse-y, 0), black 20%, transparent 100%)`,
+                        WebkitMaskImage: `radial-gradient(300px circle at var(--mouse-x, 0) var(--mouse-y, 0), black 20%, transparent 100%)`,
+                    }}
+                >
+                    <MarqueeContent items={MARQUEE_ITEMS} targetRef={marqueeRef} className="text-foreground" />
                 </div>
             </div>
         </section>
+    );
+}
+
+// Separate component to handle the shared marquee structure and synced animation
+function MarqueeContent({ items, className, ref, targetRef }: { items: typeof TECHNOLOGIES, className?: string, ref?: React.RefObject<HTMLDivElement | null>, targetRef?: React.RefObject<HTMLDivElement | null> }) {
+    const localRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        // If this is the "follower" (highlight) layer, sync strictly to the master ref's GSAP animation?
+        // Actually, easiest way is to animate BOTH refs with the same tween.
+        // We can do this from the parent if we expose refs, OR just run identical animations.
+        // Since GSAP is deterministic, running identical code on mount works perfectly.
+
+        const element = ref?.current || localRef.current;
+        if (!element) return;
+
+        const duration = 20;
+
+        gsap.to(element, {
+            xPercent: -33.333,
+            duration: duration,
+            ease: "linear",
+            repeat: -1,
+        });
+    }, { scope: localRef, dependencies: [] });
+
+    return (
+        <div
+            ref={ref || localRef}
+            className={cn("flex gap-16 sm:gap-24 items-center whitespace-nowrap pl-4 w-fit will-change-transform", className)}
+        >
+            {items.map((tech, i) => (
+                <div key={i} className="flex items-center justify-center">
+                    <span className={cn("text-3xl sm:text-4xl font-sans tracking-tight font-bold", tech.weight)}>
+                        {tech.name}
+                    </span>
+                </div>
+            ))}
+        </div>
     );
 }
