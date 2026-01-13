@@ -61,7 +61,7 @@ export function FAQSection() {
                     {/* Right Column: Accordion List */}
                     <div className="w-full">
                         {faqItems.map((item, index) => (
-                            <FAQItem key={index} question={item.question} answer={item.answer} index={index} />
+                            <FAQItem key={index} question={item.question} answer={item.answer} />
                         ))}
                     </div>
                 </div>
@@ -70,7 +70,7 @@ export function FAQSection() {
     );
 }
 
-function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
+function FAQItem({ question, answer }: { question: string; answer: string }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
