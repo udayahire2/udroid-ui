@@ -5,6 +5,7 @@ import { ComponentPreview } from "@/components/component-preview"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 // import ShikiHighlighter from "react-shiki";
 import { CodeBlock } from "@/components/ui/code-block"
+import { Steps, Step } from "@/components/ui/steps"
 
 
 
@@ -143,6 +144,9 @@ export const useMDXComponents = {
             {...props}
         />
     ),
+    CodeBlock,
+    Steps,
+    Step,
     ComponentPreview,
     Tabs,
     TabsContent,

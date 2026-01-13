@@ -1,26 +1,41 @@
 
 # Installation
 
-## React / Next.js
-
-1.  Create a new project.
-    ```bash
-    npx create-next-app@latest my-app --typescript --tailwind --eslint
-    ```
-
-2.  Run the CLI.
-    ```bash
-    npx udroid-ui init
-    ```
-
-## Vite
-
-1.  Create a new project.
-    ```bash
-    npm create vite@latest
-    ```
-
-2.  Run the CLI.
-    ```bash
-    npx udroid-ui init
-    ```
+<Tabs defaultValue="next-js" className="mt-6">
+  <TabsList>
+    <TabsTrigger value="next-js">Next.js</TabsTrigger>
+    <TabsTrigger value="vite">Vite</TabsTrigger>
+  </TabsList>
+  <TabsContent value="next-js">
+    <Steps>
+      <Step title="Create project">
+        Create a new Next.js project by running the following command:
+        ```bash
+        npx create-next-app@latest my-app --typescript --tailwind --eslint
+        ```
+      </Step>
+      <Step title="Run the CLI">
+        Run the `init` command to initialize the project and install dependencies:
+        ```bash
+        npx udroid-ui init
+        ```
+      </Step>
+    </Steps>
+  </TabsContent>
+  <TabsContent value="vite">
+    <Steps>
+      <Step title="Create project">
+        Create a new Vite project by running the following command:
+        ```bash
+        npm create vite@latest
+        ```
+      </Step>
+      <Step title="Run the CLI">
+         Run the `init` command to initialize the project and install dependencies:
+        ```bash
+        npx udroid-ui init
+        ```
+      </Step>
+    </Steps>
+  </TabsContent>
+</Tabs>
