@@ -1,16 +1,16 @@
 import { useRef } from "react";
 import { Avatar } from "@/components/avatar/avatar";
-import { ArrowUpRight, Copy, Check } from "lucide-react";
+import { ArrowUpRight, Copy } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import profile from "../assets/profile.png";
 import profile2 from "../assets/profile2.png";
 import { Button } from "@/components/button/button";
-import { cn } from "@/lib/utils";
+
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
+
   const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
