@@ -3,6 +3,7 @@
 import "../index.css";
 import { useScroll } from "@/hooks/use-scroll";
 import { Button } from "@/components/button/button";
+import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 import { MobileNav } from "@/components/mobile-nav";
 import { Search, Sun, Moon, Github } from "lucide-react";
@@ -41,7 +42,7 @@ export function Header() {
         {/* LEFT: Logo & Desktop Nav */}
         <div className="flex items-center gap-6 md:gap-8">
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-bold text-lg tracking-tight">UDX UI</span>
+            <Logo />
           </Link>
 
           <div className="hidden md:flex">
@@ -74,12 +75,12 @@ export function Header() {
           <div className="hidden md:flex items-center mr-2">
             <button
               onClick={() => setOpen(true)}
-              className="group inline-flex h-9 items-center gap-2 rounded-md border border-input bg-muted/40 px-3 text-sm font-medium text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="group inline-flex h-9 items-center gap-2 rounded-lg border border-white/5 bg-white/[0.03] px-3 text-sm font-medium text-muted-foreground/60 shadow-sm transition-all hover:bg-white/[0.08] hover:text-foreground hover:border-white/10"
             >
-              <Search className="h-4 w-4" />
-              <span className="hidden lg:inline-flex">Search documentation...</span>
-              <span className="inline-flex lg:hidden">Search...</span>
-              <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+              <Search className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+              <span className="hidden lg:inline-flex text-xs tracking-wide">Search documentation...</span>
+              <span className="inline-flex lg:hidden text-xs">Search...</span>
+              <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded bg-white/5 border border-white/5 px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex text-muted-foreground/50 group-hover:text-muted-foreground transition-colors">
                 <span className="text-xs">⌘</span>K
               </kbd>
             </button>

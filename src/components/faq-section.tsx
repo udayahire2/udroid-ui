@@ -39,17 +39,18 @@ export function FAQSection() {
 
                     {/* Left Column: Header & Info */}
                     <div className="space-y-8 lg:sticky lg:top-24">
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-foreground">
                                 Frequently<br className="hidden sm:block" /> Asked Questions
                             </h2>
-                            <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
+                            <p className="text-lg text-muted-foreground leading-relaxed max-w-md font-light">
                                 Everything you need to know about the product and billing. Can’t find the answer you’re looking for?
                             </p>
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <a href="https://www.linkedin.com/in/uday-ahire-0855b22b4/" target="_blank" rel="noreferrer" className="text-foreground font-medium hover:underline underline-offset-4 decoration-border w-fit transition-all">
+                            <a href="https://www.linkedin.com/in/uday-ahire-0855b22b4/" target="_blank" rel="noreferrer" className="text-foreground font-medium hover:underline underline-offset-4 decoration-border w-fit transition-all flex items-center gap-2 group">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                                 udayahire2
                             </a>
                             <p className="text-muted-foreground text-sm">
@@ -75,8 +76,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
     return (
         <div className={cn(
-            "border-b border-border/40 transition-colors duration-300",
-            isOpen ? "border-foreground/20" : "hover:border-foreground/20"
+            "border-b border-border/40 transition-all duration-500",
+            isOpen ? "border-foreground/20 pb-2" : "hover:border-foreground/20"
         )}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -89,10 +90,9 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
                     {question}
                 </span>
                 <span className={cn(
-                    "flex-shrink-0 ml-4 mt-1 transition-transform duration-300 text-foreground",
+                    "flex-shrink-0 ml-4 mt-1 transition-transform duration-500 text-foreground relative h-5 w-5",
                     isOpen ? "rotate-45" : "rotate-0"
                 )}>
-                    {/* Simple Plus Icon that rotates to X */}
                     <Plus className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.5]" />
                 </span>
             </button>
@@ -103,9 +103,12 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        transition={{
+                            height: { duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] },
+                            opacity: { duration: 0.25, delay: 0.1 }
+                        }}
                     >
-                        <div className="pb-8 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                        <div className="pb-8 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl font-light">
                             {answer}
                         </div>
                     </motion.div>
