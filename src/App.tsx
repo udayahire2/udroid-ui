@@ -69,7 +69,6 @@ function HomePage() {
       <TrustedBySection />
       <FeatureSection />
       <VisualComponentPreview />
-      <RoadmapSection />
       <FAQSection />
     </>
   );

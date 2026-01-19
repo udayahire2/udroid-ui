@@ -40,10 +40,10 @@ export function FAQSection() {
                     {/* Left Column: Header & Info */}
                     <div className="space-y-8 lg:sticky lg:top-24">
                         <div className="space-y-6">
-                            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-foreground">
+                            <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter text-foreground">
                                 Frequently<br className="hidden sm:block" /> Asked Questions
                             </h2>
-                            <p className="text-lg text-muted-foreground leading-relaxed max-w-md font-light">
+                            <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
                                 Everything you need to know about the product and billing. Can’t find the answer you’re looking for?
                             </p>
                         </div>
@@ -108,7 +108,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
                             opacity: { duration: 0.25, delay: 0.1 }
                         }}
                     >
-                        <div className="pb-8 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl font-light">
+                        <div className="pb-8 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                             {answer}
                         </div>
                     </motion.div>

@@ -109,6 +109,30 @@ code[data-theme*=" "] span {
 
   /* Transition Curves */
   --ease-mechanical: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Animations */
+  --animate-shimmer: shimmer 8s linear infinite;
+  --animate-shimmer-slide: shimmer-slide 1.5s ease-in-out infinite;
+
+  @keyframes shimmer {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  @keyframes shimmer-slide {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(100%);
+    }
+  }
 }
 
 @layer base {
@@ -152,7 +176,7 @@ code[data-theme*=" "] span {
   }
 
   .dark {
-    --background: 0 0% 0%;
+    --background: 0 0% 0.1%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
