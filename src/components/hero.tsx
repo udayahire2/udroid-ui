@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Avatar } from "@/components/avatar/avatar";
 import { ArrowUpRight, Copy, Check } from "lucide-react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, type Variants } from "framer-motion";
 import profile from "../assets/profile.png";
 import profile2 from "../assets/profile2.png";
 import { Button } from "@/components/button/button";
@@ -36,7 +36,7 @@ export function Hero() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
