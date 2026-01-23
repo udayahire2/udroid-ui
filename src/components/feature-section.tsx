@@ -1,9 +1,6 @@
 import { GridPattern } from "@/components/ui/grid-pattern";
 import { cn } from "@/lib/utils";
-import { useRef } from "react";
-
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import { useRef, useState } from "react";
 
 
 type FeatureType = {
@@ -14,15 +11,11 @@ type FeatureType = {
 
 export function FeatureSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    // Scroll animations removed for minimal feel.
-  }, { scope: containerRef });
 
   return (
     <div ref={containerRef} className="mx-auto w-full max-w-7xl space-y-12 py-16 px-4">
-      <div ref={headerRef} className="mx-auto max-w-3xl text-center space-y-4">
+      <div className="mx-auto max-w-3xl text-center space-y-4">
         <h2 className="text-balance font-bold text-3xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
           Engineered for Perfection.
         </h2>
@@ -42,80 +35,91 @@ export function FeatureSection() {
   );
 }
 
+import { AnimatePresence, motion } from "framer-motion";
+
 function FeatureCard({
   feature,
   className,
   ...props
 }: React.ComponentProps<"div"> & { feature: FeatureType }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const xTo = useRef<gsap.QuickToFunc | null>(null);
-  const yTo = useRef<gsap.QuickToFunc | null>(null);
+  const [hoveredCell, setHoveredCell] = useState<[number, number] | null>(null);
 
-  useGSAP(
-    () => {
-      xTo.current = gsap.quickTo(cardRef.current, "x", {
-        duration: 0.4,
-        ease: "power3",
-      });
-      yTo.current = gsap.quickTo(cardRef.current, "y", {
-        duration: 0.4,
-        ease: "power3",
-      });
-    },
-    { scope: cardRef }
-  );
-
-  const handleMouseEnter = () => {
-    gsap.to(cardRef.current, { scale: 1.02, duration: 0.3, ease: "power2.out" });
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!cardRef.current || !xTo.current || !yTo.current) return;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
 
     const rect = cardRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
 
-    const mouseX = e.clientX - rect.left - width / 2;
-    const mouseY = e.clientY - rect.top - height / 2;
+    // GridPattern settings: width=40, height=40, x=5, y=-1
+    // The container is positioned at left: 50% with -ml-20 (-80px) and -mt-4 (-16px)
+    // We adjust the mouse coordinates to be relative to this shifted container grid
+    const x = (e.clientX - rect.left) - (rect.width / 2 - 80) - 5;
+    const y = (e.clientY - rect.top) - (-16) + 1;
 
-    const repulsionFactor = -0.15;
+    const col = Math.floor(x / 40);
+    const row = Math.floor(y / 40);
 
-    xTo.current(mouseX * repulsionFactor);
-    yTo.current(mouseY * repulsionFactor);
+    setHoveredCell([col, row]);
   };
 
   const handleMouseLeave = () => {
-    gsap.to(cardRef.current, { scale: 1, duration: 0.3, ease: "power2.out" });
-    if (xTo.current && yTo.current) {
-      xTo.current(0);
-      yTo.current(0);
-    }
+    setHoveredCell(null);
   };
 
   return (
     <div
       ref={cardRef}
-      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "feature-card relative overflow-hidden bg-background/50 p-8 h-full transition-colors hover:bg-background/80 will-change-transform",
+        "feature-card relative overflow-hidden bg-background/50 p-8 h-full transition-colors hover:bg-background/80 group",
         className
       )}
       {...props}
     >
       <div className="-mt-4 -ml-20 mask-[radial-gradient(farthest-side_at_top,white,transparent)] pointer-events-none absolute top-0 left-1/2 size-full opacity-50">
-        <GridPattern
-          className="absolute inset-0 size-full stroke-foreground/10"
-          height={40}
-          width={40}
-          x={5}
-        />
+        <div className="absolute inset-0 size-full pointer-events-none">
+          <GridPattern
+            className="absolute inset-0 size-full stroke-foreground/10"
+            height={40}
+            width={40}
+            x={5}
+            y={-1}
+          />
+          <AnimatePresence>
+            {hoveredCell && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  x: hoveredCell[0] * 40 + 5,
+                  y: hoveredCell[1] * 40 - 1
+                }}
+                exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.15 } }}
+                transition={{
+                  type: "spring",
+                  stiffness: 220,
+                  damping: 18,
+                  mass: 0.8,
+                  opacity: { duration: 0.2 }
+                }}
+                className="absolute bg-foreground/10 z-10 shadow-[0_0_15px_2px_rgba(255,255,255,0.1)] dark:shadow-[0_0_15px_2px_rgba(0,0,0,0.1)] rounded-sm"
+                style={{
+                  width: 40,
+                  height: 40,
+                  left: 0,
+                  top: 0
+                }}
+              />
+            )}
+          </AnimatePresence>
+        </div>
+
       </div>
 
       <div className="relative z-10 pointer-events-none">
-        <div className="mb-6 inline-flex items-center justify-center rounded-xl bg-primary/10 p-3 text-primary ring-1 ring-border/50 shadow-sm">
+        <div className="mb-6 inline-flex items-center justify-center rounded-xl bg-primary/10 p-3 text-primary ring-1 ring-border/50 shadow-sm transition-transform duration-300 group-hover:scale-110">
           {feature.icon}
         </div>
 
