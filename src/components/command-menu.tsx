@@ -50,30 +50,27 @@ export function CommandMenu({ open, setOpen }: CommandMenuProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-[640px] gap-0 overflow-hidden p-0 shadow-2xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-3xl rounded-2xl [&>button]:hidden ring-1 ring-white/5">
-        <Command className="[&_[cmdk-group-heading]]:px-4 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground/50 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:tracking-widest [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:mb-2 [&_[cmdk-group-heading]]:mt-4">
+      <DialogContent className="max-w-[640px] gap-0 overflow-hidden p-0 shadow-2xl border border-zinc-800 bg-[#09090b] sm:rounded-xl [&>button]:hidden">
+        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:mb-2 [&_[cmdk-group-heading]]:mt-4">
 
-          {/* Custom Input Container */}
-          <div className="relative border-b border-white/5 px-4 py-4 flex items-center gap-3 bg-white/[0.01]">
-            <div className="relative w-full group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/40 pointer-events-none group-focus-within:text-white/80 transition-colors duration-300" />
-              <Command.Input
-                className="flex h-12 w-full rounded-xl border border-white/5 bg-black/20 py-3 pl-11 pr-4 text-sm text-foreground outline-none placeholder:text-muted-foreground/30 focus:bg-black/40 focus:border-white/10 transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 settings-input-shadow"
-                placeholder="Search documentation..."
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <kbd className="hidden h-7 select-none items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 font-mono text-[10px] font-medium text-muted-foreground/60 opacity-100 sm:flex">
-                <span className="text-xs">ESC</span>
-              </kbd>
+          <div className="flex items-center border-b border-zinc-800 px-3">
+            <Search className="mr-2 h-4 w-4 shrink-0 text-zinc-500 opacity-50" />
+            <Command.Input
+              className="flex h-14 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-zinc-500 disabled:cursor-not-allowed disabled:opacity-50"
+              placeholder="Search documentation..."
+            />
+            <div className="flex items-center gap-1">
+              <span className="hidden select-none rounded border border-zinc-700 bg-zinc-800 px-1.5 py-0.5 text-[10px] font-medium text-zinc-400 opacity-100 sm:inline-block">
+                ESC
+              </span>
             </div>
           </div>
 
-          <Command.List className="max-h-[380px] overflow-y-auto overflow-x-hidden p-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <Command.Empty className="py-12 text-center text-sm text-muted-foreground/50">No results found.</Command.Empty>
+          <Command.List className="max-h-[300px] overflow-y-auto overflow-x-hidden py-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <Command.Empty className="py-6 text-center text-sm text-zinc-500">No results found.</Command.Empty>
 
             <Command.Group heading="Links">
-              <CommandItem icon={FileText} label="Docs" onSelect={() => runCommand(() => navigate("/docs"))} />
+              <CommandItem icon={FileText} label="Docs" onSelect={() => runCommand(() => navigate("/docs-working"))} />
               <CommandItem icon={LayoutDashboard} label="Components" onSelect={() => runCommand(() => navigate("/components"))} />
               <CommandItem icon={Layers} label="HeroUI" onSelect={() => runCommand(() => navigate("/hero-ui"))} />
               <CommandItem icon={Figma} label="Figma UI" onSelect={() => runCommand(() => navigate("/figma-ui"))} />
@@ -110,19 +107,14 @@ function CommandItem({
     <Command.Item
       onSelect={onSelect}
       className={cn(
-        "group relative flex cursor-pointer select-none items-center rounded-lg px-3 py-3 text-sm outline-none transition-all duration-200 ease-out",
-        "text-muted-foreground/80 hover:text-foreground",
-        "data-[selected=true]:bg-white/[0.08] data-[selected=true]:text-white data-[selected=true]:shadow-sm",
-        "active:scale-[0.98] active:bg-white/[0.12]"
+        "group flex cursor-pointer select-none items-center rounded-md px-3 py-2 text-sm text-zinc-400 outline-none hover:bg-zinc-800/50 hover:text-white data-[selected=true]:bg-zinc-800/50 data-[selected=true]:text-white transition-colors",
       )}
     >
-      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-transparent bg-white/[0.02] mr-3 transition-colors group-data-[selected=true]:border-white/10 group-data-[selected=true]:bg-white/10">
-        <Icon className="h-4 w-4 text-muted-foreground transition-colors group-data-[selected=true]:text-white" />
+      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-800 bg-zinc-900 mr-2 group-hover:border-zinc-700 transition-colors">
+        <Icon className="h-4 w-4" />
       </div>
-      <span className="font-medium tracking-tight flex-1">{label}</span>
-
-      {/* Subtle chevron or indicator could go here if needed, but keeping it minimal */}
-      <span className="opacity-0 group-data-[selected=true]:opacity-100 transition-opacity text-white/20 text-xs tracking-widest uppercase font-mono mr-1">
+      <span className="flex-1">{label}</span>
+      <span className="hidden text-xs text-zinc-600 group-hover:text-zinc-500 group-data-[selected=true]:inline-block uppercase tracking-wider font-medium">
         Go
       </span>
     </Command.Item>

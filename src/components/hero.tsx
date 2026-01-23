@@ -74,8 +74,8 @@ export function Hero() {
           variants={fadeInUp}
           className="relative inline-flex overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
         >
-          <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#fff_10%,#0000_50%)]" />
-          <div className="inline-flex h-full w-full items-center gap-2 rounded-full bg-zinc-950/90 px-3 py-1 text-sm font-medium backdrop-blur-3xl dark:text-white border border-white/10">
+          <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)] opacity-70" />
+          <div className="inline-flex h-full w-full items-center gap-2 rounded-full bg-zinc-950 px-3 py-1 text-sm font-medium backdrop-blur-3xl text-white border border-white/10">
             <div className="flex -space-x-2">
               <Avatar className="h-5 w-5 border-2 border-zinc-900 ring-1 ring-white/10" src={profile} fallback="CN" />
               <Avatar className="h-5 w-5 border-2 border-zinc-900 ring-1 ring-white/10" src={profile2} fallback="AB" />
@@ -181,23 +181,24 @@ export function Hero() {
         >
           <Button
             size="lg"
-            className="h-12 px-8 text-base bg-zinc-900 text-white hover:bg-zinc-900/90 dark:bg-white dark:text-black dark:hover:bg-white/90 shadow-[0_0_20px_-5px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)] w-full sm:w-auto font-medium transition-all"
+            className="h-12 w-full sm:w-auto px-8 text-base"
           >
             Get Started
           </Button>
 
-          <div
+          <Button
+            variant="outline"
+            size="lg"
             onClick={handleCopy}
-            className="group relative flex items-center justify-between gap-3 h-12 px-5 rounded-lg border border-zinc-200 bg-zinc-100/50 hover:bg-zinc-100 hover:border-zinc-300 dark:border-white/10 dark:bg-[#0F1116] dark:hover:bg-[#0F1116]/80 dark:hover:border-white/20 transition-all cursor-pointer w-full sm:w-auto min-w-[200px]"
+            className="h-12 w-full sm:w-auto px-6 font-mono text-sm text-muted-foreground hover:text-foreground"
           >
-            <code className="text-sm font-mono text-zinc-600 dark:text-white/80 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors flex items-center gap-2">
-              <span className="text-blue-600 dark:text-blue-400">npm</span> i udx-ui
-            </code>
-            <div className="relative">
-              <Copy className={`h-4 w-4 text-zinc-500 dark:text-muted-foreground transition-all duration-300 ${copied ? 'scale-0 opacity-0' : 'scale-100 opacity-100'}`} />
-              <Check className={`absolute inset-0 h-4 w-4 text-emerald-500 dark:text-emerald-400 transition-all duration-300 ${copied ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
-            </div>
-          </div>
+            <span className="mr-2">npm i udx-ui</span>
+            {copied ? (
+              <Check className="h-4 w-4 text-emerald-500" />
+            ) : (
+              <Copy className="h-4 w-4" />
+            )}
+          </Button>
         </motion.div>
       </motion.div>
     </section>

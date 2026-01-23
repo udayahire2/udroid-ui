@@ -64,13 +64,13 @@ export default App;
 
 function HomePage() {
   return (
-    <>
+    <div className="max-w-7xl mx-auto border-x border-border/40">
       <Hero />
       <TrustedBySection />
       <FeatureSection />
       <VisualComponentPreview />
       <FAQSection />
-    </>
+    </div>
   );
 }
 

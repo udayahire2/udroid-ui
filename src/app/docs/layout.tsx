@@ -1,12 +1,11 @@
-import { Button } from "@/components/button/button";
-import { Link } from "react-router-dom";
-import { MoveLeft, Construction } from "lucide-react";
+import { Outlet } from "react-router-dom";
 import { GridPattern } from "@/components/ui/grid-pattern";
 import { cn } from "@/lib/utils";
 
 export default function DocsLayout() {
     return (
-        <div className="relative flex min-h-[calc(100vh-4rem)] w-full flex-col items-center justify-center overflow-hidden bg-background">
+        <div className="relative flex min-h-[calc(100vh-4rem)] w-full flex-col overflow-hidden bg-background">
+            {/* 
             <div className="z-10 flex flex-col items-center gap-6 text-center animate-in fade-in zoom-in-95 duration-500">
                 <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/20 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur-sm">
                     <Construction className="h-3 w-3" />
@@ -32,6 +31,10 @@ export default function DocsLayout() {
                         </Button>
                     </Link>
                 </div>
+            </div> 
+            */}
+            <div className="flex-1 w-full">
+                <Outlet />
             </div>
 
             <GridPattern
