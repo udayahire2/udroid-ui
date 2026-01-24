@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 import { XIcon, Github } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { navLinks } from "@/components/header";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { docsConfig } from "@/config/docs";
 
 function MenuTwoLineIcon({ className, ...props }: React.ComponentProps<"svg">) {
 	return (
@@ -150,6 +151,39 @@ export function MobileNav() {
 											<div className="h-px bg-border/40 mt-4 w-full" />
 										</motion.div>
 									))}
+
+									{/* Docs Sidebar Items in Mobile Menu */}
+									{useLocation().pathname.startsWith("/docs") && (
+										<motion.div
+											variants={itemVariants}
+											className="mt-4 border-t border-border/40 pt-4"
+										>
+											<p className="mb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+												Documentation
+											</p>
+											<div className="space-y-6 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
+												{docsConfig.map((section, index) => (
+													<div key={index} className="space-y-3">
+														<h4 className="text-sm font-medium text-foreground">
+															{section.title}
+														</h4>
+														<div className="grid grid-cols-1 gap-2 pl-2">
+															{section.items.map((item, idx) => (
+																<Link
+																	key={idx}
+																	to={item.href}
+																	onClick={() => setOpen(false)}
+																	className="text-base text-muted-foreground hover:text-primary transition-colors block py-1"
+																>
+																	{item.title}
+																</Link>
+															))}
+														</div>
+													</div>
+												))}
+											</div>
+										</motion.div>
+									)}
 								</nav>
 
 								<motion.div

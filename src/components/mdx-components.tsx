@@ -13,7 +13,7 @@ export const useMDXComponents = {
     h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h1
             className={cn(
-                "mt-2 scroll-m-20 text-[32px] leading-[40px] font-semibold tracking-[-0.02em] mb-2",
+                "mt-2 scroll-m-20 text-4xl font-bold tracking-tight mb-4",
                 className
             )}
             {...props}
@@ -22,7 +22,7 @@ export const useMDXComponents = {
     h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h2
             className={cn(
-                "mt-16 scroll-m-20 border-b-0 pb-0 text-[20px] leading-[28px] font-medium tracking-tight first:mt-0 mb-4",
+                "mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0 mb-4",
                 className
             )}
             {...props}
@@ -31,7 +31,7 @@ export const useMDXComponents = {
     h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h3
             className={cn(
-                "mt-10 scroll-m-20 text-[18px] font-medium tracking-tight mb-4",
+                "mt-8 scroll-m-20 text-xl font-semibold tracking-tight mb-4",
                 className
             )}
             {...props}
@@ -40,7 +40,7 @@ export const useMDXComponents = {
     h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h4
             className={cn(
-                "mt-8 scroll-m-20 text-base font-medium tracking-tight mb-4",
+                "mt-8 scroll-m-20 text-lg font-semibold tracking-tight mb-4",
                 className
             )}
             {...props}
@@ -49,7 +49,7 @@ export const useMDXComponents = {
     h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h5
             className={cn(
-                "mt-8 scroll-m-20 text-sm font-medium tracking-tight mb-4",
+                "mt-8 scroll-m-20 text-base font-semibold tracking-tight mb-4",
                 className
             )}
             {...props}
@@ -58,7 +58,7 @@ export const useMDXComponents = {
     h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h6
             className={cn(
-                "mt-8 scroll-m-20 text-sm font-medium tracking-tight mb-4",
+                "mt-8 scroll-m-20 text-sm font-semibold tracking-tight mb-4",
                 className
             )}
             {...props}
@@ -66,13 +66,13 @@ export const useMDXComponents = {
     ),
     a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
         <a
-            className={cn("font-medium underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors", className)}
+            className={cn("font-medium underline underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors", className)}
             {...props}
         />
     ),
     p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
         <p
-            className={cn("text-[14px] leading-[22px] text-muted-foreground mb-6", className)}
+            className={cn("text-base leading-7 text-muted-foreground/90 mb-6", className)}
             {...props}
         />
     ),

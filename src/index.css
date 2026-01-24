@@ -31,9 +31,16 @@ code[data-theme*=" "] span {
 @custom-variant dark (&:is(.dark *));
 
 @layer utilities {
+
+  /* Custom Scrollbar - High Visibility Override */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground)) transparent;
+  }
+
   .custom-scrollbar::-webkit-scrollbar {
-    height: 10px;
-    width: 10px;
+    height: 8px;
+    width: 8px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
@@ -42,13 +49,12 @@ code[data-theme*=" "] span {
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: hsl(var(--muted-foreground) / 0.5);
-    border-radius: 5px;
-    border: 2px solid transparent;
-    background-clip: content-box;
+    border-radius: 4px;
+    border: none;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: hsl(var(--foreground));
+    background: hsl(var(--muted-foreground));
   }
 
   .bg-dots {
