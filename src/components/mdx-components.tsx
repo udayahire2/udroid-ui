@@ -2,6 +2,8 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 // import { CopyButton } from "@/components/ui/copy-button"
 import { ComponentPreview } from "@/components/component-preview"
+import { SplitComponentPreview } from "@/components/split-component-preview"
+import { ComponentPageHeader } from "@/components/docs/component-page-header"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 // import ShikiHighlighter from "react-shiki";
 import { CodeBlock } from "@/components/ui/code-block"
@@ -152,4 +154,6 @@ export const useMDXComponents = {
     TabsContent,
     TabsList,
     TabsTrigger,
+    ComponentPageHeader,
+    SplitComponentPreview,
 }

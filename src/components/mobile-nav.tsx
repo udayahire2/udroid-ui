@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Button } from "@/components/button/button";
 import { cn } from "@/lib/utils";
-import { XIcon, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
@@ -9,44 +9,64 @@ import { navLinks } from "@/components/header";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { docsConfig } from "@/config/docs";
 
-function MenuTwoLineIcon({ className, ...props }: React.ComponentProps<"svg">) {
+// --- CUSTOM ANIMATED HAMBURGER ---
+function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
+	const variant = isOpen ? "opened" : "closed";
+	const top = {
+		closed: { rotate: 0, translateY: 0 },
+		opened: { rotate: 45, translateY: 6 },
+	};
+	const center = {
+		closed: { opacity: 1 },
+		opened: { opacity: 0 },
+	};
+	const bottom = {
+		closed: { rotate: 0, translateY: 0 },
+		opened: { rotate: -45, translateY: -6 },
+	};
+	const lineProps = {
+		stroke: "currentColor",
+		strokeWidth: 2,
+		strokeLinecap: "round" as const,
+		vectorEffect: "non-scaling-stroke",
+		initial: "closed",
+		animate: variant,
+		transition: { type: "spring", stiffness: 260, damping: 20 } as const,
+	};
+
 	return (
 		<svg
-			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			overflow="visible"
+			preserveAspectRatio="none"
 			width="24"
 			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			className={className}
-			{...props}
+			className="w-6 h-6"
 		>
-			<line x1="4" x2="20" y1="9" y2="9" />
-			<line x1="4" x2="20" y1="15" y2="15" />
+			<motion.line x1="4" x2="20" y1="6" y2="6" variants={top} {...lineProps} />
+			<motion.line x1="4" x2="20" y1="12" y2="12" variants={center} {...lineProps} />
+			<motion.line x1="4" x2="20" y1="18" y2="18" variants={bottom} {...lineProps} />
 		</svg>
 	);
 }
 
 const containerVariants: Variants = {
-	hidden: { opacity: 0, scale: 0.98, filter: "blur(10px)" },
+	hidden: { opacity: 0, y: -20, filter: "blur(10px)" },
 	show: {
 		opacity: 1,
-		scale: 1,
+		y: 0,
 		filter: "blur(0px)",
 		transition: {
-			duration: 0.3,
-			ease: [0.32, 0.72, 0, 1],
-			staggerChildren: 0.08,
+			duration: 0.4,
+			ease: [0.16, 1, 0.3, 1], // Ease Out Expo
+			staggerChildren: 0.05,
 			delayChildren: 0.1
 		},
 	},
 	exit: {
 		opacity: 0,
-		scale: 0.98,
-		filter: "blur(10px)",
+		y: -10,
+		filter: "blur(5px)",
 		transition: {
 			duration: 0.2,
 			ease: "easeIn",
@@ -55,9 +75,9 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-	hidden: { opacity: 0, y: 15, rotateX: -5 },
-	show: { opacity: 1, y: 0, rotateX: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
-	exit: { opacity: 0, y: -10 },
+	hidden: { opacity: 0, x: -20 },
+	show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, damping: 20 } },
+	exit: { opacity: 0, x: -10 },
 };
 
 function XTwitterIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -100,16 +120,14 @@ export function MobileNav() {
 				aria-controls="mobile-menu"
 				aria-expanded={open}
 				aria-label="Toggle menu"
-				className="md:hidden relative z-50 transition-colors"
+				className="md:hidden relative z-50 transition-colors bg-transparent hover:bg-transparent"
 				variant="ghost"
 				size="icon-sm"
 				onClick={() => setOpen(!open)}
 			>
-				{open ? (
-					<XIcon className="h-5 w-5" />
-				) : (
-					<MenuTwoLineIcon className="h-5 w-5" />
-				)}
+				<div className="text-foreground">
+					<HamburgerIcon isOpen={open} />
+				</div>
 			</Button>
 
 			{createPortal(
@@ -127,9 +145,11 @@ export function MobileNav() {
 							id="mobile-menu"
 						>
 							{/* Decorative gradient blob */}
-							<div className="absolute -top-[20%] -right-[20%] w-[300px] h-[300px] bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
+							<div className="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] bg-primary/20 rounded-full blur-[120px] pointer-events-none opacity-50" />
+							<div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-accent/20 rounded-full blur-[100px] pointer-events-none opacity-40" />
 
-							<div className="flex flex-col h-full relative z-10">
+
+							<div className="flex flex-col h-full relative z-10 font-sans">
 								<nav className="grid gap-y-6">
 									{navLinks.map((link) => (
 										<motion.div
@@ -138,17 +158,17 @@ export function MobileNav() {
 										>
 											<Link
 												className={cn(
-													"group flex items-center justify-between text-2xl font-semibold tracking-tight transition-colors hover:text-primary",
+													"group flex items-center gap-3 text-3xl font-medium tracking-tight transition-colors hover:text-primary",
 												)}
 												to={link.href}
 												onClick={() => setOpen(false)}
 											>
 												{link.label}
-												<span className="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-muted-foreground text-lg">
-													→
+												{/* Futurisic Arrow */}
+												<span className="opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 text-primary text-2xl font-light">
+													—›
 												</span>
 											</Link>
-											<div className="h-px bg-border/40 mt-4 w-full" />
 										</motion.div>
 									))}
 
@@ -156,24 +176,24 @@ export function MobileNav() {
 									{useLocation().pathname.startsWith("/docs") && (
 										<motion.div
 											variants={itemVariants}
-											className="mt-4 border-t border-border/40 pt-4"
+											className="mt-6 border-t border-border/40 pt-6"
 										>
-											<p className="mb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+											<p className="mb-4 text-xs font-bold text-muted-foreground uppercase tracking-[0.2em]">
 												Documentation
 											</p>
 											<div className="space-y-6 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
 												{docsConfig.map((section, index) => (
 													<div key={index} className="space-y-3">
-														<h4 className="text-sm font-medium text-foreground">
+														<h4 className="text-sm font-semibold text-foreground tracking-wide">
 															{section.title}
 														</h4>
-														<div className="grid grid-cols-1 gap-2 pl-2">
+														<div className="grid grid-cols-1 gap-2 pl-3 border-l border-border/40">
 															{section.items.map((item, idx) => (
 																<Link
 																	key={idx}
 																	to={item.href}
 																	onClick={() => setOpen(false)}
-																	className="text-base text-muted-foreground hover:text-primary transition-colors block py-1"
+																	className="text-base text-muted-foreground hover:text-primary transition-colors block py-0.5"
 																>
 																	{item.title}
 																</Link>
@@ -192,21 +212,21 @@ export function MobileNav() {
 								>
 									<div className="flex items-center gap-4">
 										<Link to="https://github.com/udayahire2" target="_blank" className="flex-1">
-											<Button variant="outline" className="w-full gap-2">
+											<Button variant="outline" className="w-full gap-2 border-primary/20 hover:bg-primary/10">
 												<Github className="h-4 w-4" />
 												GitHub
 											</Button>
 										</Link>
 										<Link to="https://x.com/UdayAhire447195" target="_blank" className="flex-1">
-											<Button variant="outline" className="w-full gap-2">
+											<Button variant="outline" className="w-full gap-2 border-primary/20 hover:bg-primary/10">
 												<XTwitterIcon className="h-3 w-3 fill-current" />
 												Twitter
 											</Button>
 										</Link>
 									</div>
 
-									<Button size="lg" className="w-full text-base font-semibold">
-										Get Started
+									<Button size="lg" className="w-full text-lg font-medium rounded-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20">
+										Get Started Now
 									</Button>
 								</motion.div>
 							</div>

@@ -22,8 +22,8 @@ export function ComponentPreview({
 
     if (!config) {
         return (
-            <div className="text-sm text-muted-foreground p-4 border rounded-lg border-dashed">
-                Component <code className="bg-muted px-1 py-0.5 rounded">{name}</code> not found in registry.
+            <div className="text-sm text-red-500 bg-red-500/10 p-4 border border-red-500/20 rounded-lg">
+                Component <code className="text-xs">{name}</code> not found in registry.
             </div>
         )
     }
@@ -32,30 +32,38 @@ export function ComponentPreview({
 
     return (
         <div
-            className={cn("group relative my-4 flex flex-col space-y-2", className)}
+            className={cn("group relative my-8 flex flex-col space-y-4", className)}
             {...props}
         >
-            <Tabs value={value} onValueChange={setValue} className="relative mr-auto w-full">
-                <div className="flex items-center justify-between pb-3">
-                    <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
-                        <TabsTrigger
-                            value="preview"
-                            className="relative h-9 rounded-none border-b-2 border-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
-                        >
-                            Preview
-                        </TabsTrigger>
-                        <TabsTrigger
-                            value="code"
-                            className="relative h-9 rounded-none border-b-2 border-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
-                        >
-                            Code
-                        </TabsTrigger>
-                    </TabsList>
+            <Tabs value={value} onValueChange={setValue} className="relative w-full">
+                {/* Lab Toolbar */}
+                <div className="flex items-center justify-between px-1 mb-2">
+                    <div className="flex items-center gap-2">
+                        <TabsList className="h-9 p-1 bg-zinc-100/50 dark:bg-zinc-800/50 backdrop-blur-md rounded-lg border border-border/50">
+                            <TabsTrigger
+                                value="preview"
+                                className="rounded-md px-3 text-xs font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all"
+                            >
+                                Preview
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="code"
+                                className="rounded-md px-3 text-xs font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all"
+                            >
+                                Code
+                            </TabsTrigger>
+                        </TabsList>
+                    </div>
                 </div>
-                <TabsContent value="preview" className="relative mt-2 rounded-xl border border-border/50 bg-background/50 dark:bg-background">
+
+                {/* Content Area */}
+                <TabsContent value="preview" className="relative rounded-xl border border-border bg-zinc-50/50 dark:bg-zinc-950/50 overflow-hidden">
+                    {/* Lab Background Pattern */}
+                    <div className="absolute inset-0 z-0 opacity-[0.4] bg-[image:radial-gradient(#a1a1aa_1px,transparent_1px)] [background-size:16px_16px] dark:bg-[image:radial-gradient(#27272a_1px,transparent_1px)]" />
+
                     <div
                         className={cn(
-                            "preview flex min-h-[350px] w-full justify-center p-8",
+                            "preview relative z-10 flex min-h-[400px] w-full items-center justify-center p-10",
                             {
                                 "items-center": align === "center",
                                 "items-start": align === "start",
@@ -63,16 +71,20 @@ export function ComponentPreview({
                             }
                         )}
                     >
-                        <React.Suspense fallback={<div className="text-sm text-muted-foreground">Loading...</div>}>
+                        <React.Suspense fallback={<div className="text-sm text-muted-foreground animate-pulse">Loading preview...</div>}>
                             <Preview />
                         </React.Suspense>
                     </div>
                 </TabsContent>
+
                 <TabsContent value="code">
-                    <div className="flex flex-col space-y-4">
-                        <div className="w-full rounded-md">
-                            <CodeBlock code={config.code} />
+                    <div className="relative rounded-xl border border-border bg-zinc-950 overflow-hidden">
+                        <div className="absolute top-0 right-0 p-2 z-10">
+                            <div className="h-2 w-2 rounded-full bg-red-500 inline-block mr-1.5" />
+                            <div className="h-2 w-2 rounded-full bg-amber-500 inline-block mr-1.5" />
+                            <div className="h-2 w-2 rounded-full bg-emerald-500 inline-block" />
                         </div>
+                        <CodeBlock code={config.code} className="p-6 pt-10 text-sm font-mono leading-relaxed" />
                     </div>
                 </TabsContent>
             </Tabs>
