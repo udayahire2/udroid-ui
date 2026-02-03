@@ -119,6 +119,7 @@ code[data-theme*=" "] span {
   /* Animations */
   --animate-shimmer: shimmer 8s linear infinite;
   --animate-shimmer-slide: shimmer-slide 1.5s ease-in-out infinite;
+  --animate-marquee: marquee 20s linear infinite;
 
   @keyframes shimmer {
     from {
@@ -137,6 +138,16 @@ code[data-theme*=" "] span {
 
     to {
       transform: translateX(100%);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-33.333%);
     }
   }
 }

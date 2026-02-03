@@ -1,12 +1,7 @@
 import { useRef } from "react";
 import { CheckCircle2, Circle, Clock, ArrowRight } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface RoadmapItem {
   id: string;
@@ -59,7 +54,6 @@ const roadmapData: RoadmapItem[] = [
 
 export function RoadmapSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -71,33 +65,6 @@ export function RoadmapSection() {
     damping: 30,
     restDelta: 0.001,
   });
-
-  useGSAP(
-    () => {
-      if (!sectionRef.current) return;
-
-      const items = itemsRef.current.filter(Boolean);
-
-      items.forEach((item) => {
-        gsap.fromTo(
-          item,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
-    },
-    { scope: sectionRef }
-  );
 
   return (
     <section
@@ -168,11 +135,12 @@ export function RoadmapSection() {
             {roadmapData.map((item, index) => {
               const isEven = index % 2 === 0;
               return (
-                <div
+                <motion.div
                   key={item.id}
-                  ref={(el) => {
-                    itemsRef.current[index] = el;
-                  }}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                   className={cn(
                     "relative flex items-center md:justify-between group",
                     isEven ? "md:flex-row-reverse" : ""
@@ -247,7 +215,7 @@ export function RoadmapSection() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

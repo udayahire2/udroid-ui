@@ -5,8 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform, type Variants } from "
 import profile from "../assets/profile.png";
 import profile2 from "../assets/profile2.png";
 import { Button } from "@/components/button/button";
-import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
-import { StarryBackground } from "@/components/ui/starry-background";
+import { GridPattern } from "@/components/ui/grid-pattern";
 
 // QA Note: Extracted for performance and cleaner tree
 function MagneticBadge({ children }: { children: React.ReactNode }) {
@@ -76,16 +75,14 @@ export function Hero() {
   return (
     <section className="relative w-full min-h-screen py-32 md:py-48 flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-background">
 
-      {/* Background Grids - Reduced Opacity for Contrast */}
+      {/* Background Grid - Static for Performance */}
       <div className="absolute inset-0 -z-10 h-full w-full bg-background/50 pointer-events-none" />
-      <StarryBackground className="absolute inset-0 -z-10 opacity-70 dark:opacity-50 pointer-events-none" count={80} />
-
-      <InteractiveGridPattern
-        className="absolute inset-0 -z-10 h-full w-full opacity-60 dark:opacity-40 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_40%,#000_60%,transparent_100%)]"
+      <GridPattern
+        className="absolute inset-0 -z-10 h-full w-full opacity-40 dark:opacity-30 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_40%,#000_60%,transparent_100%)]"
         width={40}
         height={40}
-        squares={[[15, 15], [20, 20], [25, 15]]}
-        squaresClassName="hover:fill-primary/20 dark:hover:fill-primary/20"
+        x={-1}
+        y={-1}
       />
 
       <motion.div

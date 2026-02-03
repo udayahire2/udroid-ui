@@ -13,8 +13,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Footer } from "@/components/footer";
 import { FigmaUI } from "./components/figma-ui";
 import { ReactLenis } from "lenis/react";
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
 import DocsLayout from "@/layouts/docs-layout";
 import { Navigate } from "react-router-dom";
 import Introduction from "@/docs/introduction.mdx";
@@ -34,25 +32,11 @@ import Textarea from "@/docs/components/textarea.mdx";
 import { MDXContent } from "@/components/mdx-content";
 
 function App() {
-  const lenisRef = useRef<any>(null);
-
-  useEffect(() => {
-    function update(time: number) {
-      lenisRef.current?.lenis?.raf(time * 1000)
-    }
-
-    gsap.ticker.add(update)
-
-    return () => {
-      gsap.ticker.remove(update)
-    }
-  }, [])
-
   const location = useLocation();
   const isDocs = location.pathname.startsWith("/docs");
 
   return (
-    <ReactLenis root ref={lenisRef} autoRaf={false}>
+    <ReactLenis root autoRaf={true}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <div className="min-h-screen bg-background text-foreground flex flex-col">
           <ScrollToTop />

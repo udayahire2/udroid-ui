@@ -1,6 +1,4 @@
 import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { cn } from "@/lib/utils";
 
 const TECHNOLOGIES = [
@@ -9,16 +7,12 @@ const TECHNOLOGIES = [
     { name: "TypeScript", weight: "font-medium" },
     { name: "TailwindCSS", weight: "font-bold" },
     { name: "Framer Motion", weight: "font-medium" },
-    { name: "GSAP", weight: "font-black" },
     { name: "Radix UI", weight: "font-semibold" },
     { name: "Vite", weight: "font-bold" },
 ];
 
-
-
 export function TrustedBySection() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const marqueeRef = useRef<HTMLDivElement>(null);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!containerRef.current) return;
@@ -52,7 +46,7 @@ export function TrustedBySection() {
 
                 {/* Layer 1: Dim Base Text (Always Visible, Low Opacity) */}
                 <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none">
-                    <MarqueeContent ref={marqueeRef} items={MARQUEE_ITEMS} className="text-muted-foreground/20 blur-[0.5px]" />
+                    <MarqueeContent items={MARQUEE_ITEMS} className="text-muted-foreground/20 blur-[0.5px]" />
                 </div>
 
                 {/* Layer 2: Bright Highlight Text (Revealed by Mask) */}
@@ -70,33 +64,11 @@ export function TrustedBySection() {
     );
 }
 
-// Separate component to handle the shared marquee structure and synced animation
-function MarqueeContent({ items, className, ref }: { items: typeof TECHNOLOGIES, className?: string, ref?: React.RefObject<HTMLDivElement | null> }) {
-    const localRef = useRef<HTMLDivElement>(null);
-
-    useGSAP(() => {
-        // If this is the "follower" (highlight) layer, sync strictly to the master ref's GSAP animation?
-        // Actually, easiest way is to animate BOTH refs with the same tween.
-        // We can do this from the parent if we expose refs, OR just run identical animations.
-        // Since GSAP is deterministic, running identical code on mount works perfectly.
-
-        const element = ref?.current || localRef.current;
-        if (!element) return;
-
-        const duration = 20;
-
-        gsap.to(element, {
-            xPercent: -33.333,
-            duration: duration,
-            ease: "linear",
-            repeat: -1,
-        });
-    }, { scope: localRef, dependencies: [] });
-
+// Simplified marquee using CSS animation instead of GSAP
+function MarqueeContent({ items, className }: { items: typeof TECHNOLOGIES, className?: string }) {
     return (
         <div
-            ref={ref || localRef}
-            className={cn("flex gap-16 sm:gap-24 items-center whitespace-nowrap pl-4 w-fit will-change-transform", className)}
+            className={cn("flex gap-16 sm:gap-24 items-center whitespace-nowrap pl-4 w-fit animate-marquee", className)}
         >
             {items.map((tech, i) => (
                 <div key={i} className="flex items-center justify-center">
