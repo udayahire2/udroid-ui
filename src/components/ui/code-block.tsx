@@ -24,7 +24,7 @@ function getHighlighter() {
     if (!highlighterPromise) {
         highlighterPromise = createHighlighter({
             themes: [THEME],
-            langs: SUPPORTED_LANGS,
+            langs: SUPPORTED_LANGS as any,
         })
     }
     return highlighterPromise
@@ -35,7 +35,7 @@ function extractCodeFromChildren(children: React.ReactNode): { code: string; lan
     if (typeof children === 'string') return { code: children.trim() }
     
     if (React.isValidElement(children)) {
-        const childProps = children.props as { children?: React.ReactNode; className?: string }
+        const childProps = children.props as any
         const code = childProps.children ? String(childProps.children).trim() : ''
         const language = childProps.className?.match(/language-(\w+)/)?.[1]
         return { code, language }
@@ -57,8 +57,6 @@ export function CodeBlock({
 }: CodeBlockProps) {
     const [html, setHtml] = React.useState<string>("")
     const [isLoading, setIsLoading] = React.useState(true)
-
-    const skeletonWidths = React.useMemo(() => Array.from({ length: 12 }, () => Math.random() * 40 + 60), [])
 
     const { code: extractedCode, language: extractedLanguage } = React.useMemo(() => 
         extractCodeFromChildren(children), [children]
@@ -84,7 +82,7 @@ export function CodeBlock({
                 if (!isMounted) return
 
                 const highlighted = highlighter.codeToHtml(code, {
-                    lang: SUPPORTED_LANGS.includes(language as typeof SUPPORTED_LANGS[number]) ? language : 'text',
+                    lang: SUPPORTED_LANGS.includes(language as any) ? language : 'text',
                     theme: THEME,
                     transformers: [
                         {
@@ -178,7 +176,7 @@ export function CodeBlock({
                             <div 
                                 key={i} 
                                 className="h-4 bg-zinc-800/50 rounded w-full"
-                                style={{ width: `${skeletonWidths[i]}%`, opacity: 1 - (i * 0.05) }}
+                                style={{ width: `${Math.random() * 40 + 60}%`, opacity: 1 - (i * 0.05) }}
                             />
                         ))}
                     </div>

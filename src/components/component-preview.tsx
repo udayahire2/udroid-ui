@@ -129,7 +129,7 @@ export function ComponentPreview({
                 <TabsContent value="preview" className="mt-0 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg border bg-black [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]">
                     <div
                         className={cn(
-                            "min-h-[350px] w-full p-8 sm:p-12 flex",
+                            "min-h-87.5 w-full p-8 sm:p-12 flex",
                             {
                                 "items-center justify-center": align === "center",
                                 "items-start justify-start": align === "start",
@@ -141,7 +141,7 @@ export function ComponentPreview({
 
                         <React.Suspense
                             fallback={
-                                <div className="flex items-center justify-center w-full h-full min-h-[200px]">
+                                <div className="flex items-center justify-center w-full h-full min-h-50">
                                     <div className="flex items-center gap-2 text-muted-foreground">
                                         <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
                                         <span className="text-sm">Loading...</span>
