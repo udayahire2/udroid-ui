@@ -102,7 +102,7 @@ export function RoadmapSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-24 bg-background overflow-hidden"
+      className="relative w-full pt-32 pb-24 bg-background overflow-hidden"
       id="roadmap"
     >
       <div className="container px-4 md:px-6 mx-auto relative z-10">

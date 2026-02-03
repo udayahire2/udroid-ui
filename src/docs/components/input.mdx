@@ -1,11 +1,35 @@
-# Input
 
-Displays a form input field or a component that looks like an input field.
+import { ComponentPageHeader } from "@/components/component-page-header";
+import { ComponentPreview } from "@/components/component-preview";
 
-## The Machined Groove (Sizes)
+<ComponentPageHeader
+  title="Input"
+  description="Displays a form input field or a component that looks like an input field."
+  install="npx udroid-ui add input"
+/>
 
-<ComponentPreview name="input-sizes" />
+<ComponentPreview name="input-demo" />
 
-## Variants & States
+## Usage
 
-<ComponentPreview name="input-variants" />
+```tsx
+import { Input } from "@/components/ui/input"
+
+export function InputDemo() {
+  return <Input type="email" placeholder="Email" />
+}
+```
+
+## Examples
+
+### With Label
+
+<ComponentPreview name="input-label" />
+
+### With Button
+
+<ComponentPreview name="input-button" />
+
+### Form
+
+<ComponentPreview name="input-form" />

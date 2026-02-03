@@ -1,6 +1,6 @@
 export function FigmaUI() {
     return (
-        <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-8 text-center">
+        <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center pt-32 pb-8 px-8 text-center">
             <div className="space-y-8 max-w-3xl mx-auto">
                 {/* Visual Icon Container */}
                 <div className="relative mx-auto w-24 h-24 flex items-center justify-center">

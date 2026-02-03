@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
     width?: number;
     height?: number;
-    squares?: [number, number][]; // Initial squares
     className?: string;
     squaresClassName?: string;
 }
@@ -15,7 +14,6 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
 export function InteractiveGridPattern({
     width = 40,
     height = 40,
-    squares = [],
     className,
     squaresClassName,
     ...props

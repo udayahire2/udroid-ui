@@ -1,41 +1,82 @@
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Steps } from "@/components/ui/steps";
 
 # Installation
 
+<div className="lead text-lg text-muted-foreground mb-8">
+  Get up and running with UDROID UI in less than 5 minutes.
+  We support all major React frameworks including **Next.js**, **Vite**, and **Remix**.
+</div>
+
 <Tabs defaultValue="next-js" className="mt-6">
-  <TabsList>
+  <TabsList className="grid w-full grid-cols-3 max-w-[400px]">
     <TabsTrigger value="next-js">Next.js</TabsTrigger>
     <TabsTrigger value="vite">Vite</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
   </TabsList>
-  <TabsContent value="next-js">
+  
+  <TabsContent value="next-js" className="mt-6">
     <Steps>
-      <Step title="Create project">
-        Create a new Next.js project by running the following command:
-        ```bash
-        npx create-next-app@latest my-app --typescript --tailwind --eslint
-        ```
-      </Step>
-      <Step title="Run the CLI">
-        Run the `init` command to initialize the project and install dependencies:
-        ```bash
-        npx udroid-ui init
-        ```
-      </Step>
+      ### Create Project
+      Start by creating a new Next.js project using `create-next-app`.
+      ```bash
+      npx create-next-app@latest my-app --typescript --tailwind --eslint
+      ```
+
+      ### Initialize UDROID
+      Run the init command to configure your project.
+      ```bash
+      npx udroid-ui init
+      ```
+
+      ### Start Building
+      You can now start adding components to your project.
+      ```bash
+      npx udroid-ui add button
+      ```
     </Steps>
   </TabsContent>
-  <TabsContent value="vite">
+  
+  <TabsContent value="vite" className="mt-6">
     <Steps>
-      <Step title="Create project">
-        Create a new Vite project by running the following command:
-        ```bash
-        npm create vite@latest
-        ```
-      </Step>
-      <Step title="Run the CLI">
-         Run the `init` command to initialize the project and install dependencies:
-        ```bash
-        npx udroid-ui init
-        ```
-      </Step>
+      ### Create Project
+      Initialize a new Vite + React project.
+      ```bash
+      npm create vite@latest my-app -- --template react-ts
+      ```
+
+      ### Setup Tailwind
+      Install Tailwind CSS and its peer dependencies.
+      ```bash
+      npm install -D tailwindcss postcss autoprefixer
+      npx tailwindcss init -p
+      ```
+
+      ### Initialize UDROID
+      Run the CLI wizard to set up your design system.
+      ```bash
+      npx udroid-ui init
+      ```
     </Steps>
+  </TabsContent>
+  
+  <TabsContent value="manual" className="mt-6">
+     <div className="rounded-lg border border-yellow-500/20 bg-yellow-500/10 p-4 text-yellow-600 dark:text-yellow-400">
+       <strong>Note:</strong> Manual installation is for advanced users who want full control over their dependencies.
+     </div>
+     
+     <Steps>
+       ### Install Dependencies
+       Install the core utility libraries.
+       ```bash
+       npm install clsx tailwind-merge cva framer-motion lucide-react
+       ```
+       
+       ### Add Utils
+       Create a `lib/utils.ts` file for class merging.
+       
+       ### Configure Tailwind
+       Add the `animate` plugin to your `tailwind.config.js`.
+     </Steps>
   </TabsContent>
 </Tabs>

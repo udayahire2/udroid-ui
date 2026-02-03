@@ -1,6 +1,6 @@
 import { GridPattern } from "@/components/ui/grid-pattern";
 import { cn } from "@/lib/utils";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 
 type FeatureType = {
@@ -35,7 +35,7 @@ export function FeatureSection() {
   );
 }
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 function FeatureCard({
   feature,
@@ -43,27 +43,40 @@ function FeatureCard({
   ...props
 }: React.ComponentProps<"div"> & { feature: FeatureType }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [hoveredCell, setHoveredCell] = useState<[number, number] | null>(null);
+
+  // Motion values for performant updates
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const opacity = useMotionValue(0);
+
+  // Springs for smooth movement
+  const xSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const ySpring = useSpring(y, { stiffness: 300, damping: 30 });
+  const opacitySpring = useSpring(opacity, { stiffness: 500, damping: 30 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
 
     const rect = cardRef.current.getBoundingClientRect();
 
-    // GridPattern settings: width=40, height=40, x=5, y=-1
-    // The container is positioned at left: 50% with -ml-20 (-80px) and -mt-4 (-16px)
-    // We adjust the mouse coordinates to be relative to this shifted container grid
-    const x = (e.clientX - rect.left) - (rect.width / 2 - 80) - 5;
-    const y = (e.clientY - rect.top) - (-16) + 1;
+    // GridPattern calculation
+    const offsetX = (e.clientX - rect.left) - (rect.width / 2 - 80) - 5;
+    const offsetY = (e.clientY - rect.top) - (-16) + 1;
 
-    const col = Math.floor(x / 40);
-    const row = Math.floor(y / 40);
+    // Snap to grid
+    const col = Math.floor(offsetX / 40);
+    const row = Math.floor(offsetY / 40);
 
-    setHoveredCell([col, row]);
+    const snappedX = col * 40 + 5;
+    const snappedY = row * 40 - 1;
+
+    x.set(snappedX);
+    y.set(snappedY);
+    opacity.set(1);
   };
 
   const handleMouseLeave = () => {
-    setHoveredCell(null);
+    opacity.set(0);
   };
 
   return (
@@ -86,34 +99,19 @@ function FeatureCard({
             x={5}
             y={-1}
           />
-          <AnimatePresence>
-            {hoveredCell && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                  x: hoveredCell[0] * 40 + 5,
-                  y: hoveredCell[1] * 40 - 1
-                }}
-                exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.15 } }}
-                transition={{
-                  type: "spring",
-                  stiffness: 220,
-                  damping: 18,
-                  mass: 0.8,
-                  opacity: { duration: 0.2 }
-                }}
-                className="absolute bg-foreground/10 z-10 shadow-[0_0_15px_2px_rgba(255,255,255,0.1)] dark:shadow-[0_0_15px_2px_rgba(0,0,0,0.1)] rounded-sm"
-                style={{
-                  width: 40,
-                  height: 40,
-                  left: 0,
-                  top: 0
-                }}
-              />
-            )}
-          </AnimatePresence>
+          <motion.div
+            style={{
+              x: xSpring,
+              y: ySpring,
+              opacity: opacitySpring,
+              scale: opacitySpring // Scale effect using same spring for simplicity
+            }}
+            className="absolute bg-foreground/10 z-10 shadow-[0_0_15px_2px_rgba(255,255,255,0.1)] dark:shadow-[0_0_15px_2px_rgba(0,0,0,0.1)] rounded-sm"
+            initial={false}
+          >
+            {/* Sizing handled by CSS or separate motion style if strictly needed, but inner content helps */}
+            <div className="w-10 h-10" />
+          </motion.div>
         </div>
 
       </div>

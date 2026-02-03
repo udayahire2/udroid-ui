@@ -1,12 +1,85 @@
 
 # Theming
 
-UDROID UI is built on Tailwind CSS, allowing for easy theming through CSS variables or Tailwind configuration.
+<div className="lead text-lg text-muted-foreground mb-8">
+  A constraint-based theming engine built for speed and consistency.
+  Customize your entire design system with just a few CSS variables.
+</div>
+
+## Color Palette
+
+We use a semantic color system (Functional Styling). Instead of using `bg-blue-500`, we use `bg-primary`. This allows for instant re-theming without changing component code.
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
+  <div className="space-y-2">
+    <div className="h-20 rounded-lg bg-background border shadow-sm flex items-center justify-center font-mono text-xs">background</div>
+    <span className="text-xs text-muted-foreground">The page background</span>
+  </div>
+  <div className="space-y-2">
+    <div className="h-20 rounded-lg bg-foreground text-background flex items-center justify-center font-mono text-xs">foreground</div>
+     <span className="text-xs text-muted-foreground">Main text color</span>
+  </div>
+   <div className="space-y-2">
+    <div className="h-20 rounded-lg bg-card border shadow-sm flex items-center justify-center font-mono text-xs">card</div>
+     <span className="text-xs text-muted-foreground">Card backgrounds</span>
+  </div>
+   <div className="space-y-2">
+    <div className="h-20 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-mono text-xs">primary</div>
+     <span className="text-xs text-muted-foreground">Brand/Action color</span>
+  </div>
+  <div className="space-y-2">
+    <div className="h-20 rounded-lg bg-muted flex items-center justify-center font-mono text-xs text-muted-foreground">muted</div>
+     <span className="text-xs text-muted-foreground">Secondary backgrounds</span>
+  </div>
+   <div className="space-y-2">
+    <div className="h-20 rounded-lg bg-accent text-accent-foreground flex items-center justify-center font-mono text-xs">accent</div>
+     <span className="text-xs text-muted-foreground">Interactive states</span>
+  </div>
+  <div className="space-y-2">
+    <div className="h-20 rounded-lg bg-destructive text-destructive-foreground flex items-center justify-center font-mono text-xs">destructive</div>
+     <span className="text-xs text-muted-foreground">Error states</span>
+  </div>
+    <div className="space-y-2">
+    <div className="h-20 rounded-lg border-2 border-ring flex items-center justify-center font-mono text-xs">ring</div>
+     <span className="text-xs text-muted-foreground">Focus outlines</span>
+  </div>
+</div>
+
+## Radius & Spacing
+
+Control the "roundness" of your interface globally.
+
+```css
+:root {
+  --radius: 0.5rem; /* 8px */
+}
+```
 
 ## Dark Mode
 
-Dark mode is supported out of the box.
+Dark mode is first-class citizen in UDROID UI. It uses the `dark` class strategy.
+By default, we use **CSS Variables** to handle color switching automatically.
 
-## Customization
+```css
+/* Light Mode */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+}
 
-You can customize the colors in your `index.css` file.
+/* Dark Mode */
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+}
+```
+
+## Customizing
+
+To customize your theme, simply edit the `src/index.css` file.
+You can use `hsl` values for fine-grained control over opacity modifiers.
+
+<div className="p-4 rounded-lg bg-muted text-sm border font-mono mt-4">
+  --primary: 222.2 47.4% 11.2%; <br/>
+  --primary-foreground: 210 40% 98%;
+</div>

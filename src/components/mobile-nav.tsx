@@ -4,10 +4,10 @@ import { cn } from "@/lib/utils";
 import { Github } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { navLinks } from "@/components/header";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
-import { docsConfig } from "@/config/docs";
+
 
 // --- CUSTOM ANIMATED HAMBURGER ---
 function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
@@ -151,7 +151,7 @@ export function MobileNav() {
 
 							<div className="flex flex-col h-full relative z-10 font-sans">
 								<nav className="grid gap-y-6">
-									{navLinks.map((link) => (
+									{navLinks.map((link: { label: string; href: string }) => (
 										<motion.div
 											variants={itemVariants}
 											key={link.label}
@@ -172,38 +172,7 @@ export function MobileNav() {
 										</motion.div>
 									))}
 
-									{/* Docs Sidebar Items in Mobile Menu */}
-									{useLocation().pathname.startsWith("/docs") && (
-										<motion.div
-											variants={itemVariants}
-											className="mt-6 border-t border-border/40 pt-6"
-										>
-											<p className="mb-4 text-xs font-bold text-muted-foreground uppercase tracking-[0.2em]">
-												Documentation
-											</p>
-											<div className="space-y-6 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
-												{docsConfig.map((section, index) => (
-													<div key={index} className="space-y-3">
-														<h4 className="text-sm font-semibold text-foreground tracking-wide">
-															{section.title}
-														</h4>
-														<div className="grid grid-cols-1 gap-2 pl-3 border-l border-border/40">
-															{section.items.map((item, idx) => (
-																<Link
-																	key={idx}
-																	to={item.href}
-																	onClick={() => setOpen(false)}
-																	className="text-base text-muted-foreground hover:text-primary transition-colors block py-0.5"
-																>
-																	{item.title}
-																</Link>
-															))}
-														</div>
-													</div>
-												))}
-											</div>
-										</motion.div>
-									)}
+
 								</nav>
 
 								<motion.div

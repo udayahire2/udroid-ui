@@ -1,56 +1,42 @@
-# Avatar
 
-An image element with a fallback for representing the user, including badges and grouping capabilities.
+import { ComponentPageHeader } from "@/components/component-page-header";
+import { ComponentPreview } from "@/components/component-preview";
 
-## Installation
+<ComponentPageHeader
+  title="Avatar"
+  description="An image element with a fallback for representing the user."
+  install="npx udroid-ui add avatar"
+/>
 
-```bash
-npm install @radix-ui/react-avatar
+<ComponentPreview name="avatar-demo" isHero />
+
+## Usage
+
+```tsx
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+export function AvatarDemo() {
+  return (
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  )
+}
 ```
 
-## Sizes & Status
+## Examples
+
+### With Initials
+
+<ComponentPreview name="avatar-initials" />
+
+### Sizes
 
 <ComponentPreview name="avatar-sizes" />
 
-## Avatar Groups (Stacked)
+## Data Attributes
 
-<ComponentPreview name="avatar-groups" />
-
-## Variants (Premium)
-
-<ComponentPreview name="avatar-variants" />
-
-## Gallery
-
-<ComponentPreview name="avatar-gallery" />
-
-## API Reference
-
-### Avatar
-
-The root component. Accepts all props from `@radix-ui/react-avatar` Root.
-
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `src` | `string` | - | The source URL of the avatar image. |
-| `fallback` | `ReactNode` | - | The content to display when the image fails to load. |
-| `variant` | `'default' \| 'premium'` | `'default'` | The visual style of the avatar. |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | The size of the avatar. |
-
-### AvatarGroup
-
-A container for grouping multiple avatars.
-
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | - | Overrides the size of all child avatars. |
-| `limit` | `number` | - | The maximum number of avatars to show before truncating. |
-
-### AvatarBadge
-
-A status indicator/badge for the avatar.
-
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `status` | `'online' \| 'offline' \| 'busy'` | `'online'` | The status color indicator. |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the badge. |
+| Attribute | Description |
+| :--- | :--- |
+| `[data-state]` | The loading state of the image. |

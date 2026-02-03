@@ -5,13 +5,11 @@ import { Button } from "@/components/button/button"
 
 interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     value: string
-    src?: string
 }
 
 export function CopyButton({
     value,
     className,
-    src,
     ...props
 }: CopyButtonProps) {
     const [hasCopied, setHasCopied] = React.useState(false)
