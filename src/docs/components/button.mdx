@@ -1,5 +1,6 @@
 import { ComponentPageHeader } from "@/components/component-page-header";
 import { ComponentPreview } from "@/components/component-preview";
+import { DocsBadge } from "@/components/docs-badge";
 
 <ComponentPageHeader
   title="Button"
@@ -7,27 +8,43 @@ import { ComponentPreview } from "@/components/component-preview";
   install="npx udx-ui add button"
 />
 
+<DocsBadge variant="preview" size="md" className="mb-6" />
+
 <ComponentPreview name="button-identity" />
 
+<DocsBadge variant="examples" size="md" className="mb-4 mt-12" />
+
 ## Text Variants
+
+Different visual styles for various contexts and importance levels.
 
 <ComponentPreview name="button-variants" />
 
 ## Composition & Loading
 
+Combine buttons with icons and handle loading states gracefully.
+
 <ComponentPreview name="button-composition" />
 
-## Text Sizes (Variable Travel)
+## Text Sizes
+
+Choose from multiple sizes to match your layout hierarchy.
 
 <ComponentPreview name="button-sizes" />
 
-## Icon System (Square Physics)
+## Icon System
+
+Square physics-based sizing for icon-only buttons.
 
 <ComponentPreview name="button-icons" />
 
 ## Real Contexts
 
+See buttons in practical usage scenarios.
+
 <ComponentPreview name="button-contexts" />
+
+<DocsBadge variant="api" size="md" className="mb-4 mt-12" />
 
 ## API Reference
 
