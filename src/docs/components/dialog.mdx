@@ -1,13 +1,23 @@
 
+import { ComponentPageHeader } from "@/components/component-page-header";
+import { ComponentPreview } from "@/components/component-preview";
+import { DocsBadge } from "@/components/docs-badge";
+
 <ComponentPageHeader
   title="Dialog"
-  description="A window overlaid on either the primary window or another dialog window, rendering the content underneath inert."
+  description="A window overlaid on either the primary window or another dialog window, rendering the content underneath inert. Built on top of Radix UI Dialog primitives."
   install="npx udroid-ui add dialog"
 />
 
+<DocsBadge variant="preview" size="md" className="mb-6" />
+
 <ComponentPreview name="dialog-demo" />
 
+<DocsBadge variant="usage" size="md" className="mb-4 mt-12" />
+
 ## Usage
+
+Import the dialog components and compose them together.
 
 ```tsx
 import {
@@ -35,8 +45,12 @@ import {
 </Dialog>
 ```
 
+<DocsBadge variant="examples" size="md" className="mb-4 mt-12" />
+
 ## Examples
 
 ### Custom Close Button
+
+Dialog with a custom styled close button.
 
 <ComponentPreview name="dialog-close" />

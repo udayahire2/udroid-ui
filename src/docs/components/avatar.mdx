@@ -1,16 +1,23 @@
 
 import { ComponentPageHeader } from "@/components/component-page-header";
 import { ComponentPreview } from "@/components/component-preview";
+import { DocsBadge } from "@/components/docs-badge";
 
 <ComponentPageHeader
   title="Avatar"
-  description="An image element with a fallback for representing the user."
+  description="An image element with a fallback for representing the user. Features automatic fallback to initials when images fail to load."
   install="npx udroid-ui add avatar"
 />
 
+<DocsBadge variant="preview" size="md" className="mb-6" />
+
 <ComponentPreview name="avatar-demo" isHero />
 
+<DocsBadge variant="usage" size="md" className="mb-4 mt-12" />
+
 ## Usage
+
+Import the Avatar components and provide an image source with a fallback.
 
 ```tsx
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -25,15 +32,23 @@ export function AvatarDemo() {
 }
 ```
 
+<DocsBadge variant="examples" size="md" className="mb-4 mt-12" />
+
 ## Examples
 
 ### With Initials
+
+Display initials when no image is available.
 
 <ComponentPreview name="avatar-initials" />
 
 ### Sizes
 
+Multiple sizes to fit your layout needs.
+
 <ComponentPreview name="avatar-sizes" />
+
+<DocsBadge variant="api" size="md" className="mb-4 mt-12" />
 
 ## Data Attributes
 

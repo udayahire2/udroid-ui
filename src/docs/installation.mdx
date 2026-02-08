@@ -1,5 +1,5 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Steps } from "@/components/ui/steps";
+
 
 # Installation
 
@@ -16,48 +16,60 @@ import { Steps } from "@/components/ui/steps";
   </TabsList>
   
   <TabsContent value="next-js" className="mt-6">
-    <Steps>
-      ### Create Project
-      Start by creating a new Next.js project using `create-next-app`.
-      ```bash
-      npx create-next-app@latest my-app --typescript --tailwind --eslint
-      ```
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-semibold mb-2">1. Create Project</h3>
+        <p className="text-muted-foreground mb-3">Start by creating a new Next.js project using `create-next-app`.</p>
+        ```bash
+        npx create-next-app@latest my-app --typescript --tailwind --eslint
+        ```
+      </div>
 
-      ### Initialize UDROID
-      Run the init command to configure your project.
-      ```bash
-      npx udroid-ui init
-      ```
+      <div>
+        <h3 className="text-lg font-semibold mb-2">2. Initialize UDROID</h3>
+        <p className="text-muted-foreground mb-3">Run the init command to configure your project.</p>
+        ```bash
+        npx udroid-ui init
+        ```
+      </div>
 
-      ### Start Building
-      You can now start adding components to your project.
-      ```bash
-      npx udroid-ui add button
-      ```
-    </Steps>
+      <div>
+        <h3 className="text-lg font-semibold mb-2">3. Start Building</h3>
+        <p className="text-muted-foreground mb-3">You can now start adding components to your project.</p>
+        ```bash
+        npx udroid-ui add button
+        ```
+      </div>
+    </div>
   </TabsContent>
   
   <TabsContent value="vite" className="mt-6">
-    <Steps>
-      ### Create Project
-      Initialize a new Vite + React project.
-      ```bash
-      npm create vite@latest my-app -- --template react-ts
-      ```
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-semibold mb-2">1. Create Project</h3>
+        <p className="text-muted-foreground mb-3">Initialize a new Vite + React project.</p>
+        ```bash
+        npm create vite@latest my-app -- --template react-ts
+        ```
+      </div>
 
-      ### Setup Tailwind
-      Install Tailwind CSS and its peer dependencies.
-      ```bash
-      npm install -D tailwindcss postcss autoprefixer
-      npx tailwindcss init -p
-      ```
+      <div>
+        <h3 className="text-lg font-semibold mb-2">2. Setup Tailwind</h3>
+        <p className="text-muted-foreground mb-3">Install Tailwind CSS and its peer dependencies.</p>
+        ```bash
+        npm install -D tailwindcss postcss autoprefixer
+        npx tailwindcss init -p
+        ```
+      </div>
 
-      ### Initialize UDROID
-      Run the CLI wizard to set up your design system.
-      ```bash
-      npx udroid-ui init
-      ```
-    </Steps>
+      <div>
+        <h3 className="text-lg font-semibold mb-2">3. Initialize UDROID</h3>
+        <p className="text-muted-foreground mb-3">Run the CLI wizard to set up your design system.</p>
+        ```bash
+        npx udroid-ui init
+        ```
+      </div>
+    </div>
   </TabsContent>
   
   <TabsContent value="manual" className="mt-6">
@@ -65,18 +77,25 @@ import { Steps } from "@/components/ui/steps";
        <strong>Note:</strong> Manual installation is for advanced users who want full control over their dependencies.
      </div>
      
-     <Steps>
-       ### Install Dependencies
-       Install the core utility libraries.
-       ```bash
-       npm install clsx tailwind-merge cva framer-motion lucide-react
-       ```
+     
+     <div className="space-y-6 mt-6">
+       <div>
+         <h3 className="text-lg font-semibold mb-2">1. Install Dependencies</h3>
+         <p className="text-muted-foreground mb-3">Install the core utility libraries.</p>
+         ```bash
+         npm install clsx tailwind-merge cva framer-motion lucide-react
+         ```
+       </div>
        
-       ### Add Utils
-       Create a `lib/utils.ts` file for class merging.
+       <div>
+         <h3 className="text-lg font-semibold mb-2">2. Add Utils</h3>
+         <p className="text-muted-foreground mb-3">Create a `lib/utils.ts` file for class merging.</p>
+       </div>
        
-       ### Configure Tailwind
-       Add the `animate` plugin to your `tailwind.config.js`.
-     </Steps>
+       <div>
+         <h3 className="text-lg font-semibold mb-2">3. Configure Tailwind</h3>
+         <p className="text-muted-foreground mb-3">Add the `animate` plugin to your `tailwind.config.js`.</p>
+       </div>
+     </div>
   </TabsContent>
 </Tabs>

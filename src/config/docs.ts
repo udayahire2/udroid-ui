@@ -12,6 +12,7 @@ export const docsConfig = {
         {
             title: "Components",
             items: [
+                { title: "Overview", href: "/docs/components" },
                 { title: "Avatar", href: "/docs/avatar" },
                 { title: "Button", href: "/docs/button" },
                 { title: "Command", href: "/docs/command-menu" },

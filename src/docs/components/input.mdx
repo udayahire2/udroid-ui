@@ -1,16 +1,23 @@
 
 import { ComponentPageHeader } from "@/components/component-page-header";
 import { ComponentPreview } from "@/components/component-preview";
+import { DocsBadge } from "@/components/docs-badge";
 
 <ComponentPageHeader
   title="Input"
-  description="Displays a form input field or a component that looks like an input field."
+  description="Displays a form input field or a component that looks like an input field. Built for accessibility and seamless form integration."
   install="npx udroid-ui add input"
 />
 
+<DocsBadge variant="preview" size="md" className="mb-6" />
+
 <ComponentPreview name="input-demo" />
 
+<DocsBadge variant="usage" size="md" className="mb-4 mt-12" />
+
 ## Usage
+
+Import the Input component and use it in your forms.
 
 ```tsx
 import { Input } from "@/components/ui/input"
@@ -20,16 +27,24 @@ export function InputDemo() {
 }
 ```
 
+<DocsBadge variant="examples" size="md" className="mb-4 mt-12" />
+
 ## Examples
 
 ### With Label
+
+Combine inputs with labels for accessible forms.
 
 <ComponentPreview name="input-label" />
 
 ### With Button
 
+Create search inputs and action fields.
+
 <ComponentPreview name="input-button" />
 
 ### Form
+
+Complete form example with validation states.
 
 <ComponentPreview name="input-form" />

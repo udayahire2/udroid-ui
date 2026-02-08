@@ -72,24 +72,41 @@ export function RoadmapSection() {
       className="relative w-full pt-32 pb-24 bg-background overflow-hidden"
       id="roadmap"
     >
+      {/* Subtle background gradient - very minimal */}
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-transparent to-transparent pointer-events-none" />
+
       <div className="container px-4 md:px-6 mx-auto relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+        {/* Clean Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/50 bg-muted/30 mb-6">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+            </span>
+            <span className="text-xs font-medium text-muted-foreground tracking-wide">ROADMAP</span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">
             Product Roadmap
           </h2>
-          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed">
-            Our journey to build the ultimate UI library. Here's what we've done
-            and what's coming next.
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+            Our journey to build the ultimate UI library. Here's what we've accomplished and what's ahead.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative max-w-5xl mx-auto">
-          {/* Central Line for Desktop / Left Line for Mobile */}
-          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 md:translate-x-0 h-full z-0">
+          {/* Clean Timeline */}
+          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] -translate-x-1/2 md:translate-x-0 h-full z-0">
             <svg
               className="w-full h-full overflow-visible"
               preserveAspectRatio="none"
-              viewBox="0 0 2 100"
+              viewBox="0 0 1 100"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -101,9 +118,8 @@ export function RoadmapSection() {
                   x2="0"
                   y2="1"
                 >
-                  <stop offset="0%" stopColor="hsl(var(--primary))" />
-                  <stop offset="50%" stopColor="#a855f7" />
-                  <stop offset="100%" stopColor="#3b82f6" />
+                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.2" />
                 </linearGradient>
               </defs>
               {/* Base Track */}
@@ -114,9 +130,9 @@ export function RoadmapSection() {
                 y2="100%"
                 vectorEffect="non-scaling-stroke"
                 className="stroke-border"
-                strokeWidth="2"
+                strokeWidth="1"
               />
-              {/* Animated Fill */}
+              {/* Animated Progress */}
               <motion.line
                 x1="50%"
                 y1="0"
@@ -125,92 +141,96 @@ export function RoadmapSection() {
                 vectorEffect="non-scaling-stroke"
                 stroke="url(#roadmap-gradient)"
                 strokeWidth="2"
-                className="roadmap-line"
                 style={{ pathLength: scaleY }}
               />
             </svg>
           </div>
 
-          <div className="space-y-16 md:space-y-24">
+          <div className="space-y-12 md:space-y-16">
             {roadmapData.map((item, index) => {
               const isEven = index % 2 === 0;
               return (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   className={cn(
                     "relative flex items-center md:justify-between group",
                     isEven ? "md:flex-row-reverse" : ""
                   )}
                 >
-                  {/* Spacer for alternating layout */}
+                  {/* Spacer */}
                   <div className="hidden md:block w-5/12" />
 
-                  {/* Icon / Node */}
-                  <div className="absolute left-[28px] md:left-1/2 -translate-x-1/2 flex items-center justify-center w-14 h-14 rounded-full border-4 border-background bg-card z-10 shadow-lg shadow-primary/5 transition-transform duration-500 group-hover:scale-110 group-hover:shadow-primary/20">
+                  {/* Timeline Node - Minimal */}
+                  <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full border-2 border-background bg-card z-10 shadow-sm transition-all duration-300 group-hover:scale-110">
                     {item.status === "completed" && (
-                      <div className="rounded-full bg-green-500/10 p-2">
-                        <CheckCircle2 className="w-6 h-6 text-green-500" />
+                      <div className="rounded-full bg-green-500/10 p-1.5">
+                        <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-500" strokeWidth={2.5} />
                       </div>
                     )}
                     {item.status === "in-progress" && (
                       <div className="relative flex items-center justify-center w-full h-full">
-                        <span className="absolute inline-flex h-full w-full rounded-full bg-primary/20 animate-ping opacity-75"></span>
-                        <div className="rounded-full bg-primary/10 p-2 relative">
-                          <Clock className="w-6 h-6 text-primary" />
+                        <span className="absolute inline-flex h-full w-full rounded-full bg-primary/20 animate-ping"></span>
+                        <div className="rounded-full bg-primary/10 p-1.5 relative">
+                          <Clock className="w-5 h-5 text-primary" strokeWidth={2.5} />
                         </div>
                       </div>
                     )}
                     {item.status === "upcoming" && (
-                      <div className="rounded-full bg-muted p-2">
-                        <Circle className="w-6 h-6 text-muted-foreground" />
+                      <div className="rounded-full bg-muted p-1.5">
+                        <Circle className="w-5 h-5 text-muted-foreground/50" strokeWidth={2} />
                       </div>
                     )}
                   </div>
 
-                  {/* Content Card */}
-                  <div className="w-full md:w-5/12 pl-20 md:pl-0">
+                  {/* Content Card - Clean & Typography Focused */}
+                  <div className="w-full md:w-5/12 pl-16 md:pl-0">
                     <div
                       className={cn(
-                        "relative p-8 rounded-3xl border transition-all duration-300 group-hover:-translate-y-1",
-                        // Default card styles (Glassmorphism + clean borders)
-                        "bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/80 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5",
-                        // Specific styles for In-Progress items
-                        item.status === "in-progress" &&
-                        "border-primary/50 bg-primary/5 shadow-[0_0_30px_-10px_rgba(var(--primary),0.15)] ring-1 ring-primary/20"
+                        "relative p-6 md:p-7 rounded-2xl border transition-all duration-300",
+                        "bg-card/50 backdrop-blur-sm",
+                        "hover:bg-card/80 hover:shadow-lg hover:-translate-y-0.5",
+                        // Clean border
+                        item.status === "in-progress"
+                          ? "border-primary/30 shadow-sm shadow-primary/5"
+                          : "border-border/50 hover:border-border"
                       )}
                     >
+                      {/* Status Badge - Minimal */}
                       {item.status === "in-progress" && (
-                        <div className="absolute -top-4 right-6">
-                          <span className="relative flex items-center px-4 py-1.5 rounded-full bg-background border border-primary/30 text-xs font-semibold text-primary shadow-sm">
-                            <span className="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse" />
-                            Working On
+                        <div className="absolute -top-3 right-4">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-background border border-primary/30 text-xs font-medium text-primary shadow-sm">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                            In Progress
                           </span>
                         </div>
                       )}
 
+                      {/* Date & Arrow */}
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+                        <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
                           {item.date}
                         </span>
-                        <ArrowRight className="w-5 h-5 text-primary opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" />
+                        <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" />
                       </div>
 
+                      {/* Title - Typography Focus */}
                       <h3
                         className={cn(
-                          "text-2xl font-bold mb-3 transition-colors",
+                          "text-xl md:text-2xl font-semibold mb-2.5 tracking-tight transition-colors duration-200",
                           item.status === "in-progress"
-                            ? "text-primary"
-                            : "group-hover:text-primary"
+                            ? "text-foreground"
+                            : "text-foreground group-hover:text-primary"
                         )}
                       >
                         {item.title}
                       </h3>
 
-                      <p className="text-muted-foreground leading-relaxed text-[15px]">
+                      {/* Description */}
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                         {item.description}
                       </p>
                     </div>

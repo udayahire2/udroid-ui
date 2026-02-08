@@ -30,6 +30,8 @@ import Tooltip from "@/docs/components/tooltip.mdx";
 import Textarea from "@/docs/components/textarea.mdx";
 
 import { MDXContent } from "@/components/mdx-content";
+import { ComponentsGrid } from "@/components/components-grid";
+
 
 function App() {
   const location = useLocation();
@@ -51,6 +53,7 @@ function App() {
                 <Route path="introduction" element={<MDXContent component={Introduction} />} />
                 <Route path="installation" element={<MDXContent component={Installation} />} />
                 <Route path="theming" element={<MDXContent component={Theming} />} />
+                <Route path="components" element={<ComponentsGrid />} />
                 <Route path="avatar" element={<MDXContent component={Avatar} />} />
                 <Route path="button" element={<MDXContent component={Button} />} />
                 <Route path="input" element={<MDXContent component={Input} />} />

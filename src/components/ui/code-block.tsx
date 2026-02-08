@@ -18,7 +18,7 @@ interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
 // Singleton highlighter instance
 let highlighterPromise: Promise<Highlighter> | null = null
 const SUPPORTED_LANGS = ['tsx', 'typescript', 'javascript', 'bash', 'css', 'html', 'json', 'python', 'jsx', 'ts', 'shell', 'markdown', 'md', 'yaml', 'yml'] as const
-const THEME = 'github-dark-dimmed'
+const THEME = 'github-dark'
 
 function getHighlighter() {
     if (!highlighterPromise) {
@@ -33,14 +33,14 @@ function getHighlighter() {
 function extractCodeFromChildren(children: React.ReactNode): { code: string; language?: string } {
     if (!children) return { code: '' }
     if (typeof children === 'string') return { code: children.trim() }
-    
+
     if (React.isValidElement(children)) {
         const childProps = children.props as any
         const code = childProps.children ? String(childProps.children).trim() : ''
         const language = childProps.className?.match(/language-(\w+)/)?.[1]
         return { code, language }
     }
-    
+
     return { code: '' }
 }
 
@@ -50,7 +50,7 @@ export function CodeBlock({
     language: languageProp = "tsx",
     filename,
     showLineNumbers = false,
-    maxHeight = 600,
+    maxHeight = 650,
     hideHeader = false,
     className,
     ...props
@@ -58,7 +58,7 @@ export function CodeBlock({
     const [html, setHtml] = React.useState<string>("")
     const [isLoading, setIsLoading] = React.useState(true)
 
-    const { code: extractedCode, language: extractedLanguage } = React.useMemo(() => 
+    const { code: extractedCode, language: extractedLanguage } = React.useMemo(() =>
         extractCodeFromChildren(children), [children]
     )
 
@@ -73,12 +73,12 @@ export function CodeBlock({
         }
 
         let isMounted = true
-        
+
         const highlight = async () => {
             try {
                 setIsLoading(true)
                 const highlighter = await getHighlighter()
-                
+
                 if (!isMounted) return
 
                 const highlighted = highlighter.codeToHtml(code, {
@@ -88,10 +88,10 @@ export function CodeBlock({
                         {
                             pre(node) {
                                 delete node.properties.style
-                                node.properties.class = 'flex'
+                                node.properties.class = 'flex bg-transparent p-0 m-0'
                             },
                             code(node) {
-                                node.properties.class = 'flex-1 min-w-0'
+                                node.properties.class = 'flex-1 min-w-0 bg-transparent p-0 m-0'
                             }
                         }
                     ]
@@ -104,7 +104,7 @@ export function CodeBlock({
             } catch (err) {
                 console.error("Highlight error:", err)
                 if (isMounted) {
-                    setHtml(`<pre class="flex"><code class="flex-1">${escapeHtml(code)}</code></pre>`)
+                    setHtml(`<pre class="flex bg-transparent"><code class="flex-1">${escapeHtml(code)}</code></pre>`)
                     setIsLoading(false)
                 }
             }
@@ -120,98 +120,82 @@ export function CodeBlock({
     const maxHeightStyle = typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight
 
     return (
-        <div 
+        <div
             className={cn(
-                "relative group rounded-lg bg-zinc-950 dark:bg-black border border-zinc-800/60 overflow-hidden my-6",
+                "relative group my-6 overflow-hidden rounded-lg border bg-zinc-950 dark:bg-zinc-950",
                 className
-            )} 
+            )}
             {...props}
         >
-            {/* Minimal Header */}
-            {!hideHeader && (
-                <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800/60 bg-zinc-900/30">
-                    <div className="flex items-center gap-2 min-w-0">
-                        {filename ? (
-                            <span className="text-xs font-medium text-zinc-400 truncate">
-                                {filename}
-                            </span>
-                        ) : (
-                            <span className="text-[11px] uppercase tracking-wider font-medium text-zinc-500">
-                                {language}
-                            </span>
-                        )}
-                    </div>
-                    
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                        {filename && (
-                            <span className="text-[11px] uppercase tracking-wider font-medium text-zinc-600 hidden sm:block">
-                                {language}
-                            </span>
-                        )}
-                        <CopyButton 
-                            value={code} 
-                            className="h-6 w-6 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 rounded-md"
-                        />
+            {/* Header - Only render if filename exists */}
+            {!hideHeader && filename && (
+                <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
+                    <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-zinc-400">
+                            {filename}
+                        </span>
                     </div>
                 </div>
             )}
 
+            {/* Copy Button (Floating) */}
+            <div className={cn(
+                "absolute right-4 top-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200",
+                !hideHeader && filename && "top-3"
+            )}>
+                <CopyButton
+                    value={code}
+                    className="h-8 w-8 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-md transition-colors"
+                />
+            </div>
+
             {/* Code Container */}
-            <div 
+            <div
                 className={cn(
-                    "relative overflow-auto",
-                    !hideHeader && "rounded-t-none",
-                    // Custom scrollbar
+                    "relative overflow-auto p-4",
+                    // Custom Scrollbar
                     "[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar]:h-2",
                     "[&::-webkit-scrollbar-track]:bg-transparent",
-                    "[&::-webkit-scrollbar-thumb]:bg-zinc-800 [&::-webkit-scrollbar-thumb]:rounded-full",
-                    "hover:[&::-webkit-scrollbar-thumb]:bg-zinc-700",
-                    "[scrollbar-width:thin] [scrollbar-color:rgb(63,63,70)_transparent]"
+                    "[&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-thumb]:rounded-full",
+                    "[&::-webkit-scrollbar-thumb]:hover:bg-zinc-700",
+                    !hideHeader && filename ? "pt-4" : "pt-4"
                 )}
                 style={{ maxHeight: hideHeader ? maxHeightStyle : undefined }}
             >
                 {isLoading ? (
-                    <div className="p-4 space-y-2 animate-pulse">
-                        {lines.slice(0, 12).map((_, i) => (
-                            <div 
-                                key={i} 
-                                className="h-4 bg-zinc-800/50 rounded w-full"
-                                style={{ width: `${Math.random() * 40 + 60}%`, opacity: 1 - (i * 0.05) }}
+                    <div className="space-y-2 animate-pulse">
+                        {lines.slice(0, 5).map((_, i) => (
+                            <div
+                                key={i}
+                                className="h-4 bg-zinc-800/50 rounded"
+                                style={{ width: `${Math.random() * 40 + 40}%` }}
                             />
                         ))}
                     </div>
                 ) : (
                     <div className="relative">
-                        {/* Line Numbers + Code Grid */}
-                        <div className="flex text-[13px] leading-6">
+                        <div className="flex text-[14px] leading-6 font-mono">
                             {showLineNumbers && (
-                                <div 
-                                    className="sticky left-0 z-10 select-none text-right pr-4 pl-4 py-4 text-zinc-600 bg-zinc-950 dark:bg-black border-r border-zinc-800/40 font-mono text-xs"
+                                <div
+                                    className="shrink-0 select-none text-right pr-4 text-zinc-600"
                                     aria-hidden="true"
                                 >
                                     {lines.map((_, i) => (
-                                        <div key={i} className="leading-6">
-                                            {i + 1}
-                                        </div>
+                                        <div key={i}>{i + 1}</div>
                                     ))}
                                 </div>
                             )}
-                            
-                            <div className="flex-1 min-w-0 p-4 overflow-x-auto">
-                                <div 
+
+                            <div className="flex-1 min-w-0">
+                                <div
                                     dangerouslySetInnerHTML={{ __html: html }}
-                                    className="[&_pre]:!bg-transparent [&_pre]:!m-0 [&_pre]:!p-0 [&_code]:!bg-transparent [&_code]:!p-0 font-mono"
+                                    className="[&_span]:!bg-transparent"
                                 />
                             </div>
                         </div>
                     </div>
                 )}
             </div>
-
-            {/* Gradient Fade for overflow */}
-            {maxHeight && (
-                <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
-            )}
         </div>
     )
 }
