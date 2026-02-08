@@ -122,42 +122,35 @@ export function CodeBlock({
     return (
         <div
             className={cn(
-                "relative group my-6 overflow-hidden rounded-lg border bg-zinc-950 dark:bg-zinc-950",
+                "relative group my-6 overflow-hidden rounded-lg border bg-zinc-950",
                 className
             )}
             {...props}
         >
             {/* Header - Only render if filename exists */}
             {!hideHeader && filename && (
-                <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium text-zinc-400">
-                            {filename}
-                        </span>
-                    </div>
+                <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-white/5">
+                    <span className="text-[12px] font-medium text-zinc-400">
+                        {filename}
+                    </span>
                 </div>
             )}
 
             {/* Copy Button (Floating) */}
             <div className={cn(
-                "absolute right-4 top-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-                !hideHeader && filename && "top-3"
+                "absolute right-3 top-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200",
+                !hideHeader && filename && "top-[7px]"
             )}>
                 <CopyButton
                     value={code}
-                    className="h-8 w-8 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-md transition-colors"
+                    className="h-7 w-7 text-zinc-400 hover:text-zinc-200 hover:bg-white/10 rounded-md transition-colors"
                 />
             </div>
 
             {/* Code Container */}
             <div
                 className={cn(
-                    "relative overflow-auto p-4",
-                    // Custom Scrollbar
-                    "[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar]:h-2",
-                    "[&::-webkit-scrollbar-track]:bg-transparent",
-                    "[&::-webkit-scrollbar-thumb]:bg-zinc-700/50 [&::-webkit-scrollbar-thumb]:rounded-full",
-                    "[&::-webkit-scrollbar-thumb]:hover:bg-zinc-700",
+                    "relative overflow-auto p-4 max-h-[650px]",
                     !hideHeader && filename ? "pt-4" : "pt-4"
                 )}
                 style={{ maxHeight: hideHeader ? maxHeightStyle : undefined }}
@@ -174,10 +167,10 @@ export function CodeBlock({
                     </div>
                 ) : (
                     <div className="relative">
-                        <div className="flex text-[14px] leading-6 font-mono">
+                        <div className="flex text-sm leading-6 font-mono">
                             {showLineNumbers && (
                                 <div
-                                    className="shrink-0 select-none text-right pr-4 text-zinc-600"
+                                    className="shrink-0 select-none text-right pr-4 text-zinc-600 border-r border-zinc-800 mr-4"
                                     aria-hidden="true"
                                 >
                                     {lines.map((_, i) => (
@@ -189,7 +182,7 @@ export function CodeBlock({
                             <div className="flex-1 min-w-0">
                                 <div
                                     dangerouslySetInnerHTML={{ __html: html }}
-                                    className="[&_span]:!bg-transparent"
+                                    className="[&_span]:bg-transparent!"
                                 />
                             </div>
                         </div>

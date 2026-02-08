@@ -1,72 +1,103 @@
 import { Link } from "react-router-dom";
 import { docsConfig } from "@/config/docs";
-import { Copy, ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/button/button";
-import { useState } from "react";
+import { ComponentCard } from "@/components/ui/component-card";
 
 export function ComponentsGrid() {
-    const [copied, setCopied] = useState(false);
+    const newest = [
+        {
+            title: "Next Reveal",
+            subtitle: "Next Level",
+            author: { name: "Daiwiik Harihar", initial: "D", avatar: "bg-teal-600" },
+            preview: <div className="text-4xl font-bold tracking-tighter text-white">NEXT LEVEL</div>,
+            href: "/docs/button"
+        },
+        {
+            title: "Text Reveal",
+            subtitle: "Text Reveal",
+            author: { name: "Daiwiik Harihar", initial: "D", avatar: "bg-teal-600" },
+            preview: <div className="text-4xl font-bold tracking-tight text-white">Theme Aware</div>,
+            href: "/docs/input"
+        },
+        {
+            title: "Kinetic Dots Loader",
+            subtitle: "Loader",
+            author: { name: "Daiwiik Harihar", initial: "D", avatar: "bg-teal-600" },
+            preview: (
+                <div className="flex gap-2">
+                    {[1, 2, 3, 4].map(i => (
+                        <div key={i} className="w-3 h-3 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: `${i * 0.1}s` }} />
+                    ))}
+                </div>
+            ),
+            href: "/docs/avatar"
+        }
+    ]
 
-    // Get all component items from the config
-    const componentItems = docsConfig.sidebarNav.find(
-        section => section.title === "Components"
-    )?.items || [];
-
-    const handleCopyPage = () => {
-        navigator.clipboard.writeText(window.location.href);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
+    const popular = [
+        {
+            title: "Glowing Effect",
+            subtitle: "Default",
+            author: { name: "Aceternity UI", initial: "A", avatar: "bg-zinc-800" },
+            preview: <div className="w-32 h-32 rounded-xl bg-linear-to-br from-purple-500 to-blue-500 blur-xl opacity-50" />,
+            href: "/docs/dialog"
+        },
+        {
+            title: "Spline Scene",
+            subtitle: "Default",
+            author: { name: "Serafim", initial: "S", avatar: "bg-orange-600" },
+            preview: <div className="w-40 h-40 bg-zinc-900 rounded-full border border-white/10" />,
+            href: "/docs/switch"
+        },
+        {
+            title: "Display Cards",
+            subtitle: "Default",
+            author: { name: "Prism UI", initial: "P", avatar: "bg-indigo-600" },
+            preview: <div className="p-4 bg-zinc-900 border border-white/10 rounded-lg text-[10px] text-white/40">Featured Product</div>,
+            href: "/docs/card"
+        }
+    ]
 
     return (
-        <div className="min-h-screen bg-background text-foreground">
-            {/* Header Section */}
-            <div className="mb-12">
-                <div className="flex items-start justify-between mb-6">
-                    <div>
-                        <h1 className="text-5xl font-bold tracking-tight mb-4">
-                            Components
-                        </h1>
-                        <p className="text-lg text-muted-foreground max-w-2xl">
-                            Here you can find all the components available in the library.
-                        </p>
-                    </div>
-
-                    {/* Top Right Actions */}
-                    <div className="flex items-center gap-2">
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={handleCopyPage}
-                            className="gap-2"
-                        >
-                            <Copy className="h-4 w-4" />
-                            {copied ? "Copied!" : "Copy Page"}
-                        </Button>
-                        <Button variant="ghost" size="icon-sm">
-                            <ChevronLeft className="h-4 w-4" />
-                        </Button>
-                        <Button variant="ghost" size="icon-sm">
-                            <ChevronRight className="h-4 w-4" />
-                        </Button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Components Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {componentItems.map((component) => (
-                    <Link
-                        key={component.href}
-                        to={component.href}
-                        className="group relative p-6 rounded-lg border border-border/50 bg-card/30 hover:bg-card/50 hover:border-border transition-all duration-200"
-                    >
-                        <h3 className="text-lg font-medium text-foreground group-hover:text-primary transition-colors duration-200">
-                            {component.title}
-                        </h3>
+        <div className="space-y-16">
+            {/* Newest Section */}
+            <section>
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-sm font-semibold text-white tracking-wide">Newest</h2>
+                    <Link to="#" className="text-[13px] text-zinc-500 hover:text-white flex items-center gap-1 transition-colors">
+                        View all <ChevronRight className="w-3 h-3" />
                     </Link>
-                ))}
-            </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {newest.map((item, i) => (
+                        <Link key={i} to={item.href}>
+                            <ComponentCard {...item} />
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+            {/* Popular Section */}
+            <section>
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-sm font-semibold text-white tracking-wide">Popular</h2>
+                    <Link to="#" className="text-[13px] text-zinc-500 hover:text-white flex items-center gap-1 transition-colors">
+                        View all <ChevronRight className="w-3 h-3" />
+                    </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {popular.map((item, i) => (
+                        <Link key={i} to={item.href}>
+                            <ComponentCard {...item} />
+                        </Link>
+                    ))}
+                </div>
+            </section>
         </div>
     );
+}
+
+function ChevronRight({ className }: { className?: string }) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m9 18 6-6-6-6" /></svg>
+    )
 }

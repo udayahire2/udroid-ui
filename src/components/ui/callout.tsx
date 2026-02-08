@@ -16,12 +16,12 @@ export function Callout({
     return (
         <div
             className={cn(
-                "my-6 flex items-start rounded-md border border-l-4 p-4",
-                type === "default" && "border-border bg-muted/50",
-                type === "info" && "border-blue-500/30 bg-blue-500/5 text-blue-900 dark:text-blue-200 border-l-blue-500",
-                type === "warning" && "border-yellow-500/30 bg-yellow-500/5 text-yellow-900 dark:text-yellow-200 border-l-yellow-500",
-                type === "danger" && "border-red-500/30 bg-red-500/5 text-red-900 dark:text-red-200 border-l-red-500",
-                type === "success" && "border-green-500/30 bg-green-500/5 text-green-900 dark:text-green-200 border-l-green-500",
+                "my-6 flex items-start rounded-md border border-l-2 p-4",
+                type === "default" && "border-border bg-muted/30",
+                type === "info" && "border-blue-500/20 bg-blue-500/5 text-foreground border-l-blue-500",
+                type === "warning" && "border-yellow-500/20 bg-yellow-500/5 text-foreground border-l-yellow-500",
+                type === "danger" && "border-red-500/20 bg-red-500/5 text-foreground border-l-red-500",
+                type === "success" && "border-green-500/20 bg-green-500/5 text-foreground border-l-green-500",
                 className
             )}
             {...props}
